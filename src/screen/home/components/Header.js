@@ -10,7 +10,6 @@ const Header = () => {
   const {
     openDrawer 
   } = useNavigation();
-  
 
   return (
     <View style={styles.container}>
