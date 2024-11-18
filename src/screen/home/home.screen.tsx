@@ -4,15 +4,28 @@ import Header from './components/Header'
 import Verification from './components/Verification'
 import Contacts from './components/Contacts'
 import Protect from './components/Protect'
+import SafeTip from './components/SafeTip'
+import Tip from './components/Tip'
+import QuickGuide from './components/QuickGuide'
+import CommingSoon from './components/CommingSoon'
+import TradeMark from './components/TradeMark'
+import GetInTouch from './components/GetInTouch'
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       
-      <Header/>
+      <Header nav={navigation}/>
       <Verification/>
       <Contacts/>
       <Protect/>
+      <SafeTip/>
+      <Tip/>
+      <QuickGuide/>
+      <CommingSoon/>
+      <GetInTouch/>
+      <TradeMark/>
+
 
 
     </ScrollView>

@@ -5,11 +5,7 @@ import HelloIcon from '../../../../assets/icons/HelloIcon';
 import { useNavigation } from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Header = () => {
-
-  const {
-    openDrawer 
-  } = useNavigation();
+const Header = ({nav}) => {
 
   return (
     <View style={styles.container}>
@@ -26,7 +22,7 @@ const Header = () => {
       <View style={styles.bellDrawerNav}>
         <BellIcon  width={40} height={40}/>
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
-        <TouchableOpacity onPress={openDrawer}          >
+        <TouchableOpacity onPress={()=>nav?.openDrawer()}>
           <NavLines width={40} height={40} />
         </TouchableOpacity>
       </View>
@@ -73,12 +69,14 @@ const styles = StyleSheet.create({
   helloText1:{
     fontSize:25,
     fontWeight:"bold",
-    fontFamily:"Mulish-Bold" //the way to use font style 
+    fontFamily:"Mulish-Bold", //the way to use font style 
+    color:"black"
   },
   helloText2:{
     fontSize:15,
     fontWeight:"500",
-    paddingTop:5
+    paddingTop:5,
+    color:"black"
   },
   bell1:{
     fontSize:30

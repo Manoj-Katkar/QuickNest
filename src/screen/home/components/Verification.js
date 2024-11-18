@@ -78,20 +78,25 @@ const styles = StyleSheet.create({
     fontWeight:"bold"
   },
   text1:{
-    fontSize:25,
+    fontSize:23,
     paddingBottom:15,
-    fontWeight:"500"
+    fontWeight:"500",
+    color:"black"
+
   },
   text2:{
     fontSize:18,
-    fontWeight:"300"
+    fontWeight:"300",
+    color:"black"
+
   },
   nextIcon:{
     marginBottom:18
   },
   percentage:{
     fontSize:20,
-    marginTop:30
+    marginTop:30,
+    color:"black"
   }
 });
 

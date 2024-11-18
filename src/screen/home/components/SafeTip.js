@@ -4,19 +4,24 @@ import MarieIcon from '../../../../assets/icons/MarieIcon'
 import MarcusIcon from '../../../../assets/icons/MarcusIcon'
 import JakeIcon from '../../../../assets/icons/JakeIcon'
 import IsabellIcon from '../../../../assets/icons/IsabellIcon'
+import PersonalIcon from '../../../../assets/icons/PersonalIcon'
+import HomeNewIcon from '../../../../assets/icons/HomeNewIcon'
+import VehicalIcon from '../../../../assets/icons/VehicalIcon'
+import TravelIcon from '../../../../assets/icons/TravelIcon'
 
-const Contacts = () => {
+const SafeTip = () => {
   return (
     <View style={styles.container}>
       <View style={styles.subContainer1}>
-        <Text style={styles.text1}>Household Member Contacts</Text>
+        <Text style={styles.text1}>Tips to be safe</Text>
       </View>
 
       <View style={styles.subContainer2}>
-        <MarieIcon/>
-        <MarcusIcon/>
-        <JakeIcon/>
-        <IsabellIcon/>
+        <PersonalIcon/>
+        <HomeNewIcon/>
+        <VehicalIcon/>
+        <TravelIcon/>
+
       </View>
 
     </View>
@@ -43,12 +48,12 @@ const styles = StyleSheet.create({
 
     },
     text1:{
-      fontSize:25,
-      fontWeight:"900",
-      color:"black"
+        fontSize:25,
+        fontWeight:"900",
+        color:"black"
 
     }
 
 })
 
-export default Contacts
+export default SafeTip
