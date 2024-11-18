@@ -1,61 +1,36 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import BellIcon from '../../../../assets/icons/BellIcon';
 import NavLines from '../../../../assets/icons/NavLines';
 import HelloIcon from '../../../../assets/icons/HelloIcon';
 import { useNavigation } from '@react-navigation/native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Header = () => {
 
   const {
     openDrawer 
   } = useNavigation();
-
-  // console.log(navigation );
-
-  const openDrawers = () => {
-    navigation.openDrawer();
-
-    console.log("drawer pressed!!!!!!!!!!!!!!!!!");
-    
-  }
   
 
   return (
     <View style={styles.container}>
-
       <View style={styles.helloContainer}>
-
         <View style={styles.lLogo}>
           <HelloIcon     width={75} height={75}/>
         </View>
-
         <View style={styles.helloMessage}>
-
           <Text style={styles.helloText1}>Hello Luffy!</Text>
           <Text style={styles.helloText2}>Hope you are safe</Text>
-
         </View>
       </View>
 
       <View style={styles.bellDrawerNav}>
-
         <BellIcon  width={40} height={40}/>
-
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
-        
-        <TouchableOpacity 
-            onPress={() => openDrawer()} 
-        >
+        <TouchableOpacity onPress={openDrawer}          >
           <NavLines width={40} height={40} />
-
         </TouchableOpacity>
-
-
-        
-
       </View>
-
     </View>
   );
 };
