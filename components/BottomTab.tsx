@@ -15,7 +15,7 @@ import EnquiryIcon from '../assets/icons/EnquiryIcon';
 
 // !create the instance of the createBottomTabNavigator
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator <any>() ;
 
 
 
@@ -24,9 +24,10 @@ const BottomTab = () => {
 
 
   return (
-    <NavigationContainer>
-        <Tab.Navigator
-        
+    
+        <Tab.Navigator 
+
+
         screenOptions={{
             // tabBarLabelPosition:"beside-icon"   //by default it will be below icons which represent the name should display where in differant divices like tab and mobile it differs 
             
@@ -40,6 +41,9 @@ const BottomTab = () => {
 
             tabBarInactiveTintColor:"purple" ,           // this color will get apply to the labels which are currentlly in-active on our application 
             
+
+            headerShown:false ,
+
 
             // Customize the tab label font size and other styles here
             tabBarLabelStyle: {
@@ -57,7 +61,8 @@ const BottomTab = () => {
             <Tab.Screen   name='Home' component={Home}
 
                     options={{
-                        tabBarIcon: () => <HomeIcon />
+                        tabBarIcon: () => <HomeIcon />,
+                        headerShown:false 
                     }}
             />
 
@@ -89,7 +94,7 @@ const BottomTab = () => {
             />
 
         </Tab.Navigator>
-    </NavigationContainer>
+   
   )
 }
 

@@ -1,20 +1,28 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import Header from './components/Header'
+import Verification from './components/Verification'
+import Contacts from './components/Contacts'
+import Protect from './components/Protect'
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>home</Text>
+    <ScrollView style={styles.container}>
+      
       <Header/>
-    </View>
+      <Verification/>
+      <Contacts/>
+      <Protect/>
+
+
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor:"aqua"
+      backgroundColor:"#fafafa"
     },
     text:{
         fontSize:30
