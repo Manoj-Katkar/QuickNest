@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     text:{
         paddingLeft:28,
         fontSize:25,
-        color:"black",
-        fontWeight:"bold"
+        fontWeight:"800",
+        color:"black"
     },
     child:{
         // backgroundColor:"yellow"

@@ -9,6 +9,7 @@ import MemberIcon from '../assets/icons/MemberIcon';
 import EnquiryIcon from '../assets/icons/EnquiryIcon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
+
 export type BottomTabScreens = {
     Home: undefined;
     Concern: undefined;
@@ -52,6 +53,7 @@ const BottomTab = () => {
             <Tab.Screen name='Enquiry' component={Enquiry}
                 options={{ tabBarIcon: () => <EnquiryIcon /> }}
             />
+
         </Tab.Navigator>
 
     )

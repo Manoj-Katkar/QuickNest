@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     text1:{
       fontSize:25,
-      fontWeight:"900",
+      fontWeight:"800",
       color:"black"
 
     }

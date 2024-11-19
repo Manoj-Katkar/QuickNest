@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   text1: {
-    fontSize: 25,
-    fontWeight: 'bold',
+    fontSize:25,
+    fontWeight:"800",
+    color:"black",
     marginTop: 10,
     marginBottom: 15,
     paddingLeft: 25,
-    color: 'black',
   },
   imageContainer: {
     marginBottom: 14,

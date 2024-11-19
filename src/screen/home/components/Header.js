@@ -6,7 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Header = ({nav}) => {
-
+   
+    
   return (
     <View style={styles.container}>
       <View style={styles.helloContainer}>
@@ -22,7 +23,12 @@ const Header = ({nav}) => {
       <View style={styles.bellDrawerNav}>
         <BellIcon  width={40} height={40}/>
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
-        <TouchableOpacity onPress={()=>nav?.openDrawer()}>
+        <TouchableOpacity onPress={()=> {
+          // console.log("navigation : returns the below inbuild methods " , nav);
+          console.log("Drawer is opened Button is Clicked!!!!!!!!!!!");
+          
+          nav?.openDrawer()
+          }}>
           <NavLines width={40} height={40} />
         </TouchableOpacity>
       </View>

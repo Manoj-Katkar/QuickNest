@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
+
 const Subscription = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Subscription</Text>
+      <Text style={styles.text}> Subscription</Text>
     </View>
   )
 }
