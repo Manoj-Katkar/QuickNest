@@ -25,7 +25,8 @@ import CrossIcon from '../assets/icons/CrossIcon';
 import UserImageIcon from '../assets/icons/UserImageIcon';
 
 export type DrawerNavScreens = {
-  BottomTab: BottomTabScreens;
+  BottomTab: BottomTabScreens; 
+  HouseServices:undefined;
   Subscription: undefined;
   Verification: undefined;
   LegalDocuments: undefined;

@@ -22,7 +22,7 @@ const Home = ({navigation}) => {
       <SafeTip/>
       <Tip/>
       <QuickGuide/>
-      <CommingSoon/>
+      <CommingSoon nav={navigation}/>
       <GetInTouch/>
       <TradeMark/>
 

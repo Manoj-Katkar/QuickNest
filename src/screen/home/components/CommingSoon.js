@@ -1,19 +1,30 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import React from 'react'
+import HouseServicesImage from '../../../../assets/icons/HouseServicesImage'
 import FastImage from 'react-native-fast-image'
 import { Image } from '../../../constant/images'
 
-const CommingSoon = () => {
+
+const {width , height} = Dimensions.get("window");
+
+const CommingSoon = ({nav}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Comming Soon!</Text>
 
-      
-        <FastImage
-            source={Image.houseBanner}
-            style={styles.image}
-            resizeMode={FastImage.resizeMode.contain} // or cover, depending on your needs
-        />
+
+        <TouchableOpacity onPress={() => nav.navigate('House_Services')}>
+              {/* <HouseServicesImage width={400} height={200}/> */}
+
+              <FastImage
+                  source={Image.houseBanner}
+                  
+                  resizeMode='contain'
+
+                  style={styles.image}
+              />
+        </TouchableOpacity>
+
       
     </View>
   )
@@ -34,8 +45,8 @@ const styles = StyleSheet.create({
     },
     image:{
         // backgroundColor:"red",
-        width:630,
-        height:200,
+        width:width * 0.9,
+        height:180,
         alignSelf:"center",
         marginTop:20,
         marginBottom:20,
