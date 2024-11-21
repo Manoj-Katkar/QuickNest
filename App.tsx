@@ -3,6 +3,7 @@ import DrawerNav, { DrawerNavScreens } from './components/DrawerNav'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HouseServices from './src/screen/house-services/house-services.screen'
+import { Platform } from 'react-native'
 
 
 
@@ -27,8 +28,25 @@ const App = () => {
 
         <Stack.Screen name='House_Services' component={HouseServices} 
               options={{
-                headerShown:true
+                headerShown: true,
+
+                title:"House Services",
+
+                headerTitleStyle:{
+                  fontWeight:"bold",
+                  fontSize:25
+                },
+
+                headerStyle: {
+                  backgroundColor: "#fafafa", // Background color of the header
+
+                  ...(Platform.OS === 'android' ? { elevation: 0 } : { shadowOpacity: 0 }), // Platform-specific styling
+                
+                },
+
               }}
+
+
         />
       </Stack.Navigator>
     </NavigationContainer>

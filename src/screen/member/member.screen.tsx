@@ -1,23 +1,38 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ImageBackgroundComponent,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import React from 'react';
+import UserUI from '../../../components/UserUI';
+
+
+
+const {width , height} = Dimensions.get("window");
+
+
 
 const Member = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>member</Text>
+      <Text style={styles.text}>enquiry</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    container:{
-      flex:1,
-      backgroundColor:"purple"
-  
-    },
-    text:{
-        fontSize:30
-    }
-  })
+  container:{
+    flex:1,
+    backgroundColor:"yellow"
 
-export default Member
+  },
+  text:{
+      fontSize:30
+  }
+})
+
+export default Member;

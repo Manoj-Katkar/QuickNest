@@ -19,7 +19,7 @@ const CommingSoon = ({nav}) => {
               <FastImage
                   source={Image.houseBanner}
                   
-                  resizeMode='contain'
+                  // resizeMode='contain'
 
                   style={styles.image}
               />
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     },
     image:{
         // backgroundColor:"red",
-        width:width * 0.9,
-        height:180,
+        width:width * 0.99,
+        height:200,
         alignSelf:"center",
         marginTop:20,
         marginBottom:20,

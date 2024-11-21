@@ -1,7 +1,12 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../../constant/images';
+
+
+
+const {width , height} = Dimensions.get("window");
+
 
 const Protect = () => {
   return (
@@ -15,7 +20,7 @@ const Protect = () => {
         <FastImage
           source={Image.protectImage}
           style={styles.image}
-          resizeMode={FastImage.resizeMode.contain} // or cover, depending on your needs
+          resizeMode={FastImage.resizeMode.stretch} // or cover, depending on your needs
         />
       </View>
     </View>
@@ -24,7 +29,7 @@ const Protect = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
+    flex:1,
     // backgroundColor:"aqua",
     marginTop: 25,
   },
@@ -37,13 +42,15 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
   },
   imageContainer: {
+    flex:1,
     marginBottom: 14,
     // backgroundColor: 'yellow',
   },
   image: {
-    width: 500,
-    height: 100,
-    alignSelf: 'center',
+    width:"100%",
+    height:220,
+    alignSelf:"center",
+
   },
 });
 
