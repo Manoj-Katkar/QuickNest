@@ -18,7 +18,7 @@ const {width , height} = Dimensions.get("window");
 
 const UserUI = ({props}) => {
 
-  console.log(props);
+  // console.log(props);
 
   const {navigation} = props;
 

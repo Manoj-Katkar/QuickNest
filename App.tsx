@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HouseServices from './src/screen/house-services/house-services.screen'
 import { Platform } from 'react-native'
+import Details from './src/screen/details/details.screen'
 
 
 
@@ -14,6 +15,7 @@ import { Platform } from 'react-native'
 type RootStackParamList = {
   DrawerNav: DrawerNavScreens;
   House_Services: undefined; // Adjust the params if `House_Services` takes any
+  Details:undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -45,9 +47,19 @@ const App = () => {
                 },
 
               }}
-
-
         />
+
+
+        <Stack.Screen name='Details' component={Details} 
+
+              options={{
+                // headerShown:true
+              }}
+        />
+
+
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )

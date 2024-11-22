@@ -19,7 +19,7 @@ const {width , height} = Dimensions.get("window");
 const Member = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>enquiry</Text>
+      <Text style={styles.text}>Member</Text>
     </View>
   );
 };
