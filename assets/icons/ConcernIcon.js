@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
-const ConcernIcon = (props) => (
+const CooncernIcon = (props) => (
   <Svg
     width={25}
     height={25}
@@ -52,4 +52,4 @@ const ConcernIcon = (props) => (
     />
   </Svg>
 );
-export default ConcernIcon;
+export default CooncernIcon;

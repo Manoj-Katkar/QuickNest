@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import MarieIcon from '../../../../assets/icons/MarieIcon'
 import MarcusIcon from '../../../../assets/icons/MarcusIcon'
@@ -12,12 +12,20 @@ const Contacts = () => {
         <Text style={styles.text1}>Household Member Contacts</Text>
       </View>
 
-      <View style={styles.subContainer2}>
-        <MarieIcon/>
-        <MarcusIcon/>
-        <JakeIcon/>
-        <IsabellIcon/>
-      </View>
+      <ScrollView horizontal style={styles.subContainer2}>
+        <MarieIcon style={styles.contacts}/>
+        <MarcusIcon style={styles.contacts}/>
+        <JakeIcon style={styles.contacts}/>
+        <IsabellIcon style={styles.contacts}/>
+        <MarieIcon style={styles.contacts}/>
+        <MarcusIcon style={styles.contacts}/>
+        <JakeIcon style={styles.contacts}/>
+        <IsabellIcon style={styles.contacts}/>
+        <MarieIcon style={styles.contacts}/>
+        <MarcusIcon style={styles.contacts}/>
+        <JakeIcon style={styles.contacts}/>
+        <IsabellIcon style={styles.contacts}/>
+      </ScrollView>
 
     </View>
   )
@@ -25,28 +33,32 @@ const Contacts = () => {
 
 const styles = StyleSheet.create({
     container:{
-        // backgroundColor:"red",
+        backgroundColor:"#fafafa",
         marginTop:25,
         
         // alignSelf:"center"
     },
     subContainer1:{
         // backgroundColor:"yellow",
-        paddingLeft:28
+        paddingLeft:20
 
     },
     subContainer2:{
         flexDirection:"row",
-        justifyContent:"space-evenly",
+        // justifyContent:"space-evenly",
         // backgroundColor:"aqua",
         marginTop:10
 
     },
     text1:{
-      fontSize:25,
-      fontWeight:"800",
+      fontSize:22,
+      fontFamily:"Mulish-Bold",
+      // fontWeight:"600",
       color:"black"
 
+    },
+    contacts:{
+      marginLeft:20
     }
 
 })

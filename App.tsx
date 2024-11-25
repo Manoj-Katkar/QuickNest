@@ -3,7 +3,7 @@ import DrawerNav, { DrawerNavScreens } from './components/DrawerNav'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HouseServices from './src/screen/house-services/house-services.screen'
-import { Platform } from 'react-native'
+import { Platform, StatusBar } from 'react-native'
 import Details from './src/screen/details/details.screen'
 
 
@@ -56,6 +56,8 @@ const App = () => {
                 // headerShown:true
               }}
         />
+
+
 
 
 

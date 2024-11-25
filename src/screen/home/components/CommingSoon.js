@@ -38,10 +38,11 @@ const styles = StyleSheet.create({
         
     },
     text:{
-        paddingLeft:28,
-        fontSize:25,
+        paddingLeft:22,
+        fontSize:22,
         color:"black",
-        fontWeight:"bold"
+        fontFamily:"Mulish-Bold"
+        // fontWeight:"600"
     },
     image:{
         // backgroundColor:"red",

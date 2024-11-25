@@ -56,13 +56,13 @@ const DrawerNav = () => {
         headerShown: false,
         drawerStyle: {backgroundColor: '#011e62', width: screenWidth},
         drawerPosition: 'right', //this will open the drawer from the right side
-        swipeEdgeWidth: 300,
+        swipeEdgeWidth: 50,
         drawerLabelStyle: {
           color: '#e8ebfc', // Change label color
         },
       }}
       
-      // ^For Drawer Ui We Have to create the another Compoenent And render it and then handle the navigation in it no need to use options and add ui for each scrren (it will increase the code redundancy)
+      // ^For Drawer Ui We Have to create the another Component And render it and then handle the navigation in it no need to use options and add ui for each scrren (it will increase the code redundancy)
 
       drawerContent={props => <UserUI props={props} />} //!prefer this approach
     >

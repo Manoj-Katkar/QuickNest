@@ -58,21 +58,21 @@ const styles = StyleSheet.create({
         // backgroundColor:"red"
     },
     text:{
-        paddingLeft:28,
-        fontSize:25,
+        paddingLeft:22,
+        fontSize:22,
         color:"black",
-        fontWeight:"bold"
+        fontFamily:"Mulish-Bold"
     },
     text1:{
         fontSize:22,
-        fontWeight:"600",
+        fontFamily:"Mulish-Bold",
         color:"black",
         marginBottom:10
 
     },
     text2:{
         fontSize:16,
-        fontWeight:"300",
+        fontFamily:"Mulish-Regular",
         color:"black",
         marginBottom:10
     },

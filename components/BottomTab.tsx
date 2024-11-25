@@ -8,6 +8,7 @@ import ConcernIcon from '../assets/icons/ConcernIcon';
 import MemberIcon from '../assets/icons/MemberIcon';
 import EnquiryIcon from '../assets/icons/EnquiryIcon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import BottomTabComp from './BottomTabComp';
 
 
 export type BottomTabScreens = {
@@ -39,6 +40,9 @@ const BottomTab = () => {
                     fontWeight: 'bold', // Optionally make the text bold
                 },
             }}
+
+            tabBar={() => <BottomTabComp/>}
+            
         >
             {/* Now also changing the icons of the each page  */}
             <Tab.Screen name='Home' component={Home}

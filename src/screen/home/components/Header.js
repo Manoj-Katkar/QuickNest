@@ -10,18 +10,24 @@ const Header = ({nav}) => {
     
   return (
     <View style={styles.container}>
+
       <View style={styles.helloContainer}>
         <View style={styles.lLogo}>
           <HelloIcon     width={75} height={75}/>
         </View>
+
         <View style={styles.helloMessage}>
-          <Text style={styles.helloText1}>Hello Luffy!</Text>
+          <Text style={styles.helloText1}>Hello Luffy! </Text>
           <Text style={styles.helloText2}>Hope you are safe</Text>
         </View>
+
       </View>
 
       <View style={styles.bellDrawerNav}>
-        <BellIcon  width={40} height={40}/>
+        <TouchableOpacity>
+        <BellIcon  width={32} height={32} style={styles.bellStyle}/>
+
+        </TouchableOpacity>
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
         <TouchableOpacity onPress={()=> {
           // console.log("navigation : returns the below inbuild methods " , nav);
@@ -29,9 +35,11 @@ const Header = ({nav}) => {
           
           nav?.openDrawer()
           }}>
-          <NavLines width={40} height={40} />
+          <NavLines width={32} height={32}  style={styles.navStyle}/>
         </TouchableOpacity>
+
       </View>
+
     </View>
   );
 };
@@ -57,11 +65,13 @@ const styles = StyleSheet.create({
   bellDrawerNav:{
 
     flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems: 'center',
+    justifyContent:"flex-end",
+    alignItems: 'flex-start',
     // backgroundColor: 'magenta',
     height: 80, // Set height (optional)
     width: '30%',
+    alignSelf:"center"
+    
 
   },
   lLogo:{
@@ -74,18 +84,26 @@ const styles = StyleSheet.create({
   },
   helloText1:{
     fontSize:25,
-    fontWeight:"bold",
+    // fontWeight:"700",
     fontFamily:"Mulish-Bold", //the way to use font style 
     color:"black"
   },
   helloText2:{
     fontSize:15,
-    fontWeight:"500",
+    // fontWeight:"500",
+    fontFamily:"Mulish-Regular",
     paddingTop:5,
-    color:"black"
+    color:"black",
+    lineHeight:17.57
   },
   bell1:{
     fontSize:30
+  },
+  bellStyle:{
+    marginRight:18
+  },
+  navStyle:{
+    marginRight:18
   }
 });
 

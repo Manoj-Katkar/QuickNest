@@ -20,7 +20,7 @@ const Protect = () => {
         <FastImage
           source={Image.protectImage}
           style={styles.image}
-          resizeMode={FastImage.resizeMode.stretch} // or cover, depending on your needs
+          resizeMode={FastImage.resizeMode.contain} // or cover, depending on your needs
         />
       </View>
     </View>
@@ -34,22 +34,27 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   text1: {
-    fontSize:25,
-    fontWeight:"800",
-    color:"black",
     marginTop: 10,
-    marginBottom: 15,
-    paddingLeft: 25,
+    marginBottom: 19,
+    paddingLeft: 20,
+
+    fontSize:22,
+    fontFamily:"Mulish-Bold",
+    // fontWeight:"600",
+    color:"black"
   },
   imageContainer: {
     flex:1,
     marginBottom: 14,
     // backgroundColor: 'yellow',
+    // padding:10
   },
   image: {
-    width:"100%",
-    height:220,
+    width:"95%",
+    height:225,
     alignSelf:"center",
+    backgroundColor:"#f0f4f7",
+    borderRadius:15
 
   },
 });

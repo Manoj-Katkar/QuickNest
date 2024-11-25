@@ -20,7 +20,7 @@ const QuickGuide = () => {
         </View>
 
         <View>
-            <PanicIcon width={150} height={150}/>
+            <PanicIcon width={150} height={150} style={styles.image}/>
         </View>
 
 
@@ -69,36 +69,51 @@ const QuickGuide = () => {
 
 const styles = StyleSheet.create({
     container:{
+      width:"100%",
         marginTop:30,
         // backgroundColor:"aqua",
        
         
     },
     text:{
-        paddingLeft:28,
-        fontSize:25,
-        fontWeight:"800",
+        paddingLeft:10,
+        fontSize:22,
+        fontFamily:"Mulish-Bold",
+        // fontWeight:"600",
         color:"black"
     },
     child:{
-        // backgroundColor:"yellow"
+        // backgroundColor:"magenta",
+        alignSelf:"flex-start"
     },
     text1:{
-        fontSize:19,
-        fontWeight:"600",
+        fontSize:22,
+        // fontWeight:"600",
+        fontFamily:"Mulish-Medium",
         color:"black",
-        marginBottom:15
+        marginBottom:15,
+        alignSelf:"flex-start",
+        // backgroundColor:"red"
     },
     text2:{
         fontSize:15,
-        fontWeight:"300",
+        // fontWeight:"300",
+        fontFamily:"Mulish-Regular",
+        // lineHeight:15.6,
         color:"black"
     },
     subContainer1:{
+      width:"95%",
         flexDirection:"row",
-        justifyContent:"space-around",
+        justifyContent:"space-between",
         alignItems:"center",
-        marginTop:15
+        marginTop:30,
+        alignSelf:"center",
+        // backgroundColor:"yellow"
+    },
+    image:{
+      // backgroundColor:"red",
+      alignSelf:"center"
     }
 })
 

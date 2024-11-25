@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native'
 import React from 'react'
 import Header from './components/Header'
 import Verification from './components/Verification'
@@ -20,11 +20,17 @@ const Home = ({navigation}) => {
       <Contacts/>
       <Protect/>
       <SafeTip/>
-      <Tip/>
+      {/* <Tip/> */}
       <QuickGuide/>
       <CommingSoon nav={navigation}/>
       <GetInTouch/>
       <TradeMark/>
+
+
+      
+        <StatusBar backgroundColor="#fafafa" barStyle="dark-content"/>    
+        {/* //this way I can handle the status bar of the android applications  */}
+								   {/* //barStyle takes two arguments : 1) dark-content , 2) light-content */}
 
 
 

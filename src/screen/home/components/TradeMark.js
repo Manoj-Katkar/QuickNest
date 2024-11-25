@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     container:{
         // marginTop:30,
         // backgroundColor:"aqua",
+        marginBottom:30
         
         
     },
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
         width:300,
         height:200,
         alignSelf:"center",
-        marginTop:20,
+        // marginTop:20,
         // marginBottom:20,
     },
 
