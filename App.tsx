@@ -30,7 +30,7 @@ const App = () => {
 
         <Stack.Screen name='House_Services' component={HouseServices} 
               options={{
-                headerShown: true,
+                headerShown: false,
 
                 title:"House Services",
 

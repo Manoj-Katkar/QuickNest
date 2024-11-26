@@ -60,12 +60,14 @@ const styles = StyleSheet.create({
     text1:{
       color:"black",
       fontSize:27,
-      fontWeight:"700"
+      // fontWeight:"700"
+      fontFamily:"Mulish-Bold"
     },
     text2:{
       color:"#5b5c60",
       fontSize:20,
-      fontWeight:"500",
+      // fontWeight:"500",
+      fontFamily:"Mulish-Regular",
       paddingLeft:5
 
 
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     text3:{
       color:"#03195a",
       fontSize:20,
-      fontWeight:"500",
+      fontFamily:"Mulish-SemiBold",
       paddingLeft:5
 
       

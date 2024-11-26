@@ -22,7 +22,7 @@ const BottomTabComp = () => {
       <ImageBackground
         source={Image.tabBackGroundImage} // Replace with your image URL or local path
         style={styles.backgroundImage}
-        resizeMode="cover" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+        resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
       >
         <View style={styles.mainParent}>
 
@@ -61,7 +61,7 @@ const BottomTabComp = () => {
         }}>
             <View style={styles.child4}>
                 <EnquiryIcon width={50} height={50} style={styles.icons}/>
-                <Text style={styles.text}>Enquiry</Text>
+                <Text style={styles.text }>Enquiry</Text>
             </View>
         </TouchableOpacity>
 
@@ -84,27 +84,18 @@ const BottomTabComp = () => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    // height: 100,
-    
-    // justifyContent:"center",
-    // alignItems:"center",
-    // backgroundColor: 'tranparent',
-    // zIndex:-1
-  },
+
   backgroundImage: {
     width: '100%',
-    height: 80,
+    height: 85,
+  
     // alignSelf:"flex-end"
-    // backgroundColor:"yellow",
+    backgroundColor:"white",
     
   },
   mainParent: {
     flexDirection: 'row',
-    // justifyContent: 'space-evenly',
-    // backgroundColor:"red",
-    // marginTop:19,
-    // zIndex:+1,
+
 
   },
   child1: {
@@ -130,7 +121,9 @@ const styles = StyleSheet.create({
   child4: {
     // backgroundColor:"red",
     alignSelf:'center',
-    marginLeft:30
+    marginLeft:25,
+    // marginRight:10
+    
   },
   icons: {
     alignSelf: 'center',
@@ -140,14 +133,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 12,
-    alignSelf:"center"
+    fontSize: 14,
+    alignSelf:"center",
+    fontFamily:"Mulish-SemiBold"
   },
   text2:{
     color: 'black',
-    fontSize: 12,
+    fontSize: 14,
+    fontFamily:"Mulish-SemiBold",
     alignSelf:"center",
-    marginTop:13
+    marginTop:10
   }
 });
 

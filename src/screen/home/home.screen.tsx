@@ -10,6 +10,7 @@ import QuickGuide from './components/QuickGuide'
 import CommingSoon from './components/CommingSoon'
 import TradeMark from './components/TradeMark'
 import GetInTouch from './components/GetInTouch'
+import TakeSpace from '../../../components/take-space'
 
 const Home = ({navigation}) => {
   return (
@@ -24,7 +25,9 @@ const Home = ({navigation}) => {
       <QuickGuide/>
       <CommingSoon nav={navigation}/>
       <GetInTouch/>
-      <TradeMark/>
+      <TakeSpace space={5}/>
+      <TradeMark />
+      <TakeSpace space={30}/>
 
 
       
@@ -41,7 +44,8 @@ const Home = ({navigation}) => {
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor:"#fafafa"
+      backgroundColor:"#fafafa",
+     
     },
     text:{
         fontSize:30

@@ -1,49 +1,41 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import FastImage from 'react-native-fast-image'
-import { Image } from '../../../constant/images'
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import React from 'react';
+import FastImage from 'react-native-fast-image';
+import {Image} from '../../../constant/images';
 
 const TradeMark = () => {
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.text}>TradeMark</Text> */}
-        {/* Here I have to render the image */}
+    <View style={styles.mainContainer}>
+    <FastImage
+      source={Image.tradeMark}
+      style={styles.backgroundImage}
+      resizeMode="contain" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+    >
+      
+    </FastImage>
 
-        <FastImage
-          source={Image.tradeMark}
-          style={styles.image}
-          resizeMode={FastImage.resizeMode.contain} // or cover, depending on your needs
-        />
-
-        
-
+    
     </View>
-  )
-}
+
+  );
+};
 
 const styles = StyleSheet.create({
-    container:{
-        // marginTop:30,
-        // backgroundColor:"aqua",
-        marginBottom:30
-        
-        
-    },
-    text:{
-        paddingLeft:28,
-        fontSize:25,
-        color:"black",
-        fontWeight:"bold"
-    },
-    image:{
-        // backgroundColor:"red",
-        width:300,
-        height:200,
-        alignSelf:"center",
-        // marginTop:20,
-        // marginBottom:20,
-    },
+  mainContainer:{
+    width:"100%",
+    height:120,
+    // marginVertical:20,
+    alignItems:"center",
+    justifyContent:"center",
+    backgroundColor:"white",
 
-})
+  },
+  backgroundImage: {
+    width: '75%',
+    height: 90,
 
-export default TradeMark
+
+  },
+});
+
+export default TradeMark;

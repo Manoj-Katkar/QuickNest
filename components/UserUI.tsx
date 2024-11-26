@@ -76,7 +76,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <SubscriptionIcon/>
+            <SubscriptionIcon width={32} height={32}/>
             <Text style={styles.labelText}>Subscription</Text>
           </View>
 
@@ -100,7 +100,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <DrawerVerificationIcon/>
+            <DrawerVerificationIcon width={32} height={32}/>
             <Text style={styles.labelText}>Verification</Text>
           </View>
 
@@ -125,7 +125,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <LegalIcon/>
+            <LegalIcon width={32} height={32}/>
             <Text style={styles.labelText}>Legal documents</Text>
           </View>
 
@@ -149,7 +149,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <TransactionIcon/>
+            <TransactionIcon width={32} height={32}/>
             <Text style={styles.labelText}>Transaction history</Text>
           </View>
 
@@ -172,7 +172,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <ContactIcon />
+            <ContactIcon width={30} height={30}/>
             <Text style={styles.labelText}>Contact us</Text>
           </View>
 
@@ -194,7 +194,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <DrawerAboutUsIcon />
+            <DrawerAboutUsIcon width={32} height={32}/>
             <Text style={styles.labelText}>About us</Text>
           </View>
 
@@ -217,7 +217,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <DeleteIcon />
+            <DeleteIcon width={32} height={32}/>
             <Text style={styles.deleteText}>Delete account</Text>
           </View>
 
@@ -240,7 +240,7 @@ const UserUI = ({props}) => {
         <View style={styles.labelContainer}>
 
           <View style={styles.subContainer1}>
-            <LogoutIcon />
+            <LogoutIcon width={32} height={32}/>
             <Text style={styles.labelText}>Logout</Text>
           </View>
 
@@ -298,13 +298,14 @@ const styles = StyleSheet.create({
 
     // backgroundColor:"black",
     marginBottom:5,
-    paddingTop:5,
+    paddingTop:10,
     paddingBottom:5
 
   },
   labelText: {
-    fontSize: 18,
+    fontSize: 20,
     color: '#e8ebfc',
+    fontFamily:"Mulish-Medium",
     paddingLeft:19
   },
   subContainer1:{
@@ -322,7 +323,8 @@ const styles = StyleSheet.create({
 
   },
   deleteText:{
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily:"Mulish-Medium",
     color: 'red',
     paddingLeft:19
   },
@@ -332,20 +334,22 @@ const styles = StyleSheet.create({
     // paddingLeft:10
   },
   button:{
-    width:"90%",
+    width:"83%",
     backgroundColor: 'transparent',
     paddingTop: 10,
  
     paddingBottom: 10,
     paddingLeft: 35,
-    borderRadius: 20,
+    borderRadius: 25,
     borderWidth:1,
-    borderColor:"#4f82be",
+    borderColor:"#4d8dc5",
   
   },
   text3:{
     color:"#4f82be",
-    fontWeight:"400"
+    fontSize:18,
+    // fontWeight:"400"
+    fontFamily:"Mulish-Medium",
   },
   parentContainer:{
     width:"100%",
@@ -380,20 +384,22 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:25,
-    fontWeight:"500",
+    // fontWeight:"500",
+    fontFamily:"Mulish-Bold",
     color:"#e8ebfc",
     marginBottom:10
   },
   phoneNo:{
     fontSize:15,
     marginBottom:10,
+    fontFamily:"Mulish-Regular",
     color:"#e8ebfc",
   },
   version:{
     // flexDirection:"row",
     // backgroundColor:"red",
     // alignSelf:"flex-end"
-    marginTop:135
+    marginTop:88
   },
   versionText:{
     color:"gray",

@@ -21,7 +21,7 @@ const Details = ({navigation}) => {
 
         <View style={styles.headerContainer}>
             <TouchableOpacity onPress={handlePress}>
-            <PreviousIcon width={40} height={40}/>
+            <PreviousIcon width={35} height={35}/>
             </TouchableOpacity>
             
             <Text style={styles.headerText}>Details</Text>
@@ -31,14 +31,14 @@ const Details = ({navigation}) => {
         <View style={styles.subContainer}>
 
             <View style={styles.child1}>
-                <Text  style={styles.text1}>Enquiry  #20001</Text>
+                <Text  style={styles.text1}>Enquiry #20001</Text>
                 <Text style={styles.text2}>In progress</Text>
             </View>
 
             <Text style={styles.text3}>Suspicious Activity in Neighborhood</Text>
 
             <View style={styles.child2}>
-                <CalenderIcon width={26} height={26}/>
+                <CalenderIcon width={25} height={25}/>
                 <Text style={styles.text4}>6th Feb 2024</Text>
             </View>
 
@@ -70,7 +70,10 @@ const Details = ({navigation}) => {
                         <RecordingIcon width={30} height={30}/>
                         <Text style={styles.text10}>Audio recording</Text>
                     </View>
-                    <PlayIcon width={30} height={30}/>
+                    <TouchableOpacity>
+                        <PlayIcon width={30} height={30}/>
+                    </TouchableOpacity>
+                    
                 </View>
 
 
@@ -79,7 +82,10 @@ const Details = ({navigation}) => {
                         <ImageIcon width={30} height={30}/>
                         <Text style={styles.text11}>Image234</Text>
                     </View>
-                    <EyeIcon width={30} height={30}/>
+                    <TouchableOpacity>
+                        <EyeIcon width={30} height={30}/>
+                    </TouchableOpacity>
+                    
                 </View>
             </View>
 
@@ -87,12 +93,14 @@ const Details = ({navigation}) => {
 
             <View style={styles.child7}>
                 <Text style={styles.text12}>Assigned response team</Text>
-                <Text style={styles.text13}>Team Lead - Sarah Johnson, Emergency Response {"\n"}Coordinator</Text>
+                <Text style={styles.text13}><Text style={styles.extraStyleText}>Team Lead</Text> - Sarah Johnson, Emergency Response {"\n"}Coordinator</Text>
             </View>
 
             <View style={styles.child8}>
-                <Text style={styles.text14}>Phone - +44 987 654 3210</Text>
+                <Text style={styles.text14}><Text style={styles.extraStyleText}>Phone</Text> - +44 987 654 3210</Text>
             </View>
+
+            
         </View>
 
     
@@ -116,13 +124,13 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         flexDirection:"row",
         alignItems:"center",
-        marginTop:15,
-        marginBottom:10
+        marginTop:25,
+        marginBottom:12
     },
     headerText:{
         color:"black",
-        fontSize:25,
-        fontWeight:"700",
+        fontSize:27,
+        fontFamily:"Mulish-Bold",
         marginLeft:10
     },
     subContainer:{
@@ -138,24 +146,24 @@ const styles = StyleSheet.create({
     text1:{
         color:"black",
         fontSize:23,
-        fontWeight:"500"
+        fontFamily:"Mulish-SemiBold",
     },
     text2:{
         color:"#efaa65",
         fontSize:15,
-        fontWeight:"500",
+        fontFamily:"Mulish-SemiBold",
         marginRight:10 ,
-        backgroundColor:"#f8f3ef",
+        backgroundColor:"#f9f3ed",
         padding:7,
         borderRadius:10
 
     },
     text3:{
         color:"black",
-        fontSize:20,
+        fontSize:18,
         // backgroundColor:"red"
-        marginBottom:10,
-        fontWeight:"400"
+        marginBottom:12,    
+        fontFamily:"Mulish-Medium",
     },
     text4:{
         color:"black",
@@ -166,54 +174,63 @@ const styles = StyleSheet.create({
         color:"#1063dd",
         fontSize:20,
         marginLeft:8,
-        fontWeight:"400"
+        fontFamily:"Mulish-Medium",
     },
     text6:{
         color:"#6a6a6a",
         fontSize:16,
-        lineHeight: 18,
+        lineHeight: 20,
+        fontFamily:"Mulish-Regular",
     },
     text7:{
         color:"black",
         fontSize:22,
-        marginBottom:8
+        marginBottom:8,
+        fontFamily:"Mulish-Medium",
+        marginLeft:2
     },
     text8:{
         color:"#6a6a6a",
         fontSize:15,
-        lineHeight: 18,
+        lineHeight: 20,
+        fontFamily:"Mulish-Regular",
+        marginLeft:2
     },
     text9:{
         color:"black",
         fontSize:22,
+        fontFamily:"Mulish-Medium",
         marginBottom:15
     },
     text10:{
         color:"black",
         fontSize:18,
-        fontWeight:"500",
+        fontFamily:"Mulish-SemiBold",
         marginLeft:10
     },
     text11:{
         color:"black",
         fontSize:18,
-        fontWeight:"500",
+        fontFamily:"Mulish-SemiBold",
         marginLeft:10
     },
     text12:{
         color:"black",
         fontSize:22,
+        fontFamily:"Mulish-Medium",
         marginBottom:5
     },
     text13:{
         color:"black",
         fontSize:15,
+        fontFamily:"Mulish-Regular",
         marginBottom:5,
         lineHeight: 20,
     },
     text14:{
         color:"black",
-        fontSize:20
+        fontSize:18,
+        fontFamily:"Mulish-Regular",
     },
     child1:{
         // backgroundColor:"magenta",
@@ -236,7 +253,7 @@ const styles = StyleSheet.create({
         marginBottom:8
     },
     child4:{
-        // backgroundColor:"magenta",
+        backgroundColor:"white",
         width:"100%",
         alignSelf:"center",
         padding:10,
@@ -246,22 +263,14 @@ const styles = StyleSheet.create({
         borderWidth:0.5,
         borderColor:"gray",
         borderRadius:10,
-
-        // shadow 
-        shadowColor: "white",
-        shadowOffset: {
-            width: 0,
-            height: 6,
-        },
-        shadowOpacity: 0.37,
-        shadowRadius: 7.49,
-        
-        elevation: 12,
         marginBottom:20,
         marginTop:10
     },
     child5:{
-        // backgroundColor:"magenta"
+        width:"105%",
+        alignSelf:"center",
+        // backgroundColor:"magenta",
+        marginLeft:8
     },
     child6:{
         // backgroundColor:"magenta"
@@ -290,11 +299,17 @@ const styles = StyleSheet.create({
         alignItems:"center"
     },
     child7:{
+        width:"105%",
         // backgroundColor:"magenta",
-        marginBottom:10
+        marginBottom:25
     },
     child8:{
         // backgroundColor:"magenta",
+        marginBottom:35
+    },
+    extraStyleText:{
+        // backgroundColor:"magenta",
+        fontFamily:"Mulish-SemiBold",
     }
   })
 

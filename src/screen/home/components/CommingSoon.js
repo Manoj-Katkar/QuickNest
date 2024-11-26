@@ -32,7 +32,7 @@ const CommingSoon = ({nav}) => {
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:30,
+        marginTop:40,
         // backgroundColor:"aqua",
         // marginBottom:300,
         
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     },
     image:{
         // backgroundColor:"red",
-        width:width * 0.99,
-        height:200,
+        width:width * 0.91,
+        height:230,
         alignSelf:"center",
-        marginTop:20,
-        marginBottom:20,
+        marginTop:5,
+        // marginBottom:5,
     },
 
 })

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import MarieIcon from '../../../../assets/icons/MarieIcon'
 import MarcusIcon from '../../../../assets/icons/MarcusIcon'
 import JakeIcon from '../../../../assets/icons/JakeIcon'
@@ -10,7 +10,51 @@ import VehicalIcon from '../../../../assets/icons/VehicalIcon'
 import TravelIcon from '../../../../assets/icons/TravelIcon'
 import NotIcon from '../../../../assets/icons/NotIcon'
 
+const tipsArray = [
+  {
+    id:1,
+    tipCount : "Tip 1",
+    actualTipContent: "Always be aware of your \n surroundings"
+  },
+  {
+    id:2,
+    tipCount : "Tip 2",
+    actualTipContent: "Always ensure your home is secure \n and well-maintained."
+  },
+  {
+    id:3,
+    tipCount : "Tip 3",
+    actualTipContent: "Keep your vehicle secure and \n well-serviced."
+  },
+  {
+    id:4,
+    tipCount : "Tip 4",
+    actualTipContent: "Stay alert and plan ahead \n while traveling."
+  },
+]
+
 const SafeTip = () => {
+
+  const [selectedTipId, setSelectedTipId] = useState(tipsArray[0].id); // Keep track of selected tip ID
+
+  const [tipCount , setTipCount] = useState(`${tipsArray[0].tipCount}`);
+
+  const [tipName , setTipName] = useState(`${tipsArray[0].actualTipContent}`);
+
+  console.log(tipName , tipCount);
+  
+
+  const changeTipMessage = (id) => {
+    // Find the tip with the matching id
+    const selectedTip = tipsArray.find((tip) => tip.id === id);
+
+    if (selectedTip) {
+      setSelectedTipId(id); // Update the selected tip ID
+      setTipCount(selectedTip.tipCount); // Update the tip count
+      setTipName(selectedTip.actualTipContent); // Update the tip content
+    }
+  };
+
   return (
     <View style={styles.container1}>
       <View style={styles.subContainer1}>
@@ -18,20 +62,37 @@ const SafeTip = () => {
       </View>
 
       <ScrollView horizontal style={styles.subContainer2}>
-        <TouchableOpacity>
-          <PersonalIcon  style={styles.tip1}/>
+
+      <TouchableOpacity
+          onPress={() => {
+            changeTipMessage(1); // Trigger change for Tip 1
+          }}
+        >
+          <PersonalIcon style={styles.tip1} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <HomeNewIcon  style={styles.tip2}/>
+        <TouchableOpacity
+          onPress={() => {
+            changeTipMessage(2); // Trigger change for Tip 2
+          }}
+        >
+          <HomeNewIcon style={styles.tip2} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <VehicalIcon  style={styles.tip3}/>
+        <TouchableOpacity
+          onPress={() => {
+            changeTipMessage(3); // Trigger change for Tip 3
+          }}
+        >
+          <VehicalIcon style={styles.tip3} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-        <TravelIcon  style={styles.tip4}/>
+        <TouchableOpacity
+          onPress={() => {
+            changeTipMessage(4); // Trigger change for Tip 4
+          }}
+        >
+          <TravelIcon style={styles.tip4} />
         </TouchableOpacity>
         
         
@@ -45,18 +106,36 @@ const SafeTip = () => {
       
 
       <View style={styles.subContainer1_1}>
-        <Text style={styles.text1_1}>Tip 1</Text>
+        <Text style={styles.text1_1}>{tipCount}</Text>
       </View>
 
 
       <View style={styles.subContainer2_1}>
 
         <NotIcon width={25} height={25}/>
-        <Text style={styles.text2_1}>Always be aware of your {"\n"} surroundings</Text>
+        <Text style={styles.text2_1}>{tipName}</Text>
 
       </View>
 
     </View>
+
+    {/*Taking the view For the which one tip is getting shown that should get highlighted by the its children view  */}
+
+
+      {/* Highlight the selected tip */}
+      <View style={styles.highLighTipContainer}>
+        {tipsArray.map((tip) => (
+          <View
+            key={tip.id}
+            style={[
+              styles.horizontalLine,
+              selectedTipId === tip.id && styles.selectedLine, // Apply selected style using the logical and operator which is used for the only true case of the scenaroies
+              selectedTipId === tip.id && { width: "5%" }, // Dynamically increase width for selected line
+            ]}
+          />
+        ))}
+      </View>
+
 
     </View>
   )
@@ -135,6 +214,30 @@ const styles = StyleSheet.create({
     },
     tip4:{
       marginLeft:40
+    },
+    highLighTipContainer: {
+      // backgroundColor:"magenta",
+      width: "95%",
+      // alignSelf: "center",
+      flexDirection: "row",
+      alignSelf:"flex-end",
+      marginTop: 10,
+      paddingRight: 10,
+      position:"absolute",
+      top:230,
+      left:300
+    },
+    horizontalLine: {
+      width: "3%",
+      height: 7,
+      backgroundColor: "#ccc", // Default color for unselected lines
+      marginVertical: 2,
+      borderRadius: 10,
+      marginLeft: 5,
+      
+    },
+    selectedLine: {
+      backgroundColor: "#488eca", // Highlighted color
     },
 
 

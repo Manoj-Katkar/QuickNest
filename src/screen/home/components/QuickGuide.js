@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
       width:"100%",
         marginTop:30,
         // backgroundColor:"aqua",
+        backgroundColor:"white"
+
        
         
     },
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         marginTop:30,
         alignSelf:"center",
-        // backgroundColor:"yellow"
+        // backgroundColor:"white"
     },
     image:{
       // backgroundColor:"red",

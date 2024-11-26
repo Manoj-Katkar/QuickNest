@@ -4,15 +4,28 @@ import FastImage from 'react-native-fast-image';
 import { Image } from '../../constant/images';
 import NextIcon from '../../../assets/icons/NextIcon';
 import RightIcon from '../../../assets/icons/RightIcon';
+import PreviousIcon from '../../../assets/icons/PreviousIcon';
 
 
 const {width , height} = Dimensions.get("window");
 
-const HouseServices = () => {
+const HouseServices = ({navigation}) => {
+
+  const handlePress = () => {
+    navigation.navigate('Enquiry');
+}
+
   return (
     <View style={styles.container}>
       {/* <Text style={styles.text}>House-Services</Text> */}
 
+      <View style={styles.headerContainer}>
+            <TouchableOpacity onPress={handlePress}>
+            <PreviousIcon width={35} height={35}/>
+            </TouchableOpacity>
+            
+            <Text style={styles.headerText}>House Services</Text>
+        </View>
 
         <View style={styles.mainContainer}>
 
@@ -96,7 +109,7 @@ const styles = StyleSheet.create({
       flex:1,
       // backgroundColor: '#fafafa', // Cool light greenish background
       // backgroundColor:"red",
-      justifyContent:"space-between",
+      // justifyContent:"space-between",
       backgroundColor:"#fafafa"
     },
     text: {
@@ -107,10 +120,10 @@ const styles = StyleSheet.create({
     image:{
         // backgroundColor:"yellow",
         width:width * 0.99,
-        height:200,
+        height:230,
         alignSelf:"center",
    
-        marginTop:15
+      
 
     },
     mainContainer:{
@@ -131,23 +144,27 @@ const styles = StyleSheet.create({
     },
     subContainer2:{
       // backgroundColor:"pink",
-      marginLeft:5
+      marginLeft:10
     },
     containerHeading:{
       color:"black",
-      fontSize:18,
-      fontWeight:"500",
+      fontSize:20,
+      // fontWeight:"500",
+      fontFamily:"Mulish-SemiBold",
       marginBottom:10
     },
     containerPara:{
       color:"#373737",
-      fontSize:14
+      fontSize:14,
+      fontFamily:"Mulish-Medium",
+      // lineHeight:15.06
+      lineHeight: 19,
     },
     btnText:{
       color:"white",
       alignSelf:"center",
       fontSize:18,
-      fontWeight:"700"
+      fontFamily:"Mulish-Bold"
     },
     btn:{
       alignSelf:"center",
@@ -156,28 +173,46 @@ const styles = StyleSheet.create({
       paddingTop:15,
       paddingBottom:15,
       borderWidth:2,
-      borderRadius:10,
+      borderRadius:15,
       borderColor:"#011e62",
-      marginBottom:15
+      marginBottom:15,
+      marginTop:70
     },
     textContainer:{
       // backgroundColor:"aqua",
       width:"90%",
       alignSelf:"center",
-      marginTop:15,
-      marginBottom:15
+      // marginTop:15,
+      marginBottom:10
     },
     packageText:{
       color:"#373737",
       fontSize:16,
+      fontFamily:"Mulish-Regular",
       lineHeight: 24, // Set the line height here
       marginBottom:15
     },
     serviceText:{
       color:"#373737",
       fontSize:20,
+      fontFamily:"Mulish-Regular",
       marginBottom:15
-    }
+    },
+    headerContainer:{
+      // backgroundColor:"yellow",
+      width:"95%",
+      alignSelf:"center",
+      flexDirection:"row",
+      alignItems:"center",
+      marginTop:25,
+      marginBottom:14
+  },
+  headerText:{
+      color:"black",
+      fontSize:27,
+      fontFamily:"Mulish-Bold",
+      marginLeft:10
+  },
   });
 
 export default HouseServices

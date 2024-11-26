@@ -17,8 +17,7 @@ const Cards = ({navigation}) => {
       
       {/* 1st ticket */}
 
-     
-
+     <TouchableOpacity onPress={handlePress}>
       <View style={styles.subContainer1}>
 
         <View style={styles.sub1Child1}>
@@ -46,11 +45,14 @@ const Cards = ({navigation}) => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <TouchableOpacity style={styles.btn2} >
                 <DrawerNextIcon width={26} height={26}/>
             </TouchableOpacity>
         </View>
-      </View>
+        </View>
+     </TouchableOpacity>
+
+
 
     
 
@@ -58,84 +60,87 @@ const Cards = ({navigation}) => {
       {/* 2nd ticket */}
 
 
-      
+      <TouchableOpacity onPress={handlePress}>
+        <View style={styles.subContainer1}>
 
-      <View style={styles.subContainer1}>
+          <View style={styles.sub1Child1}>
+              <Text style={styles.text1}>#EN20001</Text>
+              <Text style={styles.text2}>Resolved</Text>
+          </View>
 
-        <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-        </View>
-
-        <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={26} height={26}/>
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-            
-            <Text style={styles.text4}>“Kids are kicking bins over in the alley at the {"\n"}top of the road, causing a lot of noise and me...</Text>
-        </View>
-
-        <View style={styles.horizontalLine} />
-
-
-        <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={26} height={26}/>
-                <Text style={styles.text5}>Play recording</Text>
+          <View style={styles.sub1Child2}>
+              <View style={styles.calenderView}>
+                <CalenderIcon width={26} height={26}/>
+                <Text style={styles.text3}>6th Feb 2024</Text>
               </View>
-            </TouchableOpacity>
+              
+              <Text style={styles.text4}>“Kids are kicking bins over in the alley at the {"\n"}top of the road, causing a lot of noise and me...</Text>
+          </View>
 
-            <TouchableOpacity style={styles.btn2} onPress={handlePress}>
-                <DrawerNextIcon width={26} height={26}/>
-            </TouchableOpacity>
+          <View style={styles.horizontalLine} />
+
+
+          <View style={styles.sub1Child3}>
+              <TouchableOpacity style={styles.btn1}>
+                <View style={styles.child3View}>
+                  <RecordingIcon width={26} height={26}/>
+                  <Text style={styles.text5}>Play recording</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btn2} >
+                  <DrawerNextIcon width={26} height={26}/>
+              </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
+
+
       
 
 
       {/* 3rd ticket */}
 
-    
-      <View style={styles.subContainer1}>
+      <TouchableOpacity onPress={handlePress}>
+        <View style={styles.subContainer1}>
 
-        <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-        </View>
+          <View style={styles.sub1Child1}>
+              <Text style={styles.text1}>#EN20001</Text>
+              <Text style={styles.text2}>Resolved</Text>
+          </View>
 
-        <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={26} height={26}/>
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-            
-            <Text style={styles.text4}>“Kids are kicking bins over in the alley at the {"\n"}top of the road, causing a lot of noise and me...</Text>
-        </View>
-
-        <View style={styles.horizontalLine} />
-
-
-        <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={26} height={26}/>
-                <Text style={styles.text5}>Play recording</Text>
+          <View style={styles.sub1Child2}>
+              <View style={styles.calenderView}>
+                <CalenderIcon width={26} height={26}/>
+                <Text style={styles.text3}>6th Feb 2024</Text>
               </View>
-            </TouchableOpacity>
+              
+              <Text style={styles.text4}>“Kids are kicking bins over in the alley at the {"\n"}top of the road, causing a lot of noise and me...</Text>
+          </View>
 
-            <TouchableOpacity style={styles.btn2} onPress={handlePress}>
-                <DrawerNextIcon width={26} height={26}/>
-            </TouchableOpacity>
+          <View style={styles.horizontalLine} />
+
+
+          <View style={styles.sub1Child3}>
+              <TouchableOpacity style={styles.btn1}>
+                <View style={styles.child3View}>
+                  <RecordingIcon width={26} height={26}/>
+                  <Text style={styles.text5}>Play recording</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btn2} >
+                  <DrawerNextIcon width={26} height={26}/>
+              </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
+
       
 
       {/* 4th ticket */}
 
-   
-
+      <TouchableOpacity onPress={handlePress}>
       <View style={styles.subContainer1}>
 
         <View style={styles.sub1Child1}>
@@ -163,11 +168,14 @@ const Cards = ({navigation}) => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <TouchableOpacity style={styles.btn2} >
                 <DrawerNextIcon width={26} height={26}/>
             </TouchableOpacity>
         </View>
       </View>
+      </TouchableOpacity>
+
+
       
 
 
@@ -187,40 +195,42 @@ const styles = StyleSheet.create({
     text1:{
       color:"black",
       fontSize:18,
-      fontWeight:"500",
-      backgroundColor:"#ebecf0",
+      fontFamily:"Mulish-SemiBold",
+      backgroundColor:"#ebebeb",
       padding:5,
       paddingLeft:8,
       paddingRight:8,
-      borderRadius:10
+      borderRadius:20
     },
     text2:{
       color:"#5fba86",
       fontSize:18,
-      fontWeight:"500",
-      backgroundColor:"#ebecf0",
+      fontFamily:"Mulish-SemiBold",
+      backgroundColor:"#ecf2f0",
       padding:5,
-      paddingLeft:8,
-      paddingRight:8,
-      borderRadius:10
+      paddingLeft:10,
+      paddingRight:10,
+      borderRadius:20
 
     },
     text3:{
-      color:"black",
+      color:"#2a2a2a",
       fontSize:18,
       paddingLeft:10,
-      fontWeight:"500"
+      fontFamily:"Mulish-Medium",
     },
     text4:{
       color:"black",
-      fontSize:15.5,
-      marginBottom:10
+      fontSize:15,
+      marginBottom:10,
+      fontFamily:"Mulish-Regular",
+      lineHeight:20
     },
     text5:{
       color:"black",
       fontSize:18,
-      fontWeight:"600",
-      paddingLeft:5
+      fontFamily:"Mulish-Bold",
+      paddingLeft:6
     },
     subContainer1:{
       backgroundColor:"white",
@@ -229,17 +239,6 @@ const styles = StyleSheet.create({
       padding:10,
       marginTop:10,
       borderRadius:10,
-
-      // shadow for each ticket 
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 6,
-      },
-      shadowOpacity: 0.37,
-      shadowRadius: 7.49,
-      
-      elevation: 12,
       marginBottom:15
 
 
@@ -259,8 +258,10 @@ const styles = StyleSheet.create({
       width:"100%",
       // backgroundColor:"magenta",
       flexDirection:"row",
-      alignItems:"center"
+      alignItems:"center",
       // justifyContent:"space-between",
+      marginTop:5,
+      marginBottom:5
     },
     child3View:{
       flexDirection:"row",
