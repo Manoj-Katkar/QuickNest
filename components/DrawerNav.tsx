@@ -61,7 +61,6 @@ const DrawerNav = () => {
           color: '#e8ebfc', // Change label color
         },
       }}
-      
       // ^For Drawer Ui We Have to create the another Component And render it and then handle the navigation in it no need to use options and add ui for each scrren (it will increase the code redundancy)
 
       drawerContent={props => <UserUI props={props} />} //!prefer this approach
@@ -85,7 +84,6 @@ const DrawerNav = () => {
       <Drawer.Screen name="DeleteAccount" component={DeleteAccount} />
 
       <Drawer.Screen name="Logout" component={Logout} />
-
     </Drawer.Navigator>
   );
 };

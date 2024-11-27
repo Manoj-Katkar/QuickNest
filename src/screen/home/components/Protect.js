@@ -3,10 +3,7 @@ import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../../constant/images';
 
-
-
-const {width , height} = Dimensions.get("window");
-
+const {width, height} = Dimensions.get('window');
 
 const Protect = () => {
   return (
@@ -29,7 +26,7 @@ const Protect = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     // backgroundColor:"aqua",
     marginTop: 25,
   },
@@ -38,24 +35,23 @@ const styles = StyleSheet.create({
     marginBottom: 19,
     paddingLeft: 20,
 
-    fontSize:22,
-    fontFamily:"Mulish-Bold",
+    fontSize: 20,
+    fontFamily: 'Mulish-Bold',
     // fontWeight:"600",
-    color:"black"
+    color: 'black',
   },
   imageContainer: {
-    flex:1,
+    flex: 1,
     marginBottom: 14,
     // backgroundColor: 'yellow',
     // padding:10
   },
   image: {
-    width:"95%",
-    height:225,
-    alignSelf:"center",
-    backgroundColor:"#f0f4f7",
-    borderRadius:15
-
+    width: '95%',
+    height: 225,
+    alignSelf: 'center',
+    backgroundColor: '#f0f4f7',
+    borderRadius: 15,
   },
 });
 

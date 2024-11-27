@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import SearchIcon from '../../../../assets/icons/SearchIcon';
 import FilterIcon from '../../../../assets/icons/FilterIcon';
 
@@ -14,11 +14,11 @@ const SearchFilter = () => {
       <View style={styles.subContainer1}>
         <View style={styles.searchBar}>
           <TouchableOpacity>
-            <SearchIcon width={30} height={30} style={styles.searchIcon} />
+            <SearchIcon width={24} height={24} style={styles.searchIcon} />
           </TouchableOpacity>
-          
+
           <TextInput
-            style={styles.searchInput}
+            style={[styles.searchInput, {fontSize: 16}]}
             placeholder="Search"
             placeholderTextColor="#8f8f8f"
             value={searchText}
@@ -30,7 +30,7 @@ const SearchFilter = () => {
       <View style={styles.subContainer2}>
         <TouchableOpacity style={styles.subContainer2Btn1}>
           <View style={styles.btn1View}>
-            <FilterIcon width={25} height={25} style={styles.btn1Icon} />
+            <FilterIcon width={16} height={16} style={styles.btn1Icon} />
             <Text style={styles.text1}>Filter by :</Text>
           </View>
         </TouchableOpacity>
@@ -116,18 +116,18 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: 'black',
-    fontSize: 18,
-    fontFamily:"Mulish-Medium"
+    fontSize: 14,
+    fontFamily: 'Mulish-Medium',
   },
   text2: {
     color: '#03195a',
-    fontSize: 16,
-    fontFamily:"Mulish-Medium"
+    fontSize: 14,
+    fontFamily: 'Mulish-Medium',
   },
   text3: {
     color: '#03195a',
-    fontSize: 16,
-    fontFamily:"Mulish-Medium"
+    fontSize: 14,
+    fontFamily: 'Mulish-Medium',
   },
   btn1View: {
     flexDirection: 'row',

@@ -1,14 +1,13 @@
-import * as React from "react";
-import Svg, { Path } from "react-native-svg";
-const CalenderIcon = (props) => (
+import * as React from 'react';
+import Svg, {Path} from 'react-native-svg';
+const CalenderIcon = props => (
   <Svg
     width={16}
     height={16}
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+    {...props}>
     <Path
       d="M12 1.33331V2.66665M4 1.33331V2.66665"
       stroke="#141B34"
