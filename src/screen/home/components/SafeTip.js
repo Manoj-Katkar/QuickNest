@@ -19,62 +19,164 @@ const {width} = Dimensions.get('window'); // Get screen width for paging
 const tipsArray = [
   {
     id: 1,
-    tipCount: 'Tip 1',
-    actualTipContent: 'Always be aware of your \n surroundings',
     iconText: 'Personal',
     icon: <PersonalIcon width={30} height={30} />,
+    tips: [
+      {
+        tipCount: 'Tip 1',
+        actualTipContent: 'Always be aware of surroundings',
+      },
+      {
+        tipCount: 'Tip 2',
+        actualTipContent: 'Keep doors and windows locked',
+      },
+      {
+        tipCount: 'Tip 3',
+        actualTipContent: 'Test smoke detectors regularly',
+      },
+      {
+        tipCount: 'Tip 4',
+        actualTipContent: 'Avoid overloading electrical outlets',
+      },
+      {
+        tipCount: 'Tip 5',
+        actualTipContent: 'Create emergency evacuation plan',
+      },
+      {
+        tipCount: 'Tip 6',
+        actualTipContent: 'Ensure proper ventilation in \n kitchens',
+      },
+    ],
   },
   {
     id: 2,
-    tipCount: 'Tip 2',
-    actualTipContent:
-      'Always ensure your home is secure \n and well-maintained.',
     iconText: 'Home safety',
     icon: <HomeNewIcon width={30} height={30} />,
+    tips: [
+      {
+        tipCount: 'Tip 1',
+        actualTipContent: 'Install strong locks on doors',
+      },
+      {
+        tipCount: 'Tip 2',
+        actualTipContent: 'Use peephole to check visitors',
+      },
+      {
+        tipCount: 'Tip 3',
+        actualTipContent: 'Keep a fire extinguisher nearby',
+      },
+      {
+        tipCount: 'Tip 4',
+        actualTipContent: 'Secure furniture to prevent tipping',
+      },
+      {
+        tipCount: 'Tip 5',
+        actualTipContent: 'Store chemicals out of reach',
+      },
+      {
+        tipCount: 'Tip 6',
+        actualTipContent: 'Ensure outdoor lighting is \n adequate',
+      },
+    ],
   },
   {
     id: 3,
-    tipCount: 'Tip 3',
-    actualTipContent: 'Keep your vehicle secure and \n well-serviced.',
     iconText: 'Vehicle safety',
     icon: <VehicalIcon width={30} height={30} />,
+    tips: [
+      {
+        tipCount: 'Tip 1',
+        actualTipContent: 'Always wear seatbelt in vehicles',
+      },
+      {
+        tipCount: 'Tip 2',
+        actualTipContent: 'Follow speed limits for safety',
+      },
+      {
+        tipCount: 'Tip 3',
+        actualTipContent: 'Inspect tires for inflation regularly',
+      },
+      {
+        tipCount: 'Tip 4',
+        actualTipContent: 'Never drive under the influence',
+      },
+      {
+        tipCount: 'Tip 5',
+        actualTipContent: 'Keep vehicle well-maintained \n always',
+      },
+      {
+        tipCount: 'Tip 6',
+        actualTipContent: 'Park in well-lit areas securely',
+      },
+    ],
   },
   {
     id: 4,
-    tipCount: 'Tip 4',
-    actualTipContent: 'Stay alert and plan ahead \n while traveling.',
     iconText: 'Travel safety',
     icon: <TravelIcon width={30} height={30} />,
+    tips: [
+      {
+        tipCount: 'Tip 1',
+        actualTipContent: 'Keep important documents secured',
+      },
+      {
+        tipCount: 'Tip 2',
+        actualTipContent: 'Avoid displaying valuable items publicly',
+      },
+      {
+        tipCount: 'Tip 3',
+        actualTipContent: 'Research destination and local customs',
+      },
+      {
+        tipCount: 'Tip 4',
+        actualTipContent: 'Share itinerary with trusted contacts',
+      },
+      {
+        tipCount: 'Tip 5',
+        actualTipContent: 'Stay alert in crowded areas',
+      },
+      {
+        tipCount: 'Tip 6',
+        actualTipContent: 'Keep emergency contacts accessible always',
+      },
+    ],
   },
   {
     id: 5,
-    tipCount: 'Tip 5',
-    actualTipContent: 'Always be aware of your \n surroundings',
     iconText: 'Personal',
     icon: <PersonalIcon width={30} height={30} />,
+    tips: [
+      {
+        tipCount: 'Tip 1',
+        actualTipContent: 'Always be aware of surroundings',
+      },
+      {
+        tipCount: 'Tip 2',
+        actualTipContent: 'Keep doors and windows locked',
+      },
+      {
+        tipCount: 'Tip 3',
+        actualTipContent: 'Test smoke detectors regularly',
+      },
+      {
+        tipCount: 'Tip 4',
+        actualTipContent: 'Avoid overloading electrical outlets',
+      },
+      {
+        tipCount: 'Tip 5',
+        actualTipContent: 'Create emergency evacuation plan',
+      },
+      {
+        tipCount: 'Tip 6',
+        actualTipContent: 'Ensure proper ventilation in \nkitchens',
+      },
+    ],
   },
-  // {
-  //   id: 6,
-  //   tipCount: 'Tip 6',
-  //   actualTipContent: 'Always ensure your home is secure \n and well-maintained.',
-  //   iconText:"Home safety",
-  // },
-  // {
-  //   id: 7,
-  //   tipCount: 'Tip 7',
-  //   actualTipContent: 'Keep your vehicle secure and \n well-serviced.',
-  //   iconText:"Vehicle safety",
-  // },
-  // {
-  //   id: 8,
-  //   tipCount: 'Tip 8',
-  //   actualTipContent: 'Stay alert and plan ahead \n while traveling.',
-  //   iconText:"Travel safety",
-  // },
 ];
 
 const SafeTip = () => {
   const [selectedTipId, setSelectedTipId] = useState(tipsArray[0].id); // Track selected tip ID
+  const [highlightedTipIndex, setHighlightedTipIndex] = useState(0); // Track highlighted tip index
   const scrollRef = useRef(null); // Reference for ScrollView
 
   const changeTipMessage = id => {
@@ -82,115 +184,121 @@ const SafeTip = () => {
     if (selectedTip) {
       setSelectedTipId(id); // Update the selected tip
       scrollRef.current?.scrollTo({
-        x: (id - 1) * (width * 0.9),
+        x: 0, // Reset to the start of the scrollable tips for the new selection
         animated: true,
-      }); // Adjust scroll position to match dynamic width
+      });
+      setHighlightedTipIndex(0); // Reset highlighted tip index
     }
   };
 
   const handleScrollEnd = event => {
-    const scrollX = event.nativeEvent.contentOffset.x; // Gets the current horizontal scroll position of the ScrollView.
-    const index = Math.floor(scrollX / (width * 0.9)); // Determine the current page index
-    const selectedTip = tipsArray[index];
-    if (selectedTip) {
-      setSelectedTipId(selectedTip.id); // Update the selected tip ID
-    }
+    const scrollX = event.nativeEvent.contentOffset.x; // Get current scroll position
+    const currentTipIndex = Math.round(scrollX / (width * 0.9)); // Calculate index of the currently visible tip
+    setHighlightedTipIndex(currentTipIndex); // Update the highlighted tip index
   };
 
   return (
-    <View style={styles.container1}>
-      {/* Header */}
-      <View style={styles.subContainer1}>
-        <Text style={styles.text1}>Tips to be safe</Text>
-      </View>
+    <>
+      <View style={styles.container1}>
+        {/* Header */}
+        <View style={styles.subContainer1}>
+          <Text style={styles.text1}>Tips to be safe</Text>
+        </View>
 
-      {/* Icon Selector */}
-      <ScrollView
-        horizontal
-        style={styles.subContainer2}
-        showsHorizontalScrollIndicator={false}>
-        {tipsArray.map((tip, index) => (
-          <TouchableOpacity
-            key={tip.id}
-            onPress={() => changeTipMessage(tip.id)}
-            style={styles.eachtipIconContainer}>
-            {/* Render the background image if the current tip is selected */}
-            <View style={styles.iconContainer}>
+        {/* Icon Selector */}
+        <ScrollView
+          horizontal
+          style={styles.subContainer2}
+          showsHorizontalScrollIndicator={false}>
+          {tipsArray.map((tip, index) => (
+            <TouchableOpacity
+              key={tip.id}
+              onPress={() => changeTipMessage(tip.id)}
+              style={styles.eachtipIconContainer}>
+              {/* Render the background image if the current tip is selected */}
+              <View style={styles.iconContainer}>
+                {selectedTipId === tip.id && (
+                  <BackGroundTipIcon
+                    width={48}
+                    height={50}
+                    style={styles.backgroundImage}
+                  />
+                )}
+                {/* Rendering the corresponding icon */}
+                <View style={{top: 9, left: 9}}>{tip.icon}</View>
+              </View>
+              <Text
+                style={[
+                  styles.iconText,
+                  selectedTipId === tip.id && {
+                    color: '#4a8dc6', // Change color to #4a8dc6 when selected
+                    fontFamily: 'Mulish-Bold',
+                  },
+                ]}>
+                {tip.iconText}
+              </Text>
+
+              {/* Adding the view for the underline part */}
               {selectedTipId === tip.id && (
-                <BackGroundTipIcon
-                  width={45}
-                  height={50}
-                  style={styles.backgroundImage}
-                />
+                <View style={styles.selectedTextUnderline} />
               )}
-              {/* rendering the corresponding icon */}
-              <View style={{top: 9, left: 9}}>{tip.icon}</View>
-            </View>
-            <Text
-              style={[
-                styles.iconText,
-                selectedTipId === tip.id && {
-                  color: '#4a8dc6', // Change color to #4a8dc6 when selected
-                  // textDecorationLine: 'underline', // Add underline when selected,
-                  fontFamily: 'Mulish-Bold',
-                },
-              ]}>
-              {tip.iconText}
-            </Text>
-
-            {/* Adding the view for the underline part  */}
-
-            {selectedTipId === tip.id && (
-              <View style={styles.selectedTextUnderline} />
-            )}
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
 
       {/* Tips Container */}
-      <ScrollView
-        ref={scrollRef}
-        horizontal
-        style={styles.container2}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        onMomentumScrollEnd={handleScrollEnd} // Detect end of scroll
-      >
-        {tipsArray.map(tip => (
-          <View key={tip.id} style={styles.tipCard}>
-            <View style={styles.subContainer1_1}>
-              <Text style={styles.text1_1}>{tip.tipCount}</Text>
-            </View>
-            <View style={styles.subContainer2_1}>
-              <NotIcon width={20} height={20} />
-              <Text style={styles.text2_1}>{tip.actualTipContent}</Text>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
+      <View>
+        <ScrollView
+          ref={scrollRef}
+          horizontal
+          style={styles.container2}
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          onMomentumScrollEnd={handleScrollEnd}>
+          {/* Find the selected tip object and render its tips */}
+          {tipsArray
+            .find(tip => tip.id === selectedTipId) // Get the selected object
+            ?.tips.map((singleTip, index) => (
+              <View key={index} style={styles.tipCard}>
+                {/* Tip Header */}
+                <View style={styles.subContainer1_1}>
+                  <Text style={styles.text1_1}>{singleTip.tipCount}</Text>
+                </View>
+                {/* Tip Content */}
+                <View style={styles.subContainer2_1}>
+                  <NotIcon width={20} height={20} style={styles.notIcon} />
+                  <Text style={styles.text2_1}>
+                    {singleTip.actualTipContent}
+                  </Text>
+                </View>
+              </View>
+            ))}
+        </ScrollView>
 
-      {/* Highlight Selected Tip */}
-      <View style={styles.highLighTipContainer}>
-        {tipsArray.map((tip, index) => (
-          <View
-            key={tip.id}
-            style={[
-              styles.horizontalLine,
-              selectedTipId === tip.id && styles.selectedLine,
-              selectedTipId === tip.id && {
-                width: index === tipsArray.length - 1 ? '7%' : '5%',
-              }, // Make the width 10% for the last tip
-            ]}
-          />
-        ))}
+        {/* Highlight Selected Tip */}
+        <View style={styles.highLighTipContainer}>
+          {tipsArray
+            .find(tip => tip.id === selectedTipId) // Get the selected tips
+            ?.tips.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.horizontalLine,
+                  highlightedTipIndex === index && styles.selectedLine, // Highlight the currently visible tip
+                ]}
+              />
+            ))}
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container1: {
     marginTop: 25,
+    // backgroundColor: 'yellow',
   },
   subContainer1: {
     paddingLeft: 22,
@@ -210,14 +318,15 @@ const styles = StyleSheet.create({
     width: '90%', // Ensure it takes the full screen width
     // height: 200, // Adjust height as needed for content
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 15,
     backgroundColor: 'white',
+    // backgroundColor: 'red',
     borderRadius: 12,
-    paddingBottom: 14,
-    paddingTop: 14,
+    paddingBottom: 10,
+    paddingTop: 8,
   },
   subContainer1_1: {
-    paddingLeft: 22,
+    paddingLeft: 12,
     // backgroundColor:"aqua",
     alignSelf: 'flex-start',
     // marginLeft:10,
@@ -228,6 +337,8 @@ const styles = StyleSheet.create({
     // paddingLeft: 22,
     // backgroundColor: 'magenta',
     marginLeft: 29,
+    marginTop: 0,
+    paddingTop: 0,
   },
   text1_1: {
     fontSize: 14,
@@ -244,9 +355,9 @@ const styles = StyleSheet.create({
   text2_1: {
     fontSize: 17,
     fontFamily: 'Mulish-SemiBold',
-    paddingLeft: 12,
+    paddingLeft: 8,
     color: 'black',
-    lineHeight: 22,
+    lineHeight: 24,
   },
   iconText: {
     color: '#97b7de',
@@ -288,7 +399,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     ...StyleSheet.absoluteFillObject, //for second child wihin container will come as background
-    bottom: 5,
+    bottom: 0,
   },
   iconContainer: {
     alignItems: 'center',
@@ -301,6 +412,9 @@ const styles = StyleSheet.create({
     height: 2, // Height of the underline
     backgroundColor: '#4a8dc6', // Color of the underline
     marginTop: 4, // Adjust spacing between text and underline
+  },
+  notIcon: {
+    marginTop: 2,
   },
 });
 

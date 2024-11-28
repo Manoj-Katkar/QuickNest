@@ -8,9 +8,7 @@ const Enquiry = ({navigation}) => {
   return (
     <View style={styles.container}>
       {/* <Text style={styles.text}>enquiry</Text> */}
-      <EnquiresHeader />
-      <SearchFilter />
-      <Cards navigation={navigation} />
+      <EnquiresHeader navigation={navigation} />
     </View>
   );
 };

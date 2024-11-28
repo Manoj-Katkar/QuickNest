@@ -5,7 +5,7 @@ import DrawerNextIcon from '../../../../assets/icons/DrawerNextIcon';
 import RecordingIcon from '../../../../assets/icons/RecordingIcon';
 import CalenderIcon from '../../../../assets/icons/CalenderIcon';
 
-const Cards = ({navigation}) => {
+const Cards = ({navigation, ticketNo, date}) => {
   const handlePress = () => {
     navigation.navigate('Details');
   };
@@ -14,155 +14,147 @@ const Cards = ({navigation}) => {
     <ScrollView style={styles.container}>
       {/* 1st ticket */}
 
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.subContainer1}>
-          <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-          </View>
-
-          <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={26} height={26} />
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-
-            <Text style={styles.text4}>
-              “Kids are kicking bins over in the alley at the {'\n'}top of the
-              road, causing a lot of noise and me...
-            </Text>
-          </View>
-
-          <View style={styles.horizontalLine} />
-
-          <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={26} height={26} />
-                <Text style={styles.text5}>Play recording</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn2}>
-              <DrawerNextIcon width={26} height={26} />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.subContainer1}>
+        <View style={styles.sub1Child1}>
+          <Text style={styles.text1}>{ticketNo}</Text>
+          <Text style={styles.text2}>Resolved</Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.sub1Child2}>
+          <View style={styles.calenderView}>
+            <CalenderIcon width={26} height={26} />
+            <Text style={styles.text3}>{date}</Text>
+          </View>
+
+          <Text style={styles.text4}>
+            “Kids are kicking bins over in the alley at the {'\n'}top of the
+            road, causing a lot of noise and me...
+          </Text>
+        </View>
+
+        <View style={styles.horizontalLine} />
+
+        <View style={styles.sub1Child3}>
+          <TouchableOpacity style={styles.btn1}>
+            <View style={styles.child3View}>
+              <RecordingIcon width={26} height={26} />
+              <Text style={styles.text5}>Play recording</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <DrawerNextIcon width={26} height={26} />
+          </TouchableOpacity>
+        </View>
+      </View>
 
       {/* 2nd ticket */}
 
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.subContainer1}>
-          <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-          </View>
-
-          <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={26} height={26} />
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-
-            <Text style={styles.text4}>
-              “Kids are kicking bins over in the alley at the {'\n'}top of the
-              road, causing a lot of noise and me...
-            </Text>
-          </View>
-
-          <View style={styles.horizontalLine} />
-
-          <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={26} height={26} />
-                <Text style={styles.text5}>Play recording</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn2}>
-              <DrawerNextIcon width={26} height={26} />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.subContainer1}>
+        <View style={styles.sub1Child1}>
+          <Text style={styles.text1}>{ticketNo}</Text>
+          <Text style={styles.text2}>Resolved</Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.sub1Child2}>
+          <View style={styles.calenderView}>
+            <CalenderIcon width={26} height={26} />
+            <Text style={styles.text3}>{date}</Text>
+          </View>
+
+          <Text style={styles.text4}>
+            “Kids are kicking bins over in the alley at the {'\n'}top of the
+            road, causing a lot of noise and me...
+          </Text>
+        </View>
+
+        <View style={styles.horizontalLine} />
+
+        <View style={styles.sub1Child3}>
+          <TouchableOpacity style={styles.btn1}>
+            <View style={styles.child3View}>
+              <RecordingIcon width={26} height={26} />
+              <Text style={styles.text5}>Play recording</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <DrawerNextIcon width={26} height={26} />
+          </TouchableOpacity>
+        </View>
+      </View>
 
       {/* 3rd ticket */}
 
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.subContainer1}>
-          <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-          </View>
-
-          <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={26} height={26} />
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-
-            <Text style={styles.text4}>
-              “Kids are kicking bins over in the alley at the {'\n'}top of the
-              road, causing a lot of noise and me...
-            </Text>
-          </View>
-
-          <View style={styles.horizontalLine} />
-
-          <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={26} height={26} />
-                <Text style={styles.text5}>Play recording</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn2}>
-              <DrawerNextIcon width={26} height={26} />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.subContainer1}>
+        <View style={styles.sub1Child1}>
+          <Text style={styles.text1}>{ticketNo}</Text>
+          <Text style={styles.text2}>Resolved</Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.sub1Child2}>
+          <View style={styles.calenderView}>
+            <CalenderIcon width={26} height={26} />
+            <Text style={styles.text3}>{date}</Text>
+          </View>
+
+          <Text style={styles.text4}>
+            “Kids are kicking bins over in the alley at the {'\n'}top of the
+            road, causing a lot of noise and me...
+          </Text>
+        </View>
+
+        <View style={styles.horizontalLine} />
+
+        <View style={styles.sub1Child3}>
+          <TouchableOpacity style={styles.btn1}>
+            <View style={styles.child3View}>
+              <RecordingIcon width={26} height={26} />
+              <Text style={styles.text5}>Play recording</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <DrawerNextIcon width={26} height={26} />
+          </TouchableOpacity>
+        </View>
+      </View>
 
       {/* 4th ticket */}
 
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.subContainer1}>
-          <View style={styles.sub1Child1}>
-            <Text style={styles.text1}>#EN20001</Text>
-            <Text style={styles.text2}>Resolved</Text>
-          </View>
-
-          <View style={styles.sub1Child2}>
-            <View style={styles.calenderView}>
-              <CalenderIcon width={16} height={16} />
-              <Text style={styles.text3}>6th Feb 2024</Text>
-            </View>
-
-            <Text style={styles.text4}>
-              “Kids are kicking bins over in the alley at the {'\n'}top of the
-              road, causing a lot of noise and me...
-            </Text>
-          </View>
-
-          <View style={styles.horizontalLine} />
-
-          <View style={styles.sub1Child3}>
-            <TouchableOpacity style={styles.btn1}>
-              <View style={styles.child3View}>
-                <RecordingIcon width={18} height={18} />
-                <Text style={styles.text5}>Play recording</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn2}>
-              <DrawerNextIcon width={26} height={26} />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.subContainer1}>
+        <View style={styles.sub1Child1}>
+          <Text style={styles.text1}>{ticketNo}</Text>
+          <Text style={styles.text2}>Resolved</Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.sub1Child2}>
+          <View style={styles.calenderView}>
+            <CalenderIcon width={16} height={16} />
+            <Text style={styles.text3}>{date}</Text>
+          </View>
+
+          <Text style={styles.text4}>
+            “Kids are kicking bins over in the alley at the {'\n'}top of the
+            road, causing a lot of noise and me...
+          </Text>
+        </View>
+
+        <View style={styles.horizontalLine} />
+
+        <View style={styles.sub1Child3}>
+          <TouchableOpacity style={styles.btn1}>
+            <View style={styles.child3View}>
+              <RecordingIcon width={18} height={18} />
+              <Text style={styles.text5}>Play recording</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+            <DrawerNextIcon width={26} height={26} />
+          </TouchableOpacity>
+        </View>
+      </View>
     </ScrollView>
   );
 };

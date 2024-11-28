@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, ImageBackground, Pressable} from 'react-native';
+import React, {useState} from 'react';
 import {Image} from '../src/constant/images';
 import HomeIcon from '../assets/icons/HomeIcon';
 import ConcernIcon from '../assets/icons/ConcernIcon';
@@ -8,12 +8,22 @@ import EnquiryIcon from '../assets/icons/EnquiryIcon';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import ConcernHighLight from '../assets/icons/ConcernHighLight';
+import MemberHighLight from '../assets/icons/MemberHighLight';
+import EnquiryHighLight from '../assets/icons/EnquiryHighLight';
+import HomeDark from '../assets/icons/HomeDark';
 
 const BottomTabComp = () => {
-  let navigation = useNavigation();
+  let navigation = useNavigation() as any;
 
-  const handlePressNavigate = pageName => {
-    navigation.navigate(`${pageName}`);
+  const [activeIcon, setActiveIcon] = useState('Home'); //because I want the by-default the Home should be selected
+
+  const handlePressNavigate = (pageName: string) => {
+    navigation.navigate(pageName);
+  };
+
+  const changeIconAndText = (iconName: string) => {
+    setActiveIcon(iconName);
   };
 
   return (
@@ -22,48 +32,88 @@ const BottomTabComp = () => {
       style={styles.backgroundImage}
       resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
     >
+      {/* Now properlly designing the Bottom tab Icon  */}
+
       <View style={styles.mainParent}>
-        <TouchableOpacity
-          onPress={() => {
-            handlePressNavigate('Home');
-          }}>
-          <View style={styles.child1}>
-            <HomeIcon width={50} height={50} style={styles.icons} />
-            <Text style={styles.text}>Home</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.mainChild1}>
+          <TouchableOpacity
+            onPress={() => {
+              handlePressNavigate('Home');
+              changeIconAndText('Home');
+            }}>
+            {/* here I have to do the conditional rendering  */}
+            {activeIcon === 'Home' ? (
+              <View style={styles.eachIconContainer}>
+                <HomeDark width={32} height={32} />
+                <Text style={styles.textActive}>Home</Text>
+              </View>
+            ) : (
+              <View style={styles.eachIconContainer}>
+                <HomeIcon width={32} height={32} />
+                <Text style={styles.textInActive}>Home</Text>
+              </View>
+            )}
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
-            handlePressNavigate('Concern');
-          }}>
-          <View style={styles.child2}>
-            <ConcernIcon width={30} height={30} style={styles.icons} />
-            <Text style={styles.text2}>Concern</Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              handlePressNavigate('Concern');
+              changeIconAndText('Concern');
+            }}>
+            {activeIcon === 'Concern' ? (
+              <View style={styles.eachIconContainer}>
+                <ConcernHighLight width={32} height={32} />
+                <Text style={styles.textActive}>Concern</Text>
+              </View>
+            ) : (
+              <View style={styles.eachIconContainer}>
+                <ConcernIcon width={32} height={32} />
+                <Text style={styles.textInActive}>Concern</Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          onPress={() => {
-            handlePressNavigate('Member');
-          }}>
-          <View style={styles.child3}>
-            <MemberIcon width={50} height={50} style={styles.icons} />
-            <Text style={styles.text}>Member</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.mainChild2}>
+          <TouchableOpacity
+            onPress={() => {
+              handlePressNavigate('Member');
+              changeIconAndText('Member');
+            }}>
+            {activeIcon === 'Member' ? (
+              <View style={styles.eachIconContainer}>
+                <MemberHighLight width={32} height={32} />
+                <Text style={styles.textActive}>Member</Text>
+              </View>
+            ) : (
+              <View style={styles.eachIconContainer}>
+                <MemberIcon width={32} height={32} />
+                <Text style={styles.textInActive}>Member</Text>
+              </View>
+            )}
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
-            handlePressNavigate('Enquiry');
-          }}>
-          <View style={styles.child4}>
-            <EnquiryIcon width={50} height={50} style={styles.icons} />
-            <Text style={styles.text}>Enquiry</Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              handlePressNavigate('Enquiry');
+              changeIconAndText('Enquiry');
+            }}>
+            {activeIcon === 'Enquiry' ? (
+              <View style={styles.eachIconContainer}>
+                <EnquiryHighLight width={32} height={32} />
+                <Text style={styles.textActive}>Enquiry</Text>
+              </View>
+            ) : (
+              <View style={styles.eachIconContainer}>
+                <EnquiryIcon width={32} height={32} />
+                <Text style={styles.textInActive}>Enquiry</Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        </View>
       </View>
 
+      {/* This is red icon  */}
       <TouchableOpacity>
         <FastImage
           source={Image.tabNavigationIcon}
@@ -74,7 +124,7 @@ const BottomTabComp = () => {
             height: 75,
             position: 'absolute',
             left: '40.5%',
-            bottom: 38,
+            bottom: 55,
             // backgroundColor: 'yellow',
           }} // Adjust dimensions as needed
         />
@@ -87,56 +137,50 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: 85,
-
-    // alignSelf:"flex-end"
-    backgroundColor: 'white',
-    // backgroundColor: 'red',
   },
   mainParent: {
+    flex: 1,
+    width: '100%',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // alignItems:"ce"
+    // backgroundColor: 'yellow',
   },
-  child1: {
-    // backgroundColor:"red",
-    alignSelf: 'center',
-    marginLeft: 15,
-  },
-  child2: {
-    // backgroundColor:"red",
-    alignSelf: 'center',
-    marginLeft: 35,
-    marginTop: 10,
-  },
-  child3: {
-    // paddingLeft:25
-
-    // backgroundColor:"red",
-    alignSelf: 'center',
-    marginLeft: 100,
-  },
-  child4: {
-    // backgroundColor:"red",
-    alignSelf: 'center',
-    marginLeft: 25,
-    // marginRight:10
-  },
-  icons: {
-    alignSelf: 'center',
-    marginBottom: 0,
-    paddingBottom: 0,
-  },
-  text: {
+  textInActive: {
     color: 'black',
-    fontSize: 14,
-    alignSelf: 'center',
     fontFamily: 'Mulish-SemiBold',
+    // backgroundColor: 'yellow',
+    marginTop: 5,
   },
-  text2: {
-    color: 'black',
-    fontSize: 14,
+  mainChild1: {
+    width: '40%',
+    height: 80,
+    flexDirection: 'row',
+    // backgroundColor: 'yellow',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  mainChild2: {
+    width: '40%',
+    height: 80,
+    flexDirection: 'row',
+    // backgroundColor: 'yellow',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  eachIconContainer: {
+    height: '80%',
+    padding: 8,
+    // backgroundColor: 'magenta',
+    alignItems: 'center',
+    bottom: 5,
+  },
+  textActive: {
+    color: '#00008B',
     fontFamily: 'Mulish-SemiBold',
-    alignSelf: 'center',
-    marginTop: 10,
+    // backgroundColor: 'yellow',
+    marginTop: 5,
   },
 });
-
 export default BottomTabComp;

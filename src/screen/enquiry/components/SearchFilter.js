@@ -28,12 +28,12 @@ const SearchFilter = () => {
       </View>
 
       <View style={styles.subContainer2}>
-        <TouchableOpacity style={styles.subContainer2Btn1}>
+        <View style={styles.subContainer2Btn1}>
           <View style={styles.btn1View}>
             <FilterIcon width={16} height={16} style={styles.btn1Icon} />
             <Text style={styles.text1}>Filter by :</Text>
           </View>
-        </TouchableOpacity>
+        </View>
 
         <TouchableOpacity style={styles.subContainer2Btn2}>
           <Text style={styles.text2}>In progress</Text>

@@ -55,7 +55,8 @@ const DrawerNav = () => {
       screenOptions={{
         headerShown: false,
         drawerStyle: {backgroundColor: '#011e62', width: screenWidth},
-        drawerPosition: 'right', //this will open the drawer from the right side
+        drawerPosition: 'right', // This is ignored if swipeEnabled is false
+        swipeEnabled: false, // Disables the swipe gesture to open the drawer
         swipeEdgeWidth: 50,
         drawerLabelStyle: {
           color: '#e8ebfc', // Change label color

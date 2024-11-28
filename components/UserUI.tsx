@@ -257,9 +257,6 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Align content horizontally
   },
   overlay: {
-    // backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Semi-transparent overlay
-    // padding: 20,
-    // borderRadius: 10,
     width: '100%',
   },
   text: {
@@ -343,11 +340,6 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'flex-start',
     flexDirection: 'row',
-    // alignSelf:"center",
-    // justifyContent:"space-evenly",
-    // paddingTop: 15,
-    // backgroundColor: 'black',
-    // alignSelf:"flex-start"
   },
   subChild1: {
     // backgroundColor: 'red',
@@ -371,9 +363,6 @@ const styles = StyleSheet.create({
     color: '#b5b8d2',
   },
   version: {
-    // flexDirection:"row",
-    // backgroundColor:"red",
-    // alignSelf:"flex-end"
     marginTop: 88,
   },
   versionText: {
@@ -382,7 +371,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: 50,
-    // backgroundColor:"yellow"
   },
   btn2: {
     // flex:1
@@ -393,7 +381,6 @@ const styles = StyleSheet.create({
     height: 1,
     alignSelf: 'center',
     backgroundColor: '#3e5485',
-    // marginVertical: 10,
     marginTop: 15,
   },
 });
