@@ -6,33 +6,28 @@ import {Image} from '../../../constant/images';
 const TradeMark = () => {
   return (
     <View style={styles.mainContainer}>
-    <FastImage
-      source={Image.tradeMark}
-      style={styles.backgroundImage}
-      resizeMode="contain" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
-    >
-      
-    </FastImage>
+      <FastImage
+        source={Image.tradeMark}
+        style={styles.backgroundImage}
+        resizeMode="contain" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+      ></FastImage>
     </View>
-
   );
 };
 
 const styles = StyleSheet.create({
-  mainContainer:{
-    width:"100%",
-    height:120,
+  mainContainer: {
+    width: '100%',
+    height: 120,
     // marginVertical:20,
-    alignItems:"center",
-    justifyContent:"center",
-    backgroundColor:"white",
-
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    marginBottom: 5,
   },
   backgroundImage: {
     width: '75%',
     height: 90,
-
-
   },
 });
 

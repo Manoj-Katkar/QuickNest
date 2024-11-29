@@ -1,17 +1,17 @@
 import {View, Text, StyleSheet, ImageBackground, Pressable} from 'react-native';
 import React, {useState} from 'react';
-import {Image} from '../src/constant/images';
-import HomeIcon from '../assets/icons/HomeIcon';
-import ConcernIcon from '../assets/icons/ConcernIcon';
-import MemberIcon from '../assets/icons/MemberIcon';
-import EnquiryIcon from '../assets/icons/EnquiryIcon';
+import {Image} from '../constant/images';
+import HomeIcon from '../../assets/icons/HomeIcon';
+import ConcernIcon from '../../assets/icons/ConcernIcon';
+import MemberIcon from '../../assets/icons/MemberIcon';
+import EnquiryIcon from '../../assets/icons/EnquiryIcon';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import ConcernHighLight from '../assets/icons/ConcernHighLight';
-import MemberHighLight from '../assets/icons/MemberHighLight';
-import EnquiryHighLight from '../assets/icons/EnquiryHighLight';
-import HomeDark from '../assets/icons/HomeDark';
+import ConcernHighLight from '../../assets/icons/ConcernHighLight';
+import MemberHighLight from '../../assets/icons/MemberHighLight';
+import EnquiryHighLight from '../../assets/icons/EnquiryHighLight';
+import HomeDark from '../../assets/icons/HomeDark';
 
 const BottomTabComp = () => {
   let navigation = useNavigation() as any;

@@ -34,23 +34,17 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fafafa',
     marginTop: 25,
-
-    // alignSelf:"center"
   },
   subContainer1: {
-    // backgroundColor:"yellow",
     paddingLeft: 20,
   },
   subContainer2: {
     flexDirection: 'row',
-    // justifyContent:"space-evenly",
-    // backgroundColor:"aqua",
     marginTop: 10,
   },
   text1: {
     fontSize: 20,
     fontFamily: 'Mulish-Bold',
-    // fontWeight:"600",
     color: 'black',
   },
   contacts: {

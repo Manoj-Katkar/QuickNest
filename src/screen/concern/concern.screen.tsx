@@ -1,25 +1,25 @@
-import { View, Text, StyleSheet, StatusBar } from 'react-native'
-import React from 'react'
-
-const Concern = () => {
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import React from 'react';
+const Concern = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Concern Screen</Text>
-
+      <Text style={{color: 'black', fontSize: 35}}>Concern Screen</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:"yellow"
-
+  container: {
+    flex: 1,
+    backgroundColor: 'yellow',
   },
-  text:{
-      fontSize:30,
-      color:"black"
-  }
-})
+});
 
-export default Concern
+export default Concern;

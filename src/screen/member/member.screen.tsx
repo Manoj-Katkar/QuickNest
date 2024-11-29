@@ -8,13 +8,9 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import UserUI from '../../../components/UserUI';
+import UserUI from '../../components/UserUI';
 
-
-
-const {width , height} = Dimensions.get("window");
-
-
+const {width, height} = Dimensions.get('window');
 
 const Member = () => {
   return (
@@ -25,15 +21,14 @@ const Member = () => {
 };
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:"yellow"
-
+  container: {
+    flex: 1,
+    backgroundColor: 'yellow',
   },
-  text:{
-      fontSize:30,
-      color:"black"
-  }
-})
+  text: {
+    fontSize: 30,
+    color: 'black',
+  },
+});
 
 export default Member;

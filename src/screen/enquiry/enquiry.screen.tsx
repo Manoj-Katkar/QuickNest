@@ -1,14 +1,11 @@
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
-import EnquiresHeader from './components/EnquiresHeader';
-import SearchFilter from './components/SearchFilter';
-import Cards from './components/Cards';
+import EnquiresUI from './components/EnquiresUI';
 
 const Enquiry = ({navigation}) => {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>enquiry</Text> */}
-      <EnquiresHeader navigation={navigation} />
+      <EnquiresUI navigation={navigation} />
     </View>
   );
 };

@@ -7,18 +7,18 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import {Image} from '../src/constant/images';
-import CrossIcon from '../assets/icons/CrossIcon';
-import UserImageIcon from '../assets/icons/UserImageIcon';
-import SubscriptionIcon from '../assets/icons/SubscriptionIcon';
-import DrawerNextIcon from '../assets/icons/DrawerNextIcon';
-import DrawerVerificationIcon from '../assets/icons/DrawerVerificationIcon';
-import LegalIcon from '../assets/icons/LegalIcon';
-import TransactionIcon from '../assets/icons/TransactionIcon';
-import ContactIcon from '../assets/icons/ContactIcon';
-import DrawerAboutUsIcon from '../assets/icons/DrawerAboutUsIcon';
-import DeleteIcon from '../assets/icons/DeleteIcon';
-import LogoutIcon from '../assets/icons/LogoutIcon';
+import {Image} from '../constant/images';
+import CrossIcon from '../../assets/icons/CrossIcon';
+import UserImageIcon from '../../assets/icons/UserImageIcon';
+import SubscriptionIcon from '../../assets/icons/SubscriptionIcon';
+import DrawerNextIcon from '../../assets/icons/DrawerNextIcon';
+import DrawerVerificationIcon from '../../assets/icons/DrawerVerificationIcon';
+import LegalIcon from '../../assets/icons/LegalIcon';
+import TransactionIcon from '../../assets/icons/TransactionIcon';
+import ContactIcon from '../../assets/icons/ContactIcon';
+import DrawerAboutUsIcon from '../../assets/icons/DrawerAboutUsIcon';
+import DeleteIcon from '../../assets/icons/DeleteIcon';
+import LogoutIcon from '../../assets/icons/LogoutIcon';
 
 const {width, height} = Dimensions.get('window');
 

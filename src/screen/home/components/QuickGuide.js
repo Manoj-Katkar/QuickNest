@@ -62,34 +62,27 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     marginTop: 30,
-    // backgroundColor:"aqua",
     backgroundColor: '#fafafa',
   },
   text: {
     paddingLeft: 20,
     fontSize: 20,
     fontFamily: 'Mulish-Bold',
-    // fontWeight:"600",
     color: 'black',
   },
   child: {
-    // backgroundColor:"magenta",
     alignSelf: 'flex-start',
   },
   text1: {
     fontSize: 18,
-    // fontWeight:"600",
     fontFamily: 'Mulish-Medium',
     color: 'black',
     marginBottom: 15,
     alignSelf: 'flex-start',
-    // backgroundColor:"red"
   },
   text2: {
     fontSize: 14,
-    // fontWeight:"300",
     fontFamily: 'Mulish-Regular',
-    // lineHeight:15.6,
     color: 'black',
   },
   subContainer1: {
@@ -99,10 +92,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     alignSelf: 'center',
-    // backgroundColor: 'magenta',
   },
   image: {
-    // backgroundColor:"red",
     alignSelf: 'center',
   },
 });

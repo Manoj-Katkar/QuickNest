@@ -176,7 +176,9 @@ const tipsArray = [
 
 const SafeTip = () => {
   const [selectedTipId, setSelectedTipId] = useState(tipsArray[0].id); // Track selected tip ID
+
   const [highlightedTipIndex, setHighlightedTipIndex] = useState(0); // Track highlighted tip index
+
   const scrollRef = useRef(null); // Reference for ScrollView
 
   const changeTipMessage = id => {
@@ -185,7 +187,7 @@ const SafeTip = () => {
       setSelectedTipId(id); // Update the selected tip
       scrollRef.current?.scrollTo({
         x: 0, // Reset to the start of the scrollable tips for the new selection
-        animated: true,
+        animated: true, //ensures that the scrolling happens with a smooth animation instead of jumping abruptly to the target position
       });
       setHighlightedTipIndex(0); // Reset highlighted tip index
     }
@@ -280,7 +282,7 @@ const SafeTip = () => {
         <View style={styles.highLighTipContainer}>
           {tipsArray
             .find(tip => tip.id === selectedTipId) // Get the selected tips
-            ?.tips.map((_, index) => (
+            ?.tips.map((currentTip, index) => (
               <View
                 key={index}
                 style={[
@@ -298,7 +300,6 @@ const SafeTip = () => {
 const styles = StyleSheet.create({
   container1: {
     marginTop: 25,
-    // backgroundColor: 'yellow',
   },
   subContainer1: {
     paddingLeft: 22,
@@ -306,7 +307,6 @@ const styles = StyleSheet.create({
   },
   subContainer2: {
     flexDirection: 'row',
-    // backgroundColor: 'aqua',
     marginTop: 10,
   },
   text1: {
@@ -316,26 +316,20 @@ const styles = StyleSheet.create({
   },
   container2: {
     width: '90%', // Ensure it takes the full screen width
-    // height: 200, // Adjust height as needed for content
     alignSelf: 'center',
     marginTop: 15,
     backgroundColor: 'white',
-    // backgroundColor: 'red',
     borderRadius: 12,
     paddingBottom: 10,
     paddingTop: 8,
   },
   subContainer1_1: {
     paddingLeft: 12,
-    // backgroundColor:"aqua",
     alignSelf: 'flex-start',
-    // marginLeft:10,
   },
   subContainer2_1: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    // paddingLeft: 22,
-    // backgroundColor: 'magenta',
     marginLeft: 29,
     marginTop: 0,
     paddingTop: 0,
@@ -346,7 +340,6 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     paddingRight: 14,
     fontFamily: 'Mulish-Regular',
-    // marginTop: 15,
     marginBottom: 15,
     color: 'black',
     backgroundColor: '#fafafa',
@@ -365,25 +358,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 17,
     left: 9,
-    // backgroundColor: 'red',
   },
   eachtipIconContainer: {
     alignItems: 'center',
-    // justifyContent: 'center',
     marginHorizontal: 15,
   },
   tipCard: {
     width: width * 0.9, // Match the width of container2 (90% of screen width)
     alignItems: 'center', // Centers content horizontally
     justifyContent: 'center', // Centers content vertically
-    // flex: 1, // Ensures the card takes up the full height of the container
-    // backgroundColor:"yellow"
   },
   highLighTipContainer: {
     flexDirection: 'row',
     alignSelf: 'flex-end',
     marginTop: 10,
-    // backgroundColor:"yellow",
     marginRight: 10,
   },
   horizontalLine: {

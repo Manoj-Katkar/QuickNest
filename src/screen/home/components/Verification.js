@@ -2,8 +2,6 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import VerificationIcon from '../../../../assets/icons/VerificationIcon';
 import NextIcon from '../../../../assets/icons/NextIcon';
-import Percentage from '../../../../assets/icons/Percentage';
-import ProgressBar from '../../../../assets/icons/ProgressBar';
 
 const Verification = () => {
   return (
@@ -45,7 +43,6 @@ const styles = StyleSheet.create({
   superParent: {
     width: '92%',
     marginTop: 20,
-    // padding:20,
     paddingBottom: 20,
     paddingTop: 20,
     paddingRight: 15,
@@ -56,34 +53,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   container: {
-    //for main parent do not give the flex : 1 then it will take the entire width also height
     width: '92%',
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'space-between',
-
     alignItems: 'center',
-    // marginTop: 20,
-    // // padding:20,
-    // paddingBottom:20,
-    // paddingTop:20,
-    // paddingRight:10,
-
-    // borderWidth:0.5,
-    // borderColor:"gray",
-    // borderRadius:10
   },
   subContainer1: {
     width: '80%',
     flexDirection: 'row',
-    // backgroundColor: 'aqua',
     alignSelf: 'center',
-    // marginLeft:14
   },
   subContainer2: {
     width: '20%',
-    // backgroundColor: 'yellow',
-    // justifyContent:"center",
     alignItems: 'flex-end',
     position: 'relative',
   },
@@ -96,28 +78,22 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 20,
     paddingBottom: 10,
-    // fontWeight:"500",
     fontFamily: 'Mulish-Bold',
     color: 'black',
   },
   text2: {
     fontSize: 15,
-    // fontWeight:"300",
     fontFamily: 'Mulish-Regular',
     color: 'black',
     lineHeight: 15.06,
   },
   nextIcon: {
-    // marginBottom:18
-    // backgroundColor:"red",
     position: 'absolute',
     top: -15,
     left: 15,
-    // bottom:"60%"
   },
   percentage: {
     fontSize: 18,
-    // marginTop:40,
     marginRight: 10,
     fontFamily: 'Mulish-SemiBold',
     color: 'black',
@@ -147,7 +123,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#c5e8df',
     marginVertical: 5,
     alignSelf: 'center',
-    // borderRadius:10
   },
   btn1: {
     width: '50%',

@@ -4,9 +4,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import PanicEnquiryIcon from '../../../../assets/icons/PanicEnquiryIcon';
 import ConcernEnquiryIcon from '../../../../assets/icons/ConcernEnquiryIcon';
 import SearchFilter from './SearchFilter';
-import Cards from './Cards';
+import ConcernCards from './ConcernCards';
+import PanicCards from './PanicCards';
 
-const EnquiresHeader = ({navigation}) => {
+const EnquiresUI = ({navigation}) => {
   // State to track which cards to render (default: 'concern')
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
 
@@ -71,17 +72,9 @@ const EnquiresHeader = ({navigation}) => {
 
       {/* Conditional Rendering Based on emotionalResponse */}
       {emotionalResponse === 'concern' ? (
-        <Cards
-          navigation={navigation}
-          ticketNo="#EN20001"
-          date="6th Feb 2024"
-        />
+        <ConcernCards navigation={navigation} />
       ) : (
-        <Cards
-          navigation={navigation}
-          ticketNo="#EN98001"
-          date="8th Oct 2024"
-        />
+        <PanicCards navigation={navigation} />
       )}
     </>
   );
@@ -148,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EnquiresHeader;
+export default EnquiresUI;

@@ -29,17 +29,14 @@ const GetInTouch = () => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    // backgroundColor:"aqua",
   },
   subContainer: {
-    // backgroundColor:"red",
     width: '90%',
     alignSelf: 'center',
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    // alignSelf:"center",
     paddingTop: 20,
     borderWidth: 0.2,
     borderColor: 'gray',
@@ -50,11 +47,9 @@ const styles = StyleSheet.create({
   },
   subContainerPart1: {},
   subContainerPart2: {
-    // width:"60%",
     height: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor:"red",
     position: 'relative',
   },
   text: {
@@ -78,7 +73,6 @@ const styles = StyleSheet.create({
   },
   text3: {
     color: '#212f5a',
-    // fontWeight:"400"
     fontSize: 17,
     fontFamily: 'Mulish-Bold',
   },
@@ -95,13 +89,10 @@ const styles = StyleSheet.create({
     marginTop: 65,
   },
   headPhone: {
-    // alignSelf:"center",
     paddingBottom: 15,
     position: 'absolute',
     top: -10,
     left: 110,
-    // bottom:100,
-    // backgroundColor:"yellow",
   },
 });
 

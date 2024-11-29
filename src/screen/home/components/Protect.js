@@ -17,7 +17,7 @@ const Protect = () => {
         <FastImage
           source={Image.protectImage}
           style={styles.image}
-          resizeMode={FastImage.resizeMode.contain} // or cover, depending on your needs
+          resizeMode={FastImage.resizeMode.contain}
         />
       </View>
     </View>
@@ -27,7 +27,6 @@ const Protect = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor:"aqua",
     marginTop: 25,
   },
   text1: {
@@ -37,14 +36,11 @@ const styles = StyleSheet.create({
 
     fontSize: 20,
     fontFamily: 'Mulish-Bold',
-    // fontWeight:"600",
     color: 'black',
   },
   imageContainer: {
     flex: 1,
     marginBottom: 14,
-    // backgroundColor: 'yellow',
-    // padding:10
   },
   image: {
     width: '95%',

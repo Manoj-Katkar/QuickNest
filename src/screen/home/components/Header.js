@@ -26,10 +26,7 @@ const Header = ({nav}) => {
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
         <TouchableOpacity
           onPress={() => {
-            // console.log("navigation : returns the below inbuild methods " , nav);
-            console.log('Drawer is opened Button is Clicked!!!!!!!!!!!');
-
-            nav?.openDrawer();
+            nav?.openDrawer(); //this is opening the drawer
           }}>
           <NavLines width={32} height={32} style={styles.navStyle} />
         </TouchableOpacity>
@@ -40,7 +37,6 @@ const Header = ({nav}) => {
 
 const styles = StyleSheet.create({
   container: {
-    //for main parent do not give the flex : 1 then it will take the entire width also height
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
@@ -50,7 +46,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenlly',
     alignItems: 'center',
-    // backgroundColor: 'red',
     width: '70%', //Arrange the width how much each child should take
     height: 80, // Set height (optional)
   },
@@ -58,7 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
-    // backgroundColor: 'magenta',
     height: 80, // Set height (optional)
     width: '30%',
     alignSelf: 'center',
@@ -69,17 +63,14 @@ const styles = StyleSheet.create({
   helloMessage: {
     flex: 1,
     justifyContent: 'space-evenlly',
-    // backgroundColor: 'yellow',
   },
   helloText1: {
     fontSize: 22,
-    // fontWeight:"700",
     fontFamily: 'Mulish-Bold', //the way to use font style
     color: 'black',
   },
   helloText2: {
     fontSize: 15,
-    // fontWeight:"500",
     fontFamily: 'Mulish-Regular',
     paddingTop: 5,
     color: 'black',

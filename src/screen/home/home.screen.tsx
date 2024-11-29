@@ -5,12 +5,11 @@ import Verification from './components/Verification';
 import Contacts from './components/Contacts';
 import Protect from './components/Protect';
 import SafeTip from './components/SafeTip';
-import Tip from './components/Tip';
 import QuickGuide from './components/QuickGuide';
 import CommingSoon from './components/CommingSoon';
 import TradeMark from './components/TradeMark';
 import GetInTouch from './components/GetInTouch';
-import TakeSpace from '../../../components/take-space';
+import TakeSpace from '../../components/take-space';
 
 const Home = ({navigation}) => {
   return (
@@ -20,7 +19,6 @@ const Home = ({navigation}) => {
       <Contacts />
       <Protect />
       <SafeTip />
-      {/* <Tip/> */}
       <QuickGuide />
       <CommingSoon nav={navigation} />
       <GetInTouch />
@@ -29,7 +27,7 @@ const Home = ({navigation}) => {
       <TakeSpace space={30} />
 
       <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
-      {/* //this way I can handle the status bar of the android applications  */}
+      {/* //this way I can handle the status bar of the android applications */}
       {/* //barStyle takes two arguments : 1) dark-content , 2) light-content */}
     </ScrollView>
   );
