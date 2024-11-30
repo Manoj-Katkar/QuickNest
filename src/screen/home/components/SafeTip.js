@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  FlatList,
 } from 'react-native';
 import React, {useState, useRef} from 'react';
 import PersonalIcon from '../../../../assets/icons/PersonalIcon';
@@ -185,11 +186,14 @@ const SafeTip = () => {
     const selectedTip = tipsArray.find(tip => tip.id === id);
     if (selectedTip) {
       setSelectedTipId(id); // Update the selected tip
-      scrollRef.current?.scrollTo({
-        x: 0, // Reset to the start of the scrollable tips for the new selection
-        animated: true, //ensures that the scrolling happens with a smooth animation instead of jumping abruptly to the target position
-      });
       setHighlightedTipIndex(0); // Reset highlighted tip index
+
+      //For ScrollView we ave to use scrollTo() method to reset the ScrollView scroll position
+      // For FlatList Use scrollToIndex to reset FlatList's scroll position
+      scrollRef.current?.scrollToIndex({
+        index: 0, // Reset to the first item
+        animated: true, // Smooth scrolling
+      });
     }
   };
 
@@ -208,77 +212,82 @@ const SafeTip = () => {
         </View>
 
         {/* Icon Selector */}
-        <ScrollView
+        <FlatList
           horizontal
-          style={styles.subContainer2}
-          showsHorizontalScrollIndicator={false}>
-          {tipsArray.map((tip, index) => (
-            <TouchableOpacity
-              key={tip.id}
-              onPress={() => changeTipMessage(tip.id)}
-              style={styles.eachtipIconContainer}>
-              {/* Render the background image if the current tip is selected */}
-              <View style={styles.iconContainer}>
-                {selectedTipId === tip.id && (
-                  <BackGroundTipIcon
-                    width={48}
-                    height={50}
-                    style={styles.backgroundImage}
-                  />
+          data={tipsArray}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => changeTipMessage(item.id)}
+                style={styles.eachtipIconContainer}>
+                {/* Render the background image if the current tip is selected */}
+                <View style={styles.iconContainer}>
+                  {selectedTipId === item.id && (
+                    <BackGroundTipIcon
+                      width={48}
+                      height={50}
+                      style={styles.backgroundImage}
+                    />
+                  )}
+                  {/* Rendering the corresponding icon */}
+                  <View style={{top: 9, left: 9}}>{item.icon}</View>
+                </View>
+                <Text
+                  style={[
+                    styles.iconText,
+                    selectedTipId === item.id && {
+                      color: '#4a8dc6',
+                      fontFamily: 'Mulish-Bold',
+                    },
+                  ]}>
+                  {item.iconText}
+                </Text>
+                {selectedTipId === item.id && (
+                  // for selected icon giving the underline using the view
+                  <View style={styles.selectedTextUnderline} />
                 )}
-                {/* Rendering the corresponding icon */}
-                <View style={{top: 9, left: 9}}>{tip.icon}</View>
-              </View>
-              <Text
-                style={[
-                  styles.iconText,
-                  selectedTipId === tip.id && {
-                    color: '#4a8dc6', // Change color to #4a8dc6 when selected
-                    fontFamily: 'Mulish-Bold',
-                  },
-                ]}>
-                {tip.iconText}
-              </Text>
-
-              {/* Adding the view for the underline part */}
-              {selectedTipId === tip.id && (
-                <View style={styles.selectedTextUnderline} />
-              )}
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+              </TouchableOpacity>
+            );
+          }}
+          showsHorizontalScrollIndicator={false} //hides the horizontal scroll indicator (the scrollbar) in a scrollable FlatList or ScrollView
+        />
       </View>
 
       {/* Tips Container */}
       <View>
-        <ScrollView
-          ref={scrollRef}
+        {/* FlatList  For Each Tip for the selected Icon in the scrollbale manner horizontally*/}
+        <FlatList
+          //get the matching tip object and for that object give the all the corresponding tips array to me
+          data={tipsArray.find(tip => tip.id === selectedTipId)?.tips || []}
           horizontal
-          style={styles.container2}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          onMomentumScrollEnd={handleScrollEnd}>
-          {/* Find the selected tip object and render its tips */}
-          {tipsArray
-            .find(tip => tip.id === selectedTipId) // Get the selected object
-            ?.tips.map((singleTip, index) => (
-              <View key={index} style={styles.tipCard}>
-                {/* Tip Header */}
-                <View style={styles.subContainer1_1}>
-                  <Text style={styles.text1_1}>{singleTip.tipCount}</Text>
+          ref={scrollRef}
+          style={styles.container2} //Styles the FlatList's outer container
+          keyExtractor={(currentSelectedObject, index) => `${index}`} //to identify the unique returning the index
+          renderItem={({item}) => {
+            return (
+              <>
+                {/* <Text style={{color: 'black'}}>HI</Text> */}
+                <View style={styles.tipCard}>
+                  {/* Tip Header */}
+                  <View style={styles.subContainer1_1}>
+                    <Text style={styles.text1_1}>{item.tipCount}</Text>
+                  </View>
+                  {/* Tip Content with Icon*/}
+                  <View style={styles.subContainer2_1}>
+                    <NotIcon width={20} height={20} style={styles.notIcon} />
+                    <Text style={styles.text2_1}>{item.actualTipContent}</Text>
+                  </View>
                 </View>
-                {/* Tip Content */}
-                <View style={styles.subContainer2_1}>
-                  <NotIcon width={20} height={20} style={styles.notIcon} />
-                  <Text style={styles.text2_1}>
-                    {singleTip.actualTipContent}
-                  </Text>
-                </View>
-              </View>
-            ))}
-        </ScrollView>
+              </>
+            );
+          }}
+          showsHorizontalScrollIndicator={false} // Hides the horizontal scroll indicator (the scrollbar).
+          pagingEnabled // Enables snapping to the next page (one item per scroll, like a carousel).
+          onMomentumScrollEnd={handleScrollEnd} // Triggers the `handleScrollEnd` function when the scroll momentum stops.
+        />
 
-        {/* Highlight Selected Tip */}
+        {/* Highlight Selected Tip only one tip should get highlighted hence using the simple map logic */}
         <View style={styles.highLighTipContainer}>
           {tipsArray
             .find(tip => tip.id === selectedTipId) // Get the selected tips

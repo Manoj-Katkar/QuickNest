@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: 85,
+    backgroundColor: 'white',
   },
   mainParent: {
     flex: 1,
