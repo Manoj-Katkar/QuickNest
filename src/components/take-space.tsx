@@ -8,9 +8,7 @@ type TakeSpaceProps = {
 const TakeSpace = (props: TakeSpaceProps) => {
   const {space = 15} = props;
 
-  return <View style={{padding:space , backgroundColor:"white"}}/>;
+  return <View style={{padding: space}} />;
 };
-
-
 
 export default TakeSpace;

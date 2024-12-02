@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     // marginVertical:20,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
   },
   backgroundImage: {
     width: '75%',

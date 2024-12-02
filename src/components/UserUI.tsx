@@ -253,7 +253,6 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: '100%',
-    // justifyContent: 'center', // Align content vertically
     alignItems: 'center', // Align content horizontally
   },
   overlay: {

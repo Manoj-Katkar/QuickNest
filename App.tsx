@@ -19,33 +19,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer ref={undefined}>
+    <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="DrawerNav" component={DrawerNav} />
-
-        <Stack.Screen
-          name="House_Services"
-          component={HouseServices}
-          options={{
-            headerShown: false,
-
-            title: 'House Services',
-
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 25,
-            },
-
-            headerStyle: {
-              backgroundColor: '#fafafa', // Background color of the header
-
-              ...(Platform.OS === 'android'
-                ? {elevation: 0}
-                : {shadowOpacity: 0}), // Platform-specific styling
-            },
-          }}
-        />
-
+        <Stack.Screen name="House_Services" component={HouseServices} />
         <Stack.Screen
           name="Details"
           component={Details}

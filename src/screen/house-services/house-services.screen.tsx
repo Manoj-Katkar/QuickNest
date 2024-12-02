@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
@@ -16,7 +17,22 @@ const {width, height} = Dimensions.get('window');
 
 const HouseServices = ({navigation}) => {
   const handlePress = () => {
-    navigation.navigate('Enquiry');
+    navigation.goBack();
+  };
+
+  const RenderServiceFeature = ({heading, para}) => {
+    return (
+      <View style={styles.individualContainer}>
+        <View style={styles.subContainer1}>
+          <RightIcon width={20} height={20} />
+        </View>
+
+        <View style={styles.subContainer2}>
+          <Text style={styles.containerHeading}>{heading}</Text>
+          <Text style={styles.containerPara}>{para}</Text>
+        </View>
+      </View>
+    );
   };
 
   return (
@@ -48,58 +64,42 @@ const HouseServices = ({navigation}) => {
           <Text style={styles.serviceText}>Service feature</Text>
         </View>
 
-        {/* 1st  */}
+        {/* Now I am rendering the service features  */}
 
-        <View style={styles.individualContainer}>
-          <View style={styles.subContainer1}>
-            <RightIcon width={20} height={20} />
-          </View>
-
-          <View style={styles.subContainer2}>
-            <Text style={styles.containerHeading}>Routine Maintenance </Text>
-            <Text style={styles.containerPara}>
-              Regular inspections and upkeep of essential home {'\n'}systems,
-              including HVAC, plumbing, and electrical.
-            </Text>
-          </View>
-        </View>
-
-        {/* 2nd  */}
-
-        <View style={styles.individualContainer}>
-          <View style={styles.subContainer1}>
-            <RightIcon width={20} height={20} />
-          </View>
-
-          <View style={styles.subContainer2}>
-            <Text style={styles.containerHeading}>Emergency Repairs</Text>
-            <Text style={styles.containerPara}>
-              Quick response and repair services for unexpected {'\n'}home
-              issues, available 24/7.
-            </Text>
-          </View>
-        </View>
-
-        {/* 3rd  */}
-
-        <View style={styles.individualContainer}>
-          <View style={styles.subContainer1}>
-            <RightIcon width={20} height={20} />
-          </View>
-
-          <View style={styles.subContainer2}>
-            <Text style={styles.containerHeading}>Safety Checks</Text>
-            <Text style={styles.containerPara}>
-              Regular safety audits of your home to identify and {'\n'}mitigate
-              potential hazards.
-            </Text>
-          </View>
-        </View>
+        <FlatList
+          data={[
+            {
+              id: '1',
+              heading: 'Routine Maintenance',
+              para: `Regular inspections and upkeep of essential home \nsystems,including HVAC, plumbing, and electrical.`,
+            },
+            {
+              id: '2',
+              heading: 'Emergency Repairs',
+              para: `Quick response and repair services for unexpected \nhome issues, available 24/7.`,
+            },
+            {
+              id: '3',
+              heading: 'Safety Checks',
+              para: `Regular safety audits of your home to identify and \nmitigate potential hazards.`,
+            },
+          ]}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => {
+            return (
+              <>
+                <RenderServiceFeature heading={item.heading} para={item.para} />
+              </>
+            );
+          }}
+        />
       </View>
 
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnText}>Book service</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.btn}>
+          <Text style={styles.btnText}>Book service</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -107,9 +107,6 @@ const HouseServices = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fafafa', // Cool light greenish background
-    // backgroundColor:"red",
-    // justifyContent:"space-between",
     backgroundColor: '#fafafa',
   },
   text: {
@@ -161,7 +158,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Mulish-Bold',
   },
   btn: {
-    alignSelf: 'center',
+    flexDirection: 'column',
+    // alignSelf: 'flex-end',
     width: '89%',
     backgroundColor: '#011e62',
     paddingTop: 15,
@@ -170,7 +168,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#011e62',
     marginBottom: 15,
-    marginTop: 65,
+    // marginTop: 75,
+    // backgroundColor: 'aqua',
   },
   textContainer: {
     // backgroundColor:"aqua",
@@ -206,6 +205,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'Mulish-Bold',
     marginLeft: 10,
+  },
+  buttonContainer: {
+    flex: 1,
+    // backgroundColor: 'red',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
 

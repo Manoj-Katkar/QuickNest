@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+  FlatList,
+} from 'react-native';
 import React from 'react';
 import Header from './components/Header';
 import Verification from './components/Verification';
@@ -11,36 +18,36 @@ import TradeMark from './components/TradeMark';
 import GetInTouch from './components/GetInTouch';
 import TakeSpace from '../../components/take-space';
 
-const Home = ({navigation}) => {
+const Home = ({navigation}: any) => {
+  const renderHome = () => {
+    return (
+      <View style={{backgroundColor: '#fafafa'}}>
+        <Verification />
+        <Contacts />
+        <Protect />
+        <SafeTip />
+        <QuickGuide />
+        <TakeSpace space={10} />
+        <CommingSoon nav={navigation} />
+        <GetInTouch />
+        {/* Customizing the StatusBar */}
+        <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
+      </View>
+    );
+  };
   return (
-    <ScrollView style={styles.container}>
-      <Header nav={navigation} />
-      <Verification />
-      <Contacts />
-      <Protect />
-      <SafeTip />
-      <QuickGuide />
-      <CommingSoon nav={navigation} />
-      <GetInTouch />
-      <TakeSpace space={5} />
-      <TradeMark />
-      <TakeSpace space={30} />
-
-      <StatusBar backgroundColor="#fafafa" barStyle="dark-content" />
-      {/* //this way I can handle the status bar of the android applications */}
-      {/* //barStyle takes two arguments : 1) dark-content , 2) light-content */}
-    </ScrollView>
+    <>
+      <FlatList
+        data={[1]}
+        contentContainerStyle={{backgroundColor: '#fafafa', flexGrow: 1}}
+        ListHeaderComponent={() => <Header nav={navigation} />}
+        ListHeaderComponentStyle={{backgroundColor: '#fafafa'}}
+        ListFooterComponent={() => <TradeMark />}
+        ListFooterComponentStyle={{paddingBottom: 50}}
+        renderItem={renderHome}
+      />
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
-  },
-  text: {
-    fontSize: 30,
-  },
-});
 
 export default Home;

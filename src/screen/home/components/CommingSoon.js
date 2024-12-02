@@ -13,14 +13,19 @@ const {width, height} = Dimensions.get('window');
 
 const CommingSoon = ({nav}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Comming Soon!</Text>
+    <View>
+      <Text style={styles.text}>Coming Soon!</Text>
 
-      <TouchableOpacity onPress={() => nav.navigate('House_Services')}>
+      <TouchableOpacity
+        style={{
+          width: width,
+          // paddingHorizontal: 16,
+          alignSelf: 'center',
+        }}
+        onPress={() => nav.navigate('House_Services')}>
         <FastImage
           source={Image.houseBanner}
-          // resizeMode='contain'
-
+          resizeMode="contain"
           style={styles.image}
         />
       </TouchableOpacity>
@@ -29,9 +34,6 @@ const CommingSoon = ({nav}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-  },
   text: {
     paddingLeft: 22,
     fontSize: 20,
@@ -39,10 +41,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Mulish-Bold',
   },
   image: {
-    width: width * 0.91,
-    height: 230,
-    alignSelf: 'center',
-    marginTop: 5,
+    width: '100%',
+    height: height * 0.3,
   },
 });
 

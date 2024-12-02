@@ -61,12 +61,12 @@ const BottomTabComp = () => {
               changeIconAndText('Concern');
             }}>
             {activeIcon === 'Concern' ? (
-              <View style={styles.eachIconContainer}>
+              <View style={[styles.eachIconContainer, {paddingLeft: 20}]}>
                 <ConcernHighLight width={32} height={32} />
                 <Text style={styles.textActive}>Concern</Text>
               </View>
             ) : (
-              <View style={styles.eachIconContainer}>
+              <View style={[styles.eachIconContainer, {paddingLeft: 20}]}>
                 <ConcernIcon width={32} height={32} />
                 <Text style={styles.textInActive}>Concern</Text>
               </View>
@@ -81,12 +81,12 @@ const BottomTabComp = () => {
               changeIconAndText('Member');
             }}>
             {activeIcon === 'Member' ? (
-              <View style={styles.eachIconContainer}>
+              <View style={[styles.eachIconContainer, {paddingRight: 20}]}>
                 <MemberHighLight width={32} height={32} />
                 <Text style={styles.textActive}>Member</Text>
               </View>
             ) : (
-              <View style={styles.eachIconContainer}>
+              <View style={[styles.eachIconContainer, {paddingRight: 20}]}>
                 <MemberIcon width={32} height={32} />
                 <Text style={styles.textInActive}>Member</Text>
               </View>
@@ -125,7 +125,6 @@ const BottomTabComp = () => {
             position: 'absolute',
             left: '40.5%',
             bottom: 55,
-            // backgroundColor: 'yellow',
           }} // Adjust dimensions as needed
         />
       </TouchableOpacity>
@@ -137,7 +136,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: 85,
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
+    // backgroundColor: '#fafafa',
   },
   mainParent: {
     flex: 1,
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // alignItems:"ce"
-    // backgroundColor: 'yellow',
+    // backgroundColor: '#fafafa',
+    // backgroundColor: 'red',
   },
   textInActive: {
     color: 'black',

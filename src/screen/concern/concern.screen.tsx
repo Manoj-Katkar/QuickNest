@@ -1,5 +1,16 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  ImageBackgroundComponent,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
+import UserUI from '../../components/UserUI';
+
+const {width, height} = Dimensions.get('window');
 
 const Concern = () => {
   return (
