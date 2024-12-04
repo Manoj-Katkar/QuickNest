@@ -5,7 +5,7 @@ import HelloIcon from '../../../../assets/icons/HelloIcon';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Header = ({nav}) => {
+const Header = ({nav}: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.helloContainer}>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   helloContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-evenlly',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '70%', //Arrange the width how much each child should take
     height: 80, // Set height (optional)
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   helloMessage: {
     flex: 1,
-    justifyContent: 'space-evenlly',
+    justifyContent: 'space-evenly',
   },
   helloText1: {
     fontSize: 22,

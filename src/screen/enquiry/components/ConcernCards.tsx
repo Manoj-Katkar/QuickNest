@@ -4,18 +4,18 @@ import dataFromJson from '../../../../data.json';
 import CalenderIcon from '../../../../assets/icons/CalenderIcon';
 import RecordingIcon from '../../../../assets/icons/RecordingIcon';
 import DrawerNextIcon from '../../../../assets/icons/DrawerNextIcon';
-import {useNavigation} from '@react-navigation/native';
 
-const PanicCards = ({navigation}) => {
+const ConcernCards = ({navigation}: any) => {
   const handlePress = () => {
     navigation.navigate('Details');
   };
 
   return (
     <View style={styles.container}>
-      {/* <Text style={{color: 'black'}}>From Panic Cards</Text> */}
+      {/* <Text style={{color: 'black'}}>From Concerns Cards</Text> */}
       <FlatList
-        data={dataFromJson.ticketArrayPanic}
+        data={dataFromJson.ticketArrayConcern}
+        keyExtractor={(item, index) => index.toString()} // used to extract a unique key for each item in the list.
         renderItem={({item}) => {
           return (
             <View style={styles.subContainer1}>
@@ -160,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PanicCards;
+export default ConcernCards;

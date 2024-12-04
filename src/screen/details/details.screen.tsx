@@ -15,7 +15,7 @@ import ImageIcon from '../../../assets/icons/ImageIcon';
 import EyeIcon from '../../../assets/icons/EyeIcon';
 import IIcon from '../../../assets/icons/IIcon';
 
-const Details = ({navigation}) => {
+const Details = ({navigation}: any) => {
   const handlePress = () => {
     navigation.navigate('Enquiry');
   };

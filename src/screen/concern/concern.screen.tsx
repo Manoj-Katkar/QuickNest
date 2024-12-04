@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import UserUI from '../../components/UserUI';
 
 const {width, height} = Dimensions.get('window');
 

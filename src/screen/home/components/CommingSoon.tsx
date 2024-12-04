@@ -11,7 +11,7 @@ import {Image} from '../../../constant/images';
 
 const {width, height} = Dimensions.get('window');
 
-const CommingSoon = ({nav}) => {
+const CommingSoon = ({nav}: any) => {
   return (
     <View>
       <Text style={styles.text}>Coming Soon!</Text>

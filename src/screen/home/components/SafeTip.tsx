@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 import React, {useState, useRef} from 'react';
 import PersonalIcon from '../../../../assets/icons/PersonalIcon';
@@ -175,14 +177,16 @@ const tipsArray = [
   },
 ];
 
+type changeIdType = (id: number) => void; //
+
 const SafeTip = () => {
   const [selectedTipId, setSelectedTipId] = useState(tipsArray[0].id); // Track selected tip ID
 
   const [highlightedTipIndex, setHighlightedTipIndex] = useState(0); // Track highlighted tip index
 
-  const scrollRef = useRef(null); // Reference for ScrollView
+  const scrollRef = useRef<FlatList>(null); //! Reference for ScrollView
 
-  const changeTipMessage = id => {
+  const changeTipMessage: changeIdType = id => {
     const selectedTip = tipsArray.find(tip => tip.id === id);
     if (selectedTip) {
       setSelectedTipId(id); // Update the selected tip
@@ -197,7 +201,9 @@ const SafeTip = () => {
     }
   };
 
-  const handleScrollEnd = event => {
+  //!here given the type by clicking on the onMomentumScrollEnd and what the inbuilt type was there given the same type
+
+  const handleScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollX = event.nativeEvent.contentOffset.x; // Get current scroll position
     const currentTipIndex = Math.round(scrollX / (width * 0.9)); // Calculate index of the currently visible tip
     setHighlightedTipIndex(currentTipIndex); // Update the highlighted tip index
@@ -215,7 +221,7 @@ const SafeTip = () => {
         <FlatList
           horizontal
           data={tipsArray}
-          keyExtractor={item => item.id}
+          keyExtractor={item => String(item.id)} //converted into string
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -284,7 +290,7 @@ const SafeTip = () => {
           }}
           showsHorizontalScrollIndicator={false} // Hides the horizontal scroll indicator (the scrollbar).
           pagingEnabled // Enables snapping to the next page (one item per scroll, like a carousel).
-          onMomentumScrollEnd={handleScrollEnd} // Triggers the `handleScrollEnd` function when the scroll momentum stops.
+          onMomentumScrollEnd={handleScrollEnd} // !Triggers the `handleScrollEnd` function when the scroll momentum stops.
         />
 
         {/* Highlight Selected Tip only one tip should get highlighted hence using the simple map logic */}

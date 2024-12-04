@@ -2,7 +2,7 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
 import EnquiresUI from './components/EnquiresUI';
 
-const Enquiry = ({navigation}) => {
+const Enquiry = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <EnquiresUI navigation={navigation} />

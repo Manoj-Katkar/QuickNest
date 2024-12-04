@@ -15,12 +15,21 @@ import PreviousIcon from '../../../assets/icons/PreviousIcon';
 
 const {width, height} = Dimensions.get('window');
 
-const HouseServices = ({navigation}) => {
+// Define prop types using FC
+interface RenderServiceFeatureProps {
+  heading: string;
+  para: string;
+}
+
+const HouseServices = ({navigation}: any) => {
   const handlePress = () => {
     navigation.goBack();
   };
 
-  const RenderServiceFeature = ({heading, para}) => {
+  const RenderServiceFeature: React.FC<RenderServiceFeatureProps> = ({
+    heading,
+    para,
+  }) => {
     return (
       <View style={styles.individualContainer}>
         <View style={styles.subContainer1}>

@@ -7,7 +7,7 @@ import SearchFilter from './SearchFilter';
 import ConcernCards from './ConcernCards';
 import PanicCards from './PanicCards';
 
-const EnquiresUI = ({navigation}) => {
+const EnquiresUI = ({navigation}: any) => {
   // State to track which cards to render (default: 'concern')
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
 
