@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   image: {
-    width: '95%',
+    width: '92%',
     height: 225,
     alignSelf: 'center',
     backgroundColor: '#f0f4f7',

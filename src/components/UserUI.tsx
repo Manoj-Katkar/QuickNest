@@ -5,8 +5,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Image} from '../constant/images';
 import CrossIcon from '../../assets/icons/CrossIcon';
 import UserImageIcon from '../../assets/icons/UserImageIcon';
@@ -22,15 +23,69 @@ import LogoutIcon from '../../assets/icons/LogoutIcon';
 
 const {width, height} = Dimensions.get('window');
 
-const UserUI = ({props}) => {
+// now for rendering the All subscreen Ui I will create the one componenet that will render it and then using the flatList I will render the Ui because it will become the more optimized
+
+const navigationItems = [
+  {icon: SubscriptionIcon, label: 'Subscription', screenName: 'Subscription'},
+  {
+    icon: DrawerVerificationIcon,
+    label: 'Verification',
+    screenName: 'Verification',
+  },
+  {icon: LegalIcon, label: 'Legal documents', screenName: 'LegalDocuments'},
+  {
+    icon: TransactionIcon,
+    label: 'Transaction history',
+    screenName: 'TransactionHistory',
+  },
+  {icon: ContactIcon, label: 'Contact us', screenName: 'ContactUs'},
+  {icon: DrawerAboutUsIcon, label: 'About us', screenName: 'AboutUs'},
+  {
+    icon: DeleteIcon,
+    label: 'Delete account',
+    screenName: 'DeleteAccount',
+    isDelete: true,
+  },
+  {icon: LogoutIcon, label: 'Logout', screenName: 'Logout'},
+];
+
+const UserUI = ({props}: any) => {
   // console.log(props);
 
   const {navigation} = props;
 
   // I am creating the one function that will take the value on which screen to redirect and it will redirect the user to that particular Scren
-  const reDirectScreen = screenName => {
+  const reDirectScreen = (screenName: string) => {
     navigation.navigate(`${screenName}`);
   };
+
+  // ^taking the one function that will return the each item list UI
+
+  const renderItem = useCallback(
+    ({item}: any) => {
+      const IconComponent = item.icon;
+
+      return (
+        <View style={styles.labelContainer}>
+          <View style={styles.subContainer1}>
+            <IconComponent width={30} height={30} />
+            <Text style={item.isDelete ? styles.deleteText : styles.labelText}>
+              {item.label}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            style={styles.btn2}
+            onPress={() => reDirectScreen(item.screenName)}>
+            <View style={styles.subContainer2}>
+              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    },
+    [navigationItems],
+  );
 
   return (
     <ImageBackground
@@ -40,7 +95,6 @@ const UserUI = ({props}) => {
     >
       <View style={styles.overlay}>
         {/*  1st logo username and details*/}
-
         <View style={styles.parentContainer}>
           <View style={styles.childContainer1}>
             <TouchableOpacity
@@ -56,9 +110,7 @@ const UserUI = ({props}) => {
 
           <View style={styles.childContainer2}>
             <View style={styles.subChild1}>
-              <TouchableOpacity>
-                <UserImageIcon width={90} height={90} />
-              </TouchableOpacity>
+              <UserImageIcon width={90} height={90} />
             </View>
 
             <View style={styles.subChild2}>
@@ -75,171 +127,12 @@ const UserUI = ({props}) => {
 
         {/* Now the navigation vala part  */}
 
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <SubscriptionIcon width={30} height={30} />
-            <Text style={styles.labelText}>Subscription</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('Subscription');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 2nd  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <DrawerVerificationIcon width={30} height={30} />
-            <Text style={styles.labelText}>Verification</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('Verification');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 3rd */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <LegalIcon width={30} height={30} />
-            <Text style={styles.labelText}>Legal documents</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('LegalDocuments');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 4th  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <TransactionIcon width={30} height={30} />
-            <Text style={styles.labelText}>Transaction history</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('TransactionHistory');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 5th  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <ContactIcon width={30} height={30} />
-            <Text style={styles.labelText}>Contact us</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('ContactUs');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 6 th  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <DrawerAboutUsIcon width={30} height={30} />
-            <Text style={styles.labelText}>About us</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('AboutUs');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 7 th  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <DeleteIcon width={30} height={30} />
-            <Text style={styles.deleteText}>Delete account</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('DeleteAccount');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* 8 th  */}
-
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <LogoutIcon width={30} height={30} />
-            <Text style={styles.labelText}>Logout</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              // navigation.navigate('Subscription');
-
-              reDirectScreen('Logout');
-            }}>
-            <View style={styles.subContainer2}>
-              <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {/* now here I will implement the logic using the flatList  */}
+        <FlatList
+          data={navigationItems}
+          keyExtractor={item => item.screenName}
+          renderItem={renderItem}
+        />
       </View>
 
       <View style={styles.version}>
@@ -313,6 +206,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: '#4d8dc5',
+    marginTop: 5,
   },
   text3: {
     color: '#4f82be',
@@ -362,7 +256,9 @@ const styles = StyleSheet.create({
     color: '#b5b8d2',
   },
   version: {
-    marginTop: 88,
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 3,
   },
   versionText: {
     color: 'gray',
