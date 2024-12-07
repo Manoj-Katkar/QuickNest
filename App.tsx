@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerNav, {DrawerNavScreens} from './src/components/DrawerNav';
+import DrawerNav, {DrawerNavScreens} from './src/components/drawer-nav';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HouseServices from './src/screen/house-services/house-services.screen';

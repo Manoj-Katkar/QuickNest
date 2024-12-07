@@ -9,11 +9,11 @@ import ContactUs from '../screen/contact-us/contact-us.screen';
 import AboutUs from '../screen/about-us/about-us.screen';
 import DeleteAccount from '../screen/delete-account/delete-account.screen';
 import Logout from '../screen/logout/logout.screen';
-import BottomTab, {BottomTabScreens} from './BottomTab';
+import BottomTab, {BottomTabScreens} from './bottom-tab';
 import Header from '../screen/home/components/Header';
 import {Dimensions, StyleSheet} from 'react-native';
 
-import UserUI from './UserUI';
+import UserUI from './user-ui';
 
 export type DrawerNavScreens = {
   BottomTab: BottomTabScreens;

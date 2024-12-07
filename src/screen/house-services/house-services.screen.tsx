@@ -131,16 +131,18 @@ const styles = StyleSheet.create({
   },
   mainContainer: {},
   individualContainer: {
-    // backgroundColor:"yellow",
+    // backgroundColor: 'yellow',
     width: '92%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
+    // justifyContent: 'space-evenly',
     alignSelf: 'center',
     marginBottom: 13,
     marginLeft: 10,
   },
   subContainer1: {
-    // backgroundColor:"aqua"
+    // backgroundColor: 'aqua',
+    paddingTop: 4,
   },
   subContainer2: {
     // backgroundColor:"pink",

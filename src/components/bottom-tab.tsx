@@ -8,7 +8,9 @@ import ConcernIcon from '../../assets/icons/ConcernIcon';
 import MemberIcon from '../../assets/icons/MemberIcon';
 import EnquiryIcon from '../../assets/icons/EnquiryIcon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import BottomTabComp from './BottomTabComp';
+import BottomTabComp from './bottomtab-comp';
+import {Image} from 'react-native';
+import {Image as constantImage} from '../constant/images';
 
 export type BottomTabScreens = {
   Home: undefined;
@@ -29,9 +31,13 @@ const BottomTab = () => {
         tabBarLabelPosition: 'below-icon',
         tabBarShowLabel: false, //this will handle whether the to display the label or not label means that name only
         headerShown: false,
-        // Customize the tab label font size and other styles here
       }}
-      tabBar={() => <BottomTabComp />}>
+      // !adding the custom bottom tab navigator component
+      // tabBar={() => <BottomTabComp />
+      tabBar={() => <Concern />}
+
+      // tabBar={() => <Concern />}
+    >
       {/* Now also changing the icons of the each page  */}
       <Tab.Screen
         name="Home"

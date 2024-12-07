@@ -50,6 +50,7 @@ const PanicCards = ({navigation}: any) => {
             </View>
           );
         }}
+        contentContainerStyle={{paddingBottom: 50}} // Add padding to the bottom of the list
       />
     </View>
   );

@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import PanicEnquiryIcon from '../../../../assets/icons/PanicEnquiryIcon';
 import ConcernEnquiryIcon from '../../../../assets/icons/ConcernEnquiryIcon';
@@ -8,8 +8,41 @@ import ConcernCards from './ConcernCards';
 import PanicCards from './PanicCards';
 
 const EnquiresUI = ({navigation}: any) => {
-  // State to track which cards to render (default: 'concern')
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
+
+  const handlePress = (response: string) => {
+    setEmotionalResponse(response);
+  };
+
+  //^ using the useMemo hook to memeoize the styling
+  const buttonStyle = useMemo(
+    () => ({
+      panic: [
+        styles.button,
+        emotionalResponse === 'panic'
+          ? styles.activeButton
+          : styles.inactiveButton,
+      ],
+      concern: [
+        styles.button,
+        emotionalResponse === 'concern'
+          ? styles.activeButton
+          : styles.inactiveButton,
+      ],
+    }),
+    [emotionalResponse],
+  );
+
+  const textStyle = useMemo(
+    () => ({
+      panic: [styles.text2, emotionalResponse === 'panic' && styles.activeText],
+      concern: [
+        styles.text3,
+        emotionalResponse === 'concern' && styles.activeText,
+      ],
+    }),
+    [emotionalResponse],
+  );
 
   return (
     <>
@@ -20,61 +53,41 @@ const EnquiresUI = ({navigation}: any) => {
           <View style={styles.headerOptions}>
             {/* Panic Button */}
             <TouchableOpacity
-              style={[
-                styles.button,
-                emotionalResponse === 'panic'
-                  ? styles.activeButton
-                  : styles.inactiveButton,
-              ]}
-              onPress={() => setEmotionalResponse('panic')}>
+              style={buttonStyle.panic}
+              onPress={() => handlePress('panic')}>
               <View style={styles.btnView}>
                 <PanicEnquiryIcon width={20} height={20} style={styles.icon} />
-                <Text
-                  style={[
-                    styles.text2,
-                    emotionalResponse === 'panic' && styles.activeText,
-                  ]}>
-                  Panic
-                </Text>
+                <Text style={textStyle.panic}>Panic</Text>
               </View>
             </TouchableOpacity>
 
             {/* Concerns Button */}
             <TouchableOpacity
-              style={[
-                styles.button,
-                emotionalResponse === 'concern'
-                  ? styles.activeButton
-                  : styles.inactiveButton,
-              ]}
-              onPress={() => setEmotionalResponse('concern')}>
+              style={buttonStyle.concern}
+              onPress={() => handlePress('concern')}>
               <View style={styles.btnView}>
                 <ConcernEnquiryIcon
                   width={20}
                   height={20}
                   style={styles.icon}
                 />
-                <Text
-                  style={[
-                    styles.text3,
-                    emotionalResponse === 'concern' && styles.activeText,
-                  ]}>
-                  Concerns
-                </Text>
+                <Text style={textStyle.concern}>Concerns</Text>
               </View>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-
       {/* Render the Search and Filter UI */}
       <SearchFilter />
-
       {/* Conditional Rendering Based on emotionalResponse */}
       {emotionalResponse === 'concern' ? (
-        <ConcernCards navigation={navigation} />
+        <>
+          <ConcernCards navigation={navigation} />
+        </>
       ) : (
-        <PanicCards navigation={navigation} />
+        <>
+          <PanicCards navigation={navigation} />
+        </>
       )}
     </>
   );
@@ -111,6 +124,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   headerOptions: {
+    // backgroundColor: 'red',
     width: '100%',
     backgroundColor: '#ebecf0',
     flexDirection: 'row',
