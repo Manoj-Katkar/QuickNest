@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConcernCards;
+export default React.memo(ConcernCards);

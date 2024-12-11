@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import PanicEnquiryIcon from '../../../../assets/icons/PanicEnquiryIcon';
@@ -13,6 +13,19 @@ const EnquiresUI = ({navigation}: any) => {
   const handlePress = (response: string) => {
     setEmotionalResponse(response);
   };
+
+  const cards = useCallback(() => {
+    switch (emotionalResponse) {
+      case 'concern':
+        return <ConcernCards navigation={navigation} />;
+
+      case 'panic':
+        return <PanicCards navigation={navigation} />;
+
+      default:
+        return null;
+    }
+  }, [emotionalResponse]);
 
   //^ using the useMemo hook to memeoize the styling
   const buttonStyle = useMemo(
@@ -52,17 +65,17 @@ const EnquiresUI = ({navigation}: any) => {
 
           <View style={styles.headerOptions}>
             {/* Panic Button */}
-            <TouchableOpacity
+            <Pressable
               style={buttonStyle.panic}
               onPress={() => handlePress('panic')}>
               <View style={styles.btnView}>
                 <PanicEnquiryIcon width={20} height={20} style={styles.icon} />
                 <Text style={textStyle.panic}>Panic</Text>
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
             {/* Concerns Button */}
-            <TouchableOpacity
+            <Pressable
               style={buttonStyle.concern}
               onPress={() => handlePress('concern')}>
               <View style={styles.btnView}>
@@ -73,22 +86,14 @@ const EnquiresUI = ({navigation}: any) => {
                 />
                 <Text style={textStyle.concern}>Concerns</Text>
               </View>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>
       {/* Render the Search and Filter UI */}
       <SearchFilter />
       {/* Conditional Rendering Based on emotionalResponse */}
-      {emotionalResponse === 'concern' ? (
-        <>
-          <ConcernCards navigation={navigation} />
-        </>
-      ) : (
-        <>
-          <PanicCards navigation={navigation} />
-        </>
-      )}
+      {cards()}
     </>
   );
 };

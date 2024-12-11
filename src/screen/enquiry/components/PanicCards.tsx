@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PanicCards;
+export default React.memo(PanicCards);

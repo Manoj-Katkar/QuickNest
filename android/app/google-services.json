@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "178053261066",
+    "project_id": "quicknest-791d6",
+    "storage_bucket": "quicknest-791d6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178053261066:android:0a89f2f77596c02ed5fcf3",
+        "android_client_info": {
+          "package_name": "com.quicknest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj0G0mzHVH5GRFQjF3WTBnu7ofxIgCtD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
