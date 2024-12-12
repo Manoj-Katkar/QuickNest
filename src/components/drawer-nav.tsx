@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler'; //!make sure it is at the top and nothing is there before it
+import 'react-native-gesture-handler'; //^make sure it is at the top and nothing is there before it
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Subscription from '../screen/subscription/subscription.screen';
