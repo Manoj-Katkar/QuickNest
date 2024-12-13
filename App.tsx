@@ -9,6 +9,7 @@ import NotificationScreen from './src/screen/notification/notification.screen';
 import {mainStackNavigationRef} from './src/hook/navigationRef';
 import messaging from '@react-native-firebase/messaging';
 import {helpers} from './src/utility/helpers';
+import notifee from '@notifee/react-native';
 // const Stack = createNativeStackNavigator<{ DrawerNav: DrawerNavScreens }>()
 
 // Update the type definition to include both screens
@@ -23,14 +24,33 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const getInitialNotification = async () => {
+  const remoteMessage = await notifee.getInitialNotification();
+
+  if (remoteMessage) {
+    const {title, body, image} = remoteMessage.notification.data || {};
+    // Navigate to the Notifications screen with parameters
+    helpers.onDisplayNotification(remoteMessage);
+  }
+};
+
 const App = () => {
   return (
     <NavigationContainer
+      // Attach the navigation reference to allow programmatic navigation.
       ref={mainStackNavigationRef}
+      // Callback executed when the navigation container is fully initialized.
       onReady={() => {
-        messaging().onNotificationOpenedApp(messaging => {
-          helpers.onDisplayNotification(messaging);
+        console.log('Navigation is ready.');
+
+        // Listen for notifications when the app is opened from the background.
+        messaging().onNotificationOpenedApp(message => {
+          // Handle notification click and navigate to the appropriate screen.
+          helpers.onDisplayNotification(message);
         });
+
+        // Handle the scenario where the app is opened via a notification from a quit state.
+        getInitialNotification();
       }}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="DrawerNav" component={DrawerNav} />

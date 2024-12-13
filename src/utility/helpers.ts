@@ -1,21 +1,24 @@
+
 import { mainStackNavigationRef } from "../hook/navigationRef";
 
 // !this created to re-direct the user to the notification Screen when the user will click on it 
+
 const helpers = {
     onDisplayNotification: async (remoteMessage: any) => {
-        console.log('Displaying notification:', remoteMessage);
-        console.log('remoteMessage.data ======== :', remoteMessage.data);
+        console.log('onDisplayNotification remoteMessage: ', JSON.stringify(remoteMessage, undefined, 4));
 
-        //* here logic to display notification if needed (logic I have to write it over here)
+        // Extract title, body, and image safely
+        const { title = 'Default Title', body = 'Default Body', image = '' } = remoteMessage.notification?.data || {};
 
-        // Extract title and body from the notification
-        const { title, body, image } = remoteMessage.data;
-
-        // *Navigate to NotificationScreen with the new notification data
-        mainStackNavigationRef.current?.navigate('Notifications', {
-            newNotification: { title, body, image },
-        });
+        if (mainStackNavigationRef.current?.isReady()) {
+            mainStackNavigationRef.current.navigate('Notifications', {
+                newNotification: { title, body, image },
+            });
+        } else {
+            console.warn('Navigation reference is not ready.');
+        }
     },
 };
 
-export { helpers }
+export { helpers };
+
