@@ -17,7 +17,7 @@ AppRegistry.registerComponent(appName, () => App);
 
 // !Set up a handler for background and quit state notifications.
 messaging().setBackgroundMessageHandler(async remoteMessage => {
-  // console.log('Background or quit states message received:', remoteMessage);
+  console.log('Background or quit states message received:', remoteMessage);
 
   // Extract title, body, and image from the notification data
   const {title, body, image} = remoteMessage.data || {};
@@ -28,8 +28,13 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
     title: title || 'Default Title',
     body: body || 'Default Body',
     android: {
-      channelId: await createAndroidChannel(), // Ensure you have created the channel
+      channelId: 'QuickNest', // Ensure you have created the channel
       importance: AndroidImportance.HIGH,
+      pressAction: {
+        id: 'defalult',
+        // launchActivity: 'defalult',
+        mainComponent: 'QuickNest', //^both mainComponent and launchActivity are working same in background mode it is re-directing the to the notification screen but for kill it is not working
+      },
       smallIcon: 'ic_launcher', // Use an appropriate small icon
       style: {
         type: AndroidStyle.BIGPICTURE,
@@ -56,11 +61,56 @@ notifee.onBackgroundEvent(async ({type, detail}) => {
   }
 });
 
-const createAndroidChannel = async () => {
-  const channelId = await notifee.createChannel({
-    id: 'default', // Channel ID
-    name: 'Default Channel', // Channel name
-    importance: AndroidImportance.HIGH, // Channel importance
-  });
-  return channelId;
-};
+notifee.createChannel({
+  id: 'QuickNest', // Channel ID
+  name: 'Default Channel', // Channel name
+  importance: AndroidImportance.HIGH, // Channel importance
+});
+
+notifee.onBackgroundEvent(async ({type, detail}) => {
+  const {notification, pressAction} = detail;
+
+  console.log('detail ==========', JSON.stringify(detail, undefined, 4));
+
+  // Check if the user pressed the "Mark as read" action
+  // if (type === EventType.ACTION_PRESS) {
+  //   // Update external API
+
+  //   // handleNotificationTap(detail.notification);
+  //   // Remove the notification
+  //   await notifee.cancelNotification(detail?.notification?.id);
+
+  //   return;
+  // } else if (type === EventType.PRESS) {
+  //   handleNotificationTap(detail.notification);
+  // }
+
+  switch (type) {
+    case EventType.DELIVERED:
+      break;
+    case EventType.PRESS:
+      // handleNotificationTap(detail.notification);
+      helpers.onDisplayNotification(detail.notification);
+      break;
+    default:
+      return true;
+  }
+
+  // switch (type) {
+  //   case EventType.ACTION_PRESS:
+  //     // ^this working for the kill state
+
+  //     await notifee.cancelNotification(detail?.notification?.id);
+  //     // handleNotificationTap(detail.notification);
+  //     console.log('------------------------kill state ----------');
+
+  //     break;
+  //   case EventType.PRESS:
+  //     // ^ this is working for the background state
+  //     handleNotificationTap(detail.notification);
+  //     console.log('-------------------background state ----------');
+  //     break;
+  //   default:
+  //     break;
+  // }
+});

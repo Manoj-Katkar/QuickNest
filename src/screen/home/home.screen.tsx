@@ -18,6 +18,7 @@ import notifee, {
   EventType,
   AndroidStyle,
 } from '@notifee/react-native';
+import {helpers} from '../../utility/helpers';
 
 const Home = ({navigation}: any) => {
   // ^ here for creaing the token that will be unique for that device logic to send the notification to the all the users in all 3 stages
@@ -25,27 +26,30 @@ const Home = ({navigation}: any) => {
 
   const getToken = async () => {
     const token = await messaging().getToken();
-    console.log('token =======', token);
+    console.log('token ========', token);
   };
 
-  const helpers = {
-    onDisplayNotification: async (remoteMessage: any) => {
-      // console.log('Displaying notification:', remoteMessage);
-      // console.log('remoteMessage.data ======== :', remoteMessage.data);
+  // const helpers = {
+  //   onDisplayNotification: async (remoteMessage: any) => {
+  //     console.log(
+  //       'Displaying notification:',
+  //       JSON.stringify(remoteMessage, undefined, 4),
+  //     );
+  //     // console.log('remoteMessage.data ======== :', remoteMessage.data);
 
-      //* here logic to display notification if needed (logic I have to write it over here)
+  //     //* here logic to display notification if needed (logic I have to write it over here)
 
-      // Extract title and body from the notification
-      const {title, body, image} = remoteMessage.data;
-      // const title = remoteMessage.data.title;
-      // const body = remoteMessage.data.body;
+  //     // Extract title and body from the notification
+  //     const {title, body, image} = remoteMessage.data;
+  //     // const title = remoteMessage.data.title;
+  //     // const body = remoteMessage.data.body;
 
-      // *Navigate to NotificationScreen with the new notification data
-      navigation.navigate('Notifications', {
-        newNotification: {title, body, image},
-      });
-    },
-  };
+  //     // *Navigate to NotificationScreen with the new notification data
+  //     navigation.navigate('Notifications', {
+  //       newNotification: {title, body, image},
+  //     });
+  //   },
+  // };
 
   // now I wanted the token at the first time when the componenet get-render for that you have to use the useEffect
   useEffect(() => {
@@ -100,6 +104,10 @@ const Home = ({navigation}: any) => {
       android: {
         channelId: await createAndroidChannel(),
         importance: AndroidImportance.HIGH,
+        pressAction: {
+          id: 'defalult',
+          launchActivity: 'com.quicknest.MainActivity', // <-- here you can add the package name of your app
+        },
         smallIcon: 'ic_launcher', // Ensure you have an appropriate small icon in your app (this will display the by-default icon of the app)
         style: {
           type: AndroidStyle.BIGPICTURE,
@@ -124,7 +132,9 @@ const Home = ({navigation}: any) => {
   function handleNotificationTap(remoteMessage: any) {
     const {title, body, image} = remoteMessage.data || {};
 
-    console.log('handleNotificationTap image url  : ', image);
+    console.log('handleNotificationTap image url ===  : ', image); //^ this line is getting executed then navigation why it is not working
+
+    console.log('hello from the foreground stage !!!!!!!!!!!');
 
     // Navigate to the Notifications screen with parameters
     navigation.navigate('Notifications', {
@@ -142,11 +152,6 @@ const Home = ({navigation}: any) => {
 
     // console.log('Foreground message received:', remoteMessage);
 
-    // console.log(
-    //   'remoteMessage.originalPriority : ',
-    //   remoteMessage.originalPriority,
-    // );
-
     const {title, body, image} = remoteMessage.data || {};
 
     // console.log('remoteMessage.data.imageURl  : ', image);
@@ -159,31 +164,21 @@ const Home = ({navigation}: any) => {
 
   //^ now to handle the kill stage (when the app is closed)
 
-  //! code for the killed stage
+  const getNotification = async () => {
+    const remoteMessage = await notifee.getInitialNotification();
+
+    if (remoteMessage) {
+      helpers.onDisplayNotification(remoteMessage.notification);
+    }
+
+    console.log(
+      '--------Home remote message from kill state --------------------------',
+      remoteMessage,
+    );
+  };
+
   useEffect(() => {
-    const checkInitialNotification = async () => {
-      try {
-        // Check if the app was launched due to a notification
-        const remoteMessage = await messaging().getInitialNotification();
-        if (remoteMessage) {
-          // console.log('App launched from notification:', remoteMessage);
-
-          // Extract title and body from the notification
-          const {title, body, image} = remoteMessage.data || {};
-
-          if (title && body) {
-            // Redirect to the NotificationScreen with the notification data
-            navigation.navigate('Notifications', {
-              newNotification: {title, body, image},
-            });
-          }
-        }
-      } catch (error) {
-        console.error('Error handling initial notification:', error);
-      }
-    };
-
-    checkInitialNotification();
+    getNotification();
   }, []);
 
   //!home related UI part will come here
