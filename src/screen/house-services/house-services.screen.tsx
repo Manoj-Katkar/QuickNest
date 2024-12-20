@@ -9,11 +9,27 @@ import {
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../constant/images';
-import NextIcon from '../../../assets/icons/NextIcon';
 import RightIcon from '../../../assets/icons/RightIcon';
 import PreviousIcon from '../../../assets/icons/PreviousIcon';
+import {screenWidth} from '../../responsive';
 
-const {width, height} = Dimensions.get('window');
+const dataArray = [
+  {
+    id: '1',
+    heading: 'Routine Maintenance',
+    para: `Regular inspections and upkeep of essential home \nsystems,including HVAC, plumbing, and electrical.`,
+  },
+  {
+    id: '2',
+    heading: 'Emergency Repairs',
+    para: `Quick response and repair services for unexpected \nhome issues, available 24/7.`,
+  },
+  {
+    id: '3',
+    heading: 'Safety Checks',
+    para: `Regular safety audits of your home to identify and \nmitigate potential hazards.`,
+  },
+];
 
 // Define prop types using FC
 interface RenderServiceFeatureProps {
@@ -21,46 +37,43 @@ interface RenderServiceFeatureProps {
   para: string;
 }
 
+//^ Component I have to write the outside
+const RenderServiceFeature: React.FC<RenderServiceFeatureProps> = ({
+  heading,
+  para,
+}) => {
+  return (
+    <View style={styles.individualContainer}>
+      <View style={styles.subContainer1}>
+        <RightIcon width={20} height={20} />
+      </View>
+
+      <View style={styles.subContainer2}>
+        <Text style={styles.containerHeading}>{heading}</Text>
+        <Text style={styles.containerPara}>{para}</Text>
+      </View>
+    </View>
+  );
+};
+
 const HouseServices = ({navigation}: any) => {
   const handlePress = () => {
     navigation.goBack();
   };
 
-  const RenderServiceFeature: React.FC<RenderServiceFeatureProps> = ({
-    heading,
-    para,
-  }) => {
-    return (
-      <View style={styles.individualContainer}>
-        <View style={styles.subContainer1}>
-          <RightIcon width={20} height={20} />
-        </View>
-
-        <View style={styles.subContainer2}>
-          <Text style={styles.containerHeading}>{heading}</Text>
-          <Text style={styles.containerPara}>{para}</Text>
-        </View>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>House-Services</Text> */}
-
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={handlePress}>
           <PreviousIcon width={30} height={30} />
         </TouchableOpacity>
-
         <Text style={styles.headerText}>House Services</Text>
       </View>
 
       <View style={styles.mainContainer}>
         <FastImage
           source={Image.houseBanner}
-          // resizeMode='cover'
-
+          resizeMode={FastImage.resizeMode.cover} //^compulsory I have to give
           style={styles.image}
         />
 
@@ -76,31 +89,11 @@ const HouseServices = ({navigation}: any) => {
         {/* Now I am rendering the service features  */}
 
         <FlatList
-          data={[
-            {
-              id: '1',
-              heading: 'Routine Maintenance',
-              para: `Regular inspections and upkeep of essential home \nsystems,including HVAC, plumbing, and electrical.`,
-            },
-            {
-              id: '2',
-              heading: 'Emergency Repairs',
-              para: `Quick response and repair services for unexpected \nhome issues, available 24/7.`,
-            },
-            {
-              id: '3',
-              heading: 'Safety Checks',
-              para: `Regular safety audits of your home to identify and \nmitigate potential hazards.`,
-            },
-          ]}
+          data={dataArray}
           keyExtractor={item => item.id}
-          renderItem={({item}) => {
-            return (
-              <>
-                <RenderServiceFeature heading={item.heading} para={item.para} />
-              </>
-            );
-          }}
+          renderItem={({item}) => (
+            <RenderServiceFeature heading={item.heading} para={item.para} />
+          )}
         />
       </View>
 
@@ -124,34 +117,27 @@ const styles = StyleSheet.create({
     color: '#34495E', // Cool dark greyish-blue text color
   },
   image: {
-    // backgroundColor:"yellow",
-    width: width * 0.99,
+    width: screenWidth * 0.99,
     height: 230,
     alignSelf: 'center',
   },
   mainContainer: {},
   individualContainer: {
-    // backgroundColor: 'yellow',
     width: '92%',
     flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // justifyContent: 'space-evenly',
     alignSelf: 'center',
     marginBottom: 13,
     marginLeft: 10,
   },
   subContainer1: {
-    // backgroundColor: 'aqua',
     paddingTop: 4,
   },
   subContainer2: {
-    // backgroundColor:"pink",
     marginLeft: 10,
   },
   containerHeading: {
     color: 'black',
     fontSize: 17,
-    // fontWeight:"500",
     fontFamily: 'Mulish-SemiBold',
     marginBottom: 10,
   },
@@ -159,7 +145,6 @@ const styles = StyleSheet.create({
     color: '#373737',
     fontSize: 14,
     fontFamily: 'Mulish-Medium',
-    // lineHeight:15.06
     lineHeight: 19,
   },
   btnText: {
@@ -170,7 +155,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     flexDirection: 'column',
-    // alignSelf: 'flex-end',
     width: '89%',
     backgroundColor: '#011e62',
     paddingTop: 15,
@@ -179,14 +163,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#011e62',
     marginBottom: 15,
-    // marginTop: 75,
-    // backgroundColor: 'aqua',
   },
   textContainer: {
-    // backgroundColor:"aqua",
     width: '90%',
     alignSelf: 'center',
-    // marginTop:15,
     marginBottom: 10,
   },
   packageText: {
@@ -203,7 +183,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   headerContainer: {
-    // backgroundColor:"yellow",
     width: '95%',
     alignSelf: 'center',
     flexDirection: 'row',
@@ -219,7 +198,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    // backgroundColor: 'red',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

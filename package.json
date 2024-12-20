@@ -12,11 +12,13 @@
   "dependencies": {
     "@notifee/react-native": "^7.8.2",
     "@react-native-firebase/app": "^21.6.1",
+    "@react-native-firebase/crashlytics": "^21.6.1",
     "@react-native-firebase/messaging": "^21.6.1",
     "@react-navigation/bottom-tabs": "^6.5.12",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.25",
+    "lottie-react-native": "^7.1.0",
     "react": "18.2.0",
     "react-native": "0.72.7",
     "react-native-fast-image": "^8.6.3",

@@ -3,7 +3,6 @@ import messaging from '@react-native-firebase/messaging';
 import { AppState, Platform, PermissionsAndroid } from 'react-native';
 
 export type NotifiPermiStatus = 'granted' | 'denied' | 'not-determined';
-
 export type NotifiPermReqResult = 'granted' | 'denied' | 'not-determined';
 
 interface NotifiPermiState {
@@ -12,44 +11,39 @@ interface NotifiPermiState {
 }
 
 function usePermission(get: () => Promise<NotifiPermiStatus>, request: () => Promise<NotifiPermReqResult>): NotifiPermiState {
-    const [hasPermission, setHasPermission] = React.useState<boolean>(false);
+    const hasPermissionRef = React.useRef(false);
+    const appStateRef = React.useRef(AppState.currentState);
 
     const requestPermission = React.useCallback(async () => {
         const result = await request();
         const hasPermissionNow = result === 'granted';
-        setHasPermission(hasPermissionNow);
-
-
-
+        hasPermissionRef.current = hasPermissionNow;
         return hasPermissionNow;
     }, [request]);
 
     React.useEffect(() => {
-        // Refresh permission when app state changes
-        const listener = AppState.addEventListener('change', async () => {
-            const status = await get();
-            setHasPermission(status === 'granted');
+        const listener = AppState.addEventListener('change', async (nextAppState) => {
+            if (nextAppState === 'active' && appStateRef.current !== 'active') {
+                const status = await get();
+                const hasPermissionNow = status === 'granted';
+                hasPermissionRef.current = hasPermissionNow;
+            }
+            appStateRef.current = nextAppState;
         });
         return () => listener.remove();
     }, [get]);
 
-    return React.useMemo(
-        () => ({
-            hasPermission,
-            requestPermission,
-        }),
-        [hasPermission, requestPermission]
-    );
+    return React.useMemo(() => ({
+        hasPermission: hasPermissionRef.current,
+        requestPermission,
+    }), [requestPermission]);
 }
 
 async function getNotifiPermiStatus(): Promise<NotifiPermiStatus> {
     try {
         const authStatus = await messaging().hasPermission();
-        if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
-            return 'granted';
-        } else {
-            return 'denied';
-        }
+        return authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL
+            ? 'granted' : 'denied';
     } catch (error) {
         console.log('Error checking notification permission status:', error);
         return 'not-determined';
@@ -64,13 +58,13 @@ async function requestNotificationPermission(): Promise<NotifiPermReqResult> {
                 return granted === PermissionsAndroid.RESULTS.GRANTED ? 'granted' : 'denied';
             } else {
                 const authStatus = await messaging().requestPermission();
-                const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-                return enabled ? 'granted' : 'denied';
+                return authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL
+                    ? 'granted' : 'denied';
             }
         } else {
             const authStatus = await messaging().requestPermission();
-            const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-            return enabled ? 'granted' : 'denied';
+            return authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL
+                ? 'granted' : 'denied';
         }
     } catch (error) {
         console.log('Error requesting notification permission:', error);
@@ -81,3 +75,36 @@ async function requestNotificationPermission(): Promise<NotifiPermReqResult> {
 export function useNotificationPermission(): NotifiPermiState {
     return usePermission(getNotifiPermiStatus, requestNotificationPermission);
 }
+
+export function useFCMToken(hasPermission: boolean): string {
+    const tokenRef = React.useRef<string | null>(null);
+    // Fetch the token only once when permission is granted, or when the token is refreshed.
+    React.useEffect(() => {
+        if (hasPermission) {
+            async function fetchToken() {
+                try {
+                    // Fetch the token once on the first render when permission is granted
+                    const token = await messaging().getToken();
+                    tokenRef.current = token;
+                    console.log("FCM Token:", token);
+                } catch (error) {
+                    console.log("Error getting FCM token:", error);
+                }
+            }
+            fetchToken();
+
+            // Listen for token refreshes
+            const unsubscribe = messaging().onTokenRefresh((newToken) => {
+                if (tokenRef.current !== newToken) {
+                    tokenRef.current = newToken;
+                    console.log("FCM Token refreshed:", newToken);
+                }
+            });
+
+            return () => unsubscribe();
+        }
+        return () => { };
+    }, [hasPermission]);
+
+    return tokenRef.current || '';
+};

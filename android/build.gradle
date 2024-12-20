@@ -11,14 +11,16 @@ buildscript {
         ndkVersion = "23.1.7779620"
     }
     repositories {
-        google()
+        google()     //^ it is already there so that will work for the crashlytics 
         mavenCentral()
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath('com.google.gms:google-services:4.4.2')    //^related to firebase 
+        classpath('com.google.gms:google-services:4.4.2')                       //^related to firebase 
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'      //^ related crashlytics
 
     }
 }
+

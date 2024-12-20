@@ -1,6 +1,7 @@
-apply plugin: "com.android.application"
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'  //^related to firebase 
+apply plugin: 'com.google.firebase.crashlytics'  //^related to firebase crashlytics
 apply plugin: "com.facebook.react"
-apply plugin: 'com.google.gms.google-services'   //^related to firebase 
 
 
 /**
@@ -108,7 +109,7 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))   //^related to firebase 
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))     //^related to firebase 
     implementation("com.google.firebase:firebase-analytics")                 //^related to firebase 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

@@ -17,12 +17,6 @@ const NotificationScreen = ({route}: any) => {
     if (route.params?.newNotification) {
       setNotifications(prev => [...prev, route.params.newNotification]);
     }
-
-    // Log the image URL from the notification for debugging
-    console.log(
-      'HandleNotificationTap image url : ',
-      route.params.newNotification?.image,
-    );
   }, [route.params?.newNotification]);
 
   return (

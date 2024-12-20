@@ -8,6 +8,7 @@ import {
   FlatList,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  ListRenderItem,
 } from 'react-native';
 import React, {useState, useRef} from 'react';
 import PersonalIcon from '../../../../assets/icons/PersonalIcon';
@@ -19,7 +20,15 @@ import BackGroundTipIcon from '../../../../assets/icons/BackGroundTipIcon';
 
 const {width} = Dimensions.get('window'); // Get screen width for paging
 
-const tipsArray = [
+type TipsArray = {
+  id: number;
+  iconText: string;
+  icon: React.ReactNode; //for self closing componenet this type is used
+  tips: Array<{tipCount: string; actualTipContent: string}>;
+};
+
+const tipsArray: Array<TipsArray> = [
+  //Array of tips object it is accepting
   {
     id: 1,
     iconText: 'Personal',
@@ -186,20 +195,23 @@ const SafeTip = () => {
 
   const scrollRef = useRef<FlatList>(null); //! Reference for ScrollView
 
-  const changeTipMessage: changeIdType = id => {
-    const selectedTip = tipsArray.find(tip => tip.id === id);
-    if (selectedTip) {
-      setSelectedTipId(id); // Update the selected tip
-      setHighlightedTipIndex(0); // Reset highlighted tip index
+  const changeTipMessage: changeIdType = React.useCallback(
+    id => {
+      const selectedTip = tipsArray.find(tip => tip.id === id);
+      if (selectedTip) {
+        setSelectedTipId(id); // Update the selected tip
+        setHighlightedTipIndex(0); // Reset highlighted tip index
 
-      //For ScrollView we ave to use scrollTo() method to reset the ScrollView scroll position
-      // For FlatList Use scrollToIndex to reset FlatList's scroll position
-      scrollRef.current?.scrollToIndex({
-        index: 0, // Reset to the first item
-        animated: true, // Smooth scrolling
-      });
-    }
-  };
+        //For ScrollView we ave to use scrollTo() method to reset the ScrollView scroll position
+        // For FlatList Use scrollToIndex to reset FlatList's scroll position
+        scrollRef.current?.scrollToIndex({
+          index: 0, // Reset to the first item
+          animated: true, // Smooth scrolling
+        });
+      }
+    },
+    [tipsArray, scrollRef, selectedTipId],
+  );
 
   //!here given the type by clicking on the onMomentumScrollEnd and what the inbuilt type was there given the same type
 
@@ -208,6 +220,69 @@ const SafeTip = () => {
     const currentTipIndex = Math.round(scrollX / (width * 0.9)); // Calculate index of the currently visible tip
     setHighlightedTipIndex(currentTipIndex); // Update the highlighted tip index
   };
+
+  const renderSafeTip: ListRenderItem<TipsArray> = React.useCallback(
+    ({item}) => {
+      return (
+        <TouchableOpacity
+          onPress={() => changeTipMessage(item.id)}
+          style={styles.eachtipIconContainer}>
+          {/* Render the background image if the current tip is selected */}
+          <View style={styles.iconContainer}>
+            {selectedTipId === item.id && (
+              <BackGroundTipIcon
+                width={48}
+                height={50}
+                style={styles.backgroundImage}
+              />
+            )}
+            {/* Rendering the corresponding icon */}
+            <View style={{top: 9, left: 9}}>{item.icon}</View>
+          </View>
+          <Text
+            style={[
+              styles.iconText,
+              selectedTipId === item.id && {
+                color: '#4a8dc6',
+                fontFamily: 'Mulish-Bold',
+              },
+            ]}>
+            {item.iconText}
+          </Text>
+          {selectedTipId === item.id && (
+            // for selected icon giving the underline using the view
+            <View style={styles.selectedTextUnderline} />
+          )}
+        </TouchableOpacity>
+      );
+    },
+    [highlightedTipIndex, selectedTipId],
+  );
+
+  const renderEachTipForSelectedIcon = React.useCallback(
+    ({item}: {item: TipsArray['tips'][number]}) => {
+      // ^I have to ask this doubt
+      //[number]: Extract the type of a single object from that array.
+      // here I will add the EachTipForSelectedIcon UI that we in the coressponding FlatList
+      return (
+        <>
+          {/* <Text style={{color: 'black'}}>HI</Text> */}
+          <View style={styles.tipCard}>
+            {/* Tip Header */}
+            <View style={styles.subContainer1_1}>
+              <Text style={styles.text1_1}>{item.tipCount}</Text>
+            </View>
+            {/* Tip Content with Icon*/}
+            <View style={styles.subContainer2_1}>
+              <NotIcon width={20} height={20} style={styles.notIcon} />
+              <Text style={styles.text2_1}>{item.actualTipContent}</Text>
+            </View>
+          </View>
+        </>
+      );
+    },
+    [tipsArray],
+  );
 
   return (
     <>
@@ -222,40 +297,7 @@ const SafeTip = () => {
           horizontal
           data={tipsArray}
           keyExtractor={item => String(item.id)} //converted into string
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => changeTipMessage(item.id)}
-                style={styles.eachtipIconContainer}>
-                {/* Render the background image if the current tip is selected */}
-                <View style={styles.iconContainer}>
-                  {selectedTipId === item.id && (
-                    <BackGroundTipIcon
-                      width={48}
-                      height={50}
-                      style={styles.backgroundImage}
-                    />
-                  )}
-                  {/* Rendering the corresponding icon */}
-                  <View style={{top: 9, left: 9}}>{item.icon}</View>
-                </View>
-                <Text
-                  style={[
-                    styles.iconText,
-                    selectedTipId === item.id && {
-                      color: '#4a8dc6',
-                      fontFamily: 'Mulish-Bold',
-                    },
-                  ]}>
-                  {item.iconText}
-                </Text>
-                {selectedTipId === item.id && (
-                  // for selected icon giving the underline using the view
-                  <View style={styles.selectedTextUnderline} />
-                )}
-              </TouchableOpacity>
-            );
-          }}
+          renderItem={renderSafeTip}
           showsHorizontalScrollIndicator={false} //hides the horizontal scroll indicator (the scrollbar) in a scrollable FlatList or ScrollView
         />
       </View>
@@ -270,24 +312,7 @@ const SafeTip = () => {
           ref={scrollRef}
           style={styles.container2} //Styles the FlatList's outer container
           keyExtractor={(currentSelectedObject, index) => `${index}`} //to identify the unique returning the index
-          renderItem={({item}) => {
-            return (
-              <>
-                {/* <Text style={{color: 'black'}}>HI</Text> */}
-                <View style={styles.tipCard}>
-                  {/* Tip Header */}
-                  <View style={styles.subContainer1_1}>
-                    <Text style={styles.text1_1}>{item.tipCount}</Text>
-                  </View>
-                  {/* Tip Content with Icon*/}
-                  <View style={styles.subContainer2_1}>
-                    <NotIcon width={20} height={20} style={styles.notIcon} />
-                    <Text style={styles.text2_1}>{item.actualTipContent}</Text>
-                  </View>
-                </View>
-              </>
-            );
-          }}
+          renderItem={renderEachTipForSelectedIcon}
           showsHorizontalScrollIndicator={false} // Hides the horizontal scroll indicator (the scrollbar).
           pagingEnabled // Enables snapping to the next page (one item per scroll, like a carousel).
           onMomentumScrollEnd={handleScrollEnd} // !Triggers the `handleScrollEnd` function when the scroll momentum stops.

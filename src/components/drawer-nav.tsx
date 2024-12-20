@@ -1,19 +1,11 @@
 import 'react-native-gesture-handler'; //^make sure it is at the top and nothing is there before it
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Subscription from '../screen/subscription/subscription.screen';
-import Verification from '../screen/verification/verification.screen';
-import LegalDocuments from '../screen/legal-documents/legal-documents.screen';
-import TransactionHistory from '../screen/transaction-history/transaction-history.screen';
-import ContactUs from '../screen/contact-us/contact-us.screen';
-import AboutUs from '../screen/about-us/about-us.screen';
-import DeleteAccount from '../screen/delete-account/delete-account.screen';
-import Logout from '../screen/logout/logout.screen';
-import BottomTab, {BottomTabScreens} from './bottom-tab';
-import Header from '../screen/home/components/Header';
-import {Dimensions, StyleSheet} from 'react-native';
-
+import {BottomTabScreens} from './bottom-tab';
+import {StyleSheet} from 'react-native';
 import UserUI from './user-ui';
+import {screenWidth} from '../responsive';
+import {screens} from './LazyComponent';
 
 export type DrawerNavScreens = {
   BottomTab: BottomTabScreens;
@@ -32,8 +24,6 @@ export type DrawerNavScreens = {
 const Drawer = createDrawerNavigator<DrawerNavScreens>();
 
 const DrawerNav = () => {
-  const screenWidth = Dimensions.get('window').width;
-
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -47,32 +37,24 @@ const DrawerNav = () => {
         },
       }}
       // ^For Drawer Ui We Have to create the another Component And render it and then handle the navigation in it no need to use options and add ui for each scrren (it will increase the code redundancy)
-
       drawerContent={props => <UserUI props={props} />} //!prefer this approach
     >
       {/* Here rendered the BottomTab Navigation under the same name Home because user can easilly able to understand what is happenining  */}
-
-      <Drawer.Screen name="BottomTab" component={BottomTab} />
-
-      <Drawer.Screen name="Subscription" component={Subscription} />
-
-      <Drawer.Screen name="Verification" component={Verification} />
-
-      <Drawer.Screen name="LegalDocuments" component={LegalDocuments} />
-
-      <Drawer.Screen name="TransactionHistory" component={TransactionHistory} />
-
-      <Drawer.Screen name="ContactUs" component={ContactUs} />
-
-      <Drawer.Screen name="AboutUs" component={AboutUs} />
-
-      <Drawer.Screen name="DeleteAccount" component={DeleteAccount} />
-
-      <Drawer.Screen name="Logout" component={Logout} />
+      <Drawer.Screen name="BottomTab" component={screens.BottomTab} />
+      <Drawer.Screen name="Subscription" component={screens.Subscription} />
+      <Drawer.Screen name="Verification" component={screens.Verification} />
+      <Drawer.Screen name="LegalDocuments" component={screens.LegalDocuments} />
+      <Drawer.Screen
+        name="TransactionHistory"
+        component={screens.TransactionHistory}
+      />
+      <Drawer.Screen name="ContactUs" component={screens.ContactUs} />
+      <Drawer.Screen name="AboutUs" component={screens.AboutUs} />
+      <Drawer.Screen name="DeleteAccount" component={screens.DeleteAccount} />
+      <Drawer.Screen name="Logout" component={screens.Logout} />
     </Drawer.Navigator>
   );
 };
-
 const styles = StyleSheet.create({
   labelContainer: {
     width: 400,

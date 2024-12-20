@@ -1,11 +1,12 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import PanicEnquiryIcon from '../../../../assets/icons/PanicEnquiryIcon';
 import ConcernEnquiryIcon from '../../../../assets/icons/ConcernEnquiryIcon';
 import SearchFilter from './SearchFilter';
-import ConcernCards from './ConcernCards';
-import PanicCards from './PanicCards';
+import {helpers} from '../../../utility/helpers';
+
+const ConcernCards = helpers.LazyLoad(() => import('./ConcernCards'));
+const PanicCards = helpers.LazyLoad(() => import('./PanicCards'));
 
 const EnquiresUI = ({navigation}: any) => {
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
