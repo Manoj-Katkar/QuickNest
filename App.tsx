@@ -13,6 +13,7 @@ import {
 import {StatusBar} from 'react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {screens} from './src/components/LazyComponent';
+import UserContextProvider from './src/contextApi/userContextProvider';
 
 // Update the type definition to include both screens
 export type RootStackParamList = {
@@ -73,7 +74,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <UserContextProvider>
       <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
       <NavigationContainer ref={mainStackNavigationRef}>
         <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -100,7 +101,7 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </UserContextProvider>
   );
 };
 export default App;

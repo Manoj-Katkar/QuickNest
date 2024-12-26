@@ -39,7 +39,8 @@ const navigationItems = [
     screenName: 'TransactionHistory',
   },
   {icon: ContactIcon, label: 'Contact us', screenName: 'ContactUs'},
-  {icon: DrawerAboutUsIcon, label: 'About us', screenName: 'AboutUs'},
+  // {icon: DrawerAboutUsIcon, label: 'About us', screenName: 'AboutUs'},   //^ I have added the setting screnn instead
+  {icon: DrawerAboutUsIcon, label: 'Setting', screenName: 'Setting'},
   {
     icon: DeleteIcon,
     label: 'Delete account',

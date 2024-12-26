@@ -30,6 +30,7 @@ const screens = React.useMemo(
     AboutUs: helpers.LazyLoad(
       () => import('../screen/about-us/about-us.screen'),
     ),
+    Setting: helpers.LazyLoad(() => import('../screen/setting/setting.screen')),
     DeleteAccount: helpers.LazyLoad(
       () => import('../screen/delete-account/delete-account.screen'),
     ),

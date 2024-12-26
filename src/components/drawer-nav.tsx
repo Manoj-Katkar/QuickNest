@@ -16,6 +16,7 @@ export type DrawerNavScreens = {
   TransactionHistory: undefined;
   ContactUs: undefined;
   AboutUs: undefined;
+  Setting: undefined;
   DeleteAccount: undefined;
   Logout: undefined;
 };
@@ -50,6 +51,8 @@ const DrawerNav = () => {
       />
       <Drawer.Screen name="ContactUs" component={screens.ContactUs} />
       <Drawer.Screen name="AboutUs" component={screens.AboutUs} />
+      <Drawer.Screen name="Setting" component={screens.Setting} />
+
       <Drawer.Screen name="DeleteAccount" component={screens.DeleteAccount} />
       <Drawer.Screen name="Logout" component={screens.Logout} />
     </Drawer.Navigator>

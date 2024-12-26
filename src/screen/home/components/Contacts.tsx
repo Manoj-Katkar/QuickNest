@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   },
   contacts: {
     marginLeft: 20,
+    // backgroundColor: 'yellow',
   },
 });
 

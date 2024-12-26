@@ -4,12 +4,14 @@ import PanicEnquiryIcon from '../../../../assets/icons/PanicEnquiryIcon';
 import ConcernEnquiryIcon from '../../../../assets/icons/ConcernEnquiryIcon';
 import SearchFilter from './SearchFilter';
 import {helpers} from '../../../utility/helpers';
+import {useTranslation} from 'react-i18next';
 
 const ConcernCards = helpers.LazyLoad(() => import('./ConcernCards'));
 const PanicCards = helpers.LazyLoad(() => import('./PanicCards'));
 
 const EnquiresUI = ({navigation}: any) => {
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
+  const {t} = useTranslation(); // ^ this will do the traslation
 
   const handlePress = (response: string) => {
     setEmotionalResponse(response);
@@ -62,7 +64,7 @@ const EnquiresUI = ({navigation}: any) => {
     <>
       <View style={styles.container}>
         <View style={styles.mainHeaderContainer}>
-          <Text style={styles.text1}>Enquires</Text>
+          <Text style={styles.text1}>{t('enquiryHeading')}</Text>
 
           <View style={styles.headerOptions}>
             {/* Panic Button */}
@@ -71,7 +73,7 @@ const EnquiresUI = ({navigation}: any) => {
               onPress={() => handlePress('panic')}>
               <View style={styles.btnView}>
                 <PanicEnquiryIcon width={20} height={20} style={styles.icon} />
-                <Text style={textStyle.panic}>Panic</Text>
+                <Text style={textStyle.panic}>{t('panicText')}</Text>
               </View>
             </Pressable>
 
@@ -85,7 +87,7 @@ const EnquiresUI = ({navigation}: any) => {
                   height={20}
                   style={styles.icon}
                 />
-                <Text style={textStyle.concern}>Concerns</Text>
+                <Text style={textStyle.concern}>{t('concernText')}</Text>
               </View>
             </Pressable>
           </View>

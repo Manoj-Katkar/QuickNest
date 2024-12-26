@@ -1,0 +1,20 @@
+{   
+    "userName": "Hello Luffy! ",
+    "messageToUser": "Hope you are safe",
+    "verificationMessage": "Complete Verification",
+    "completeProgress": "Your verification progress",
+    "progressPercentage": "50%",
+    "houseHoldContactsMessage": "Household Member Contacts",
+    "protectMessage": "Here to protect, Here to serve",
+    "tipsMainMessage": "Tips to be safe",
+    "enquiryHeading": "Enquires",
+    "panicText": "Panic",
+    "concernText": "Concerns",
+    "searchPlaceHolderText": "Search",
+    "filterMessage": "Filter by :",
+    "progressText": "In progress",
+    "resolvedText": "Resolved",
+    "recordingBtnText":"Play recording",
+    "settingHeaderText" : "Settings",
+    "switchLangText":"Switch Language"
+}

@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  ImageBackgroundComponent,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import UserUI from '../../components/user-ui';
 

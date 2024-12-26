@@ -1,55 +1,98 @@
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import dataFromJson from '../../../../data.json';
 import CalenderIcon from '../../../../assets/icons/CalenderIcon';
 import RecordingIcon from '../../../../assets/icons/RecordingIcon';
 import DrawerNextIcon from '../../../../assets/icons/DrawerNextIcon';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
+import UserContext from '../../../contextApi/userContext';
 
 const PanicCards = ({navigation}: any) => {
+  const {t} = useTranslation(); // ^ this will do the traslation
+
+  // !step 3 consuming the context using the inbuilt hook useContext()
+  let {data, setData} = useContext(UserContext);
+
+  const [language, setLanguage] = useState(data.languageSelectedByUser);
+
+  console.log('language from panic cards : ', language);
+
+  // I will take the one useEffect using the empty array dependency when the language will get updated in the usercontext
+  // to get the updated language user previouslly selected form the context API
+  useEffect(() => {
+    const updatedLanguage = data.languageSelectedByUser;
+    setLanguage(updatedLanguage);
+  }, [data]);
+
   const handlePress = () => {
     navigation.navigate('Details');
   };
+
+  const renderCards = useCallback(
+    ({item}: any) => {
+      {
+        return (
+          <View style={styles.subContainer1}>
+            <View style={styles.sub1Child1}>
+              <Text style={styles.text1}>{item.ticketNo}</Text>
+              <Text style={styles.text2}>
+                {language === 'English' ? (
+                  <>{item.status}</>
+                ) : (
+                  <>{item.statusInHindi}</>
+                )}
+              </Text>
+            </View>
+
+            <View style={styles.sub1Child2}>
+              <View style={styles.calenderView}>
+                <CalenderIcon width={26} height={26} />
+                <Text style={styles.text3}>
+                  {language === 'English' ? (
+                    <>{item.date}</>
+                  ) : (
+                    <>{item.dateInHindi}</>
+                  )}
+                </Text>
+              </View>
+
+              <Text style={styles.text4}>
+                {language === 'English' ? (
+                  <>{item.contentOfCard}</>
+                ) : (
+                  <>{item.contentOfCardInHindi}</>
+                )}
+              </Text>
+            </View>
+
+            <View style={styles.horizontalLine} />
+
+            <View style={styles.sub1Child3}>
+              <TouchableOpacity style={styles.btn1}>
+                <View style={styles.child3View}>
+                  <RecordingIcon width={26} height={26} />
+                  <Text style={styles.text5}>{t('recordingBtnText')}</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btn2} onPress={handlePress}>
+                <DrawerNextIcon width={26} height={26} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      }
+    },
+    [language],
+  );
 
   return (
     <View style={styles.container}>
       {/* <Text style={{color: 'black'}}>From Panic Cards</Text> */}
       <FlatList
         data={dataFromJson.ticketArrayPanic}
-        renderItem={({item}) => {
-          return (
-            <View style={styles.subContainer1}>
-              <View style={styles.sub1Child1}>
-                <Text style={styles.text1}>{item.ticketNo}</Text>
-                <Text style={styles.text2}>{item.status}</Text>
-              </View>
-
-              <View style={styles.sub1Child2}>
-                <View style={styles.calenderView}>
-                  <CalenderIcon width={26} height={26} />
-                  <Text style={styles.text3}>{item.date}</Text>
-                </View>
-
-                <Text style={styles.text4}>{item.contentOfCard}</Text>
-              </View>
-
-              <View style={styles.horizontalLine} />
-
-              <View style={styles.sub1Child3}>
-                <TouchableOpacity style={styles.btn1}>
-                  <View style={styles.child3View}>
-                    <RecordingIcon width={26} height={26} />
-                    <Text style={styles.text5}>Play recording</Text>
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.btn2} onPress={handlePress}>
-                  <DrawerNextIcon width={26} height={26} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          );
-        }}
+        renderItem={renderCards}
         contentContainerStyle={{paddingBottom: 50}} // Add padding to the bottom of the list
       />
     </View>

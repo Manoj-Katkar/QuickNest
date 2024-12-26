@@ -4,7 +4,7 @@ import React from 'react';
 const AboutUs = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>About Us</Text>
+      <Text style={styles.text}>AboutUs Screen</Text>
     </View>
   );
 };
@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#E8F6F3', // Cool light greenish background
+    backgroundColor: '#E8F6F3',
   },
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#34495E', // Cool dark greyish-blue text color
+    color: '#34495E',
   },
 });
 

@@ -3,9 +3,11 @@ import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import SearchIcon from '../../../../assets/icons/SearchIcon';
 import FilterIcon from '../../../../assets/icons/FilterIcon';
+import {useTranslation} from 'react-i18next';
 
 const SearchFilter = () => {
   const [searchText, setSearchText] = useState('');
+  const {t} = useTranslation(); // ^ this will do the traslation
 
   return (
     <View style={styles.container}>
@@ -19,7 +21,7 @@ const SearchFilter = () => {
 
           <TextInput
             style={[styles.searchInput, {fontSize: 16}]}
-            placeholder="Search"
+            placeholder={t('searchPlaceHolderText')}
             placeholderTextColor="#8f8f8f"
             value={searchText}
             onChangeText={text => setSearchText(text)}
@@ -31,16 +33,16 @@ const SearchFilter = () => {
         <View style={styles.subContainer2Btn1}>
           <View style={styles.btn1View}>
             <FilterIcon width={16} height={16} style={styles.btn1Icon} />
-            <Text style={styles.text1}>Filter by :</Text>
+            <Text style={styles.text1}>{t('filterMessage')}</Text>
           </View>
         </View>
 
         <TouchableOpacity style={styles.subContainer2Btn2}>
-          <Text style={styles.text2}>In progress</Text>
+          <Text style={styles.text2}>{t('progressText')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.subContainer2Btn3}>
-          <Text style={styles.text3}>Resolved</Text>
+          <Text style={styles.text3}>{t('resolvedText')}</Text>
         </TouchableOpacity>
       </View>
     </View>

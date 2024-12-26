@@ -1,0 +1,21 @@
+{
+    "userName": "नमस्ते लफी!",
+    "messageToUser": "आशा है आप सुरक्षित हैं",
+    "verificationMessage": "सत्यापन पूर्ण करें",
+    "completeProgress": "आपकी सत्यापन प्रगति",
+    "progressPercentage": "50%",
+    "houseHoldContactsMessage": "परिवार सदस्य संपर्क",
+    "protectMessage": "यहां सुरक्षा के लिए, यहां सेवा देने के लिए",
+    "tipsMainMessage": "सुरक्षित रहने के लिए टिप्स",
+    "enquiryHeading": "पूछताछ",
+    "panicText": "घबराहट",
+    "concernText": "चिंताएँ",
+    "searchPlaceHolderText": "खोजें",
+    "filterMessage": "फ़िल्टर करें :",
+    "progressText": "प्रगति में",
+    "resolvedText": "सुलझा हुआ",
+    "recordingBtnText": "रिकॉर्डिंग चलाएं",
+    "settingHeaderText": "सेटिंग्स",
+    "switchLangText": "भाषा बदलें"
+  }
+  
