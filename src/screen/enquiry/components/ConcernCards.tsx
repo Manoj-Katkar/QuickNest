@@ -15,7 +15,7 @@ const ConcernCards = ({navigation}: any) => {
 
   const [language, setLanguage] = useState(data.languageSelectedByUser);
 
-  console.log('language from concern cards : ', language);
+  // console.log('language from concern cards : ', language);
 
   // I will take the one useEffect using the empty array dependency when the language will get updated in the usercontext
   // to get the updated language user previouslly selected form the context API
