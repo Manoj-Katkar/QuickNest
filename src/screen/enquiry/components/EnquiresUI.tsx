@@ -11,7 +11,7 @@ const PanicCards = helpers.LazyLoad(() => import('./PanicCards'));
 
 const EnquiresUI = ({navigation}: any) => {
   const [emotionalResponse, setEmotionalResponse] = useState('concern');
-  const {t} = useTranslation(); // ^ this will do the traslation
+  const {t} = useTranslation(); // ^   this will do the traslation
 
   const handlePress = (response: string) => {
     setEmotionalResponse(response);
