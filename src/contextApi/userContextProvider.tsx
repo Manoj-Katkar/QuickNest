@@ -49,7 +49,7 @@ const userContextProvider = (props: any) => {
         //^ if user selected the language means user have used the app before also
         const storedLanguage = await AsyncStorage.getItem('LanguageSelected');
 
-        const languageToUse = defaultLanguage || storedLanguage; //here first I am giving the preferance to the language stored in the localstorage
+        const languageToUse = storedLanguage || defaultLanguage; //here first I am giving the preferance to the language stored in the localstorage
 
         console.log('language to use : ', languageToUse);
 

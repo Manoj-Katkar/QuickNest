@@ -2,7 +2,7 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, Text, TextInput} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import messaging from '@react-native-firebase/messaging';
@@ -44,5 +44,14 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
   if (!remoteMessage) return;
   helpers.displayNotification(remoteMessage);
 });
+
+//!here I have to mension the font should not get changed
+
+if (Text.defaultProps == null) {
+  Text.defaultProps = {};
+  Text.defaultProps.allowFontScaling = false;
+  TextInput.defaultProps = TextInput.defaultProps || {};
+  TextInput.defaultProps.allowFontScaling = false;
+}
 
 AppRegistry.registerComponent(appName, () => App);

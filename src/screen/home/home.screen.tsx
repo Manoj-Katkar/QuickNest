@@ -15,7 +15,6 @@ import {
 } from './components';
 import i18n from '../../../i18n';
 import UserContext from '../../contextApi/userContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({navigation}: any) => {
   // !step 3 consuming the context using the inbuilt hook useContext()

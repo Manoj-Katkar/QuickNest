@@ -23,6 +23,7 @@ export type RootStackParamList = {
   Notifications: {
     newNotification: {title: string; body: string; image: string};
   };
+  Concern: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -79,6 +80,7 @@ const App = () => {
       <NavigationContainer ref={mainStackNavigationRef}>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
+          <Stack.Screen name="Concern" component={screens.Concern} />
           <Stack.Screen
             name="House_Services"
             component={screens.HouseServices}

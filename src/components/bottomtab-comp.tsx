@@ -23,6 +23,7 @@ const BottomTabComp = () => {
   };
 
   const changeIconAndText = (iconName: string) => {
+    if (!iconName) return;
     setActiveIcon(iconName);
   };
 
@@ -58,7 +59,7 @@ const BottomTabComp = () => {
           <TouchableOpacity
             onPress={() => {
               handlePressNavigate('Concern');
-              changeIconAndText('Concern');
+              changeIconAndText('');
             }}>
             {activeIcon === 'Concern' ? (
               <View style={[styles.eachIconContainer, {paddingLeft: 20}]}>

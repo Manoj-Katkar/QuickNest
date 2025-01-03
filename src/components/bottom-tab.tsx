@@ -9,10 +9,11 @@ import BottomTabComp from './bottomtab-comp';
 import {Image} from 'react-native';
 import {Image as constantImage} from '../constant/images';
 import {screens} from './LazyComponent';
+import {useNavigationState} from '@react-navigation/native';
 
 export type BottomTabScreens = {
   Home: undefined;
-  Concern: undefined;
+  ConcernTab: undefined;
   Member: undefined;
   Enquiry: undefined;
 };
@@ -22,6 +23,11 @@ export type BottomTabScreens = {
 const Tab = createBottomTabNavigator<BottomTabScreens>();
 
 const BottomTab = () => {
+  // Get the current route index
+  const activeRouteIndex = useNavigationState(state => state.index);
+  const activeRouteName = useNavigationState(
+    state => state.routes[state.index]?.name,
+  );
   return (
     <Tab.Navigator
       screenOptions={{
@@ -33,26 +39,10 @@ const BottomTab = () => {
       // !adding the custom bottom tab navigator component
       tabBar={() => <BottomTabComp />}>
       {/* Now also changing the icons of the each page  */}
-      <Tab.Screen
-        name="Home"
-        component={screens.Home}
-        options={{tabBarIcon: () => <HomeIcon />, headerShown: false}}
-      />
-      <Tab.Screen
-        name="Concern"
-        component={screens.Concern}
-        options={{tabBarIcon: () => <ConcernIcon />}}
-      />
-      <Tab.Screen
-        name="Member"
-        component={screens.Member}
-        options={{tabBarIcon: () => <MemberIcon />}}
-      />
-      <Tab.Screen
-        name="Enquiry"
-        component={screens.Enquiry}
-        options={{tabBarIcon: () => <EnquiryIcon />}}
-      />
+      <Tab.Screen name="Home" component={screens.Home} />
+      <Tab.Screen name="ConcernTab" component={screens.Concern} />
+      <Tab.Screen name="Member" component={screens.Member} />
+      <Tab.Screen name="Enquiry" component={screens.Enquiry} />
     </Tab.Navigator>
   );
 };
