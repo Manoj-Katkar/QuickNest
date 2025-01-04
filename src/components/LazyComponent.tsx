@@ -3,6 +3,11 @@ import {helpers} from '../utility/helpers';
 
 const screens = React.useMemo(
   () => ({
+    Onboarding: helpers.LazyLoad(
+      () => import('../screen/onboarding/onboarding.screen'),
+    ),
+    Login: helpers.LazyLoad(() => import('../screen/login/login.screen')),
+    Otp: helpers.LazyLoad(() => import('../screen/otp/otp.screen')),
     DrawerNav: helpers.LazyLoad(() => import('./drawer-nav')),
     HouseServices: helpers.LazyLoad(
       () => import('../screen/house-services/house-services.screen'),

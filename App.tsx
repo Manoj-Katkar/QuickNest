@@ -17,6 +17,9 @@ import UserContextProvider from './src/contextApi/userContextProvider';
 
 // Update the type definition to include both screens
 export type RootStackParamList = {
+  Onboarding: undefined;
+  Login: undefined;
+  Otp: undefined;
   DrawerNav: DrawerNavScreens;
   House_Services: undefined; // Adjust the params if `House_Services` takes any
   Details: undefined;
@@ -79,6 +82,9 @@ const App = () => {
       <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
       <NavigationContainer ref={mainStackNavigationRef}>
         <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Onboarding" component={screens.Onboarding} />
+          <Stack.Screen name="Login" component={screens.Login} />
+          <Stack.Screen name="Otp" component={screens.Otp} />
           <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
           <Stack.Screen name="Concern" component={screens.Concern} />
           <Stack.Screen

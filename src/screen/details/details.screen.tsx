@@ -17,7 +17,7 @@ import IIcon from '../../../assets/icons/IIcon';
 
 const Details = ({navigation}: any) => {
   const handlePress = () => {
-    navigation.navigate('Enquiry');
+    navigation.goBack();
   };
   return (
     <ScrollView style={styles.container}>

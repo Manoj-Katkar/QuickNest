@@ -40,7 +40,7 @@ const startUpDataArray = [
   },
 ];
 
-const Subscription = ({navigation}: any) => {
+const Onboarding = ({navigation}: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = React.useRef<FlatList>(null);
 
@@ -65,7 +65,7 @@ const Subscription = ({navigation}: any) => {
   };
 
   const navigateToHome = () => {
-    navigation.navigate('Home'); //! for temp purpose I have given home later I have to re-direct to the Authentication screen
+    navigation.navigate('Login'); //! for temp purpose I have given home later I have to re-direct to the Authentication screen
   };
 
   const renderItem = useCallback(
@@ -243,4 +243,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Subscription;
+export default Onboarding;
