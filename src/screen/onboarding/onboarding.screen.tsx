@@ -77,7 +77,7 @@ const Onboarding = ({navigation}: any) => {
           resizeMode={FastImage.resizeMode.contain}
         />
         <View style={styles.highLighTipContainer}>
-          {startUpDataArray.map((_, index) => (
+          {startUpDataArray.map((element, index) => (
             <View
               key={index}
               style={[
@@ -127,7 +127,12 @@ const Onboarding = ({navigation}: any) => {
               <Text
                 style={[
                   styles.backBtnText,
-                  currentIndex === 0 && {color: 'grey'},
+                  currentIndex === 0 && {
+                    color: '#2B2B2B40',
+                    fontFamily: 'Mulish-Bold',
+                    fontSize: 16,
+                    lineHeight: 20.8,
+                  },
                 ]}>
                 Back
               </Text>
@@ -177,6 +182,7 @@ const styles = StyleSheet.create({
     width: '95%',
     paddingLeft: 10,
     marginTop: 70,
+    // backgroundColor: 'aqua',
   },
   btn2: {
     backgroundColor: '#011e62',
@@ -189,11 +195,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     alignSelf: 'center',
-    marginBottom: 18,
+    marginBottom: 20,
+    // backgroundColor: 'aqua',
   },
   backBtnText: {
     color: '#2B2B2B',
     fontFamily: 'Mulish-Bold',
+    fontSize: 16,
+    lineHeight: 20.8,
   },
   highLighTipContainer: {
     flexDirection: 'row',
@@ -202,21 +211,26 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 5,
     borderRadius: 5,
+    // backgroundColor: 'aqua',
   },
   indicator: {
-    width: 30,
-    height: 5,
-    backgroundColor: '#d3d3d3',
+    width: 10,
+    height: 6,
+    backgroundColor: '#cddeef',
     borderRadius: 2.5,
     marginHorizontal: 5,
   },
   activeIndicator: {
-    backgroundColor: '#007BFF',
+    width: 40,
+    height: 6,
+    backgroundColor: '#4B8DC6',
   },
   buttonContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    // backgroundColor: 'aqua',
+    // paddingTop: 0,
   },
   btn: {
     flexDirection: 'row',

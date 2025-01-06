@@ -7,6 +7,7 @@ const Image = {
     backgroundDrawerImage: require('../.././assets/images/DrawerNav_Background_Image.png'),
     tabBackGroundImage: require('../.././assets/images/Tab_Navigator_Background.png'),
     tabNavigationIcon: require('../.././assets/images/mainLogo_Tab.png'),
+    noMembersImage: require('../../././assets/images/No_Members_Image.png')
 
 }
 export { Image };

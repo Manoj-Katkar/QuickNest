@@ -12,6 +12,11 @@ import CustomHeader from '../../components/header-comp';
 const Otp = ({navigation, route}: any) => {
   const {mobileNumber} = route.params;
 
+  // console.log('type of the mobile number : ', typeof mobileNumber);  it is string
+
+  //getting the last two digits of the mobile number
+  const lastTwoChars = mobileNumber.slice(-2);
+
   // Hardcoded OTP for comparison
   const correctOtp = '123456';
 
@@ -104,7 +109,7 @@ const Otp = ({navigation, route}: any) => {
       <View style={styles.enterOtpContainer}>
         <View style={styles.child1}>
           <Text style={styles.child1Text1}>
-            Enter the OTP sent to {mobileNumber}
+            Enter the OTP sent to ‘+1 xxxx xxxx{lastTwoChars}
           </Text>
         </View>
         <View style={styles.child2}>
@@ -182,9 +187,9 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    backgroundColor: '#011e62',
+    backgroundColor: '#001E61',
     paddingVertical: 15,
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: 'center',
   },
   btnText: {
@@ -199,11 +204,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   termsAndConditionText: {
-    fontSize: 16,
+    fontSize: 15,
+    lineHeight: 17.5,
+    fontFamily: 'Mulish-Regular',
     color: '#2B2B2B',
   },
   didNotText: {
     fontSize: 16,
+    lineHeight: 17.5,
+    fontFamily: 'Mulish-Bold',
     color: '#4B8DC6',
   },
   resendContainer: {
@@ -219,6 +228,8 @@ const styles = StyleSheet.create({
     color: '#2B2B2BBF',
     lineHeight: 20.8,
     fontFamily: 'Mulish-Regular',
+    marginTop: 10,
+    marginBottom: 10,
   },
   child1: {},
   child2: {
@@ -250,10 +261,10 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
   childrens: {
-    width: '10%',
+    width: '13%',
     height: 40,
     borderWidth: 1,
-    borderColor: '#c7c7c7',
+    borderColor: '#2B2B2B80',
     borderRadius: 10,
     textAlign: 'center',
   },
@@ -266,10 +277,12 @@ const styles = StyleSheet.create({
   },
   timerText: {
     position: 'absolute',
-    top: 130,
+    top: 150,
     left: 310,
-    color: 'black',
     fontSize: 15,
+    fontFamily: 'Mulish-Regular',
+    lineHeight: 15.6,
+    color: '#2B2B2B80',
     marginBottom: 20,
   },
 });

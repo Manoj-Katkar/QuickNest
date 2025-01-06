@@ -2,10 +2,11 @@ import 'react-native-gesture-handler'; //^make sure it is at the top and nothing
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {BottomTabScreens} from './bottom-tab';
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import UserUI from './user-ui';
 import {screenWidth} from '../responsive';
 import {screens} from './LazyComponent';
+import {useFocusEffect} from '@react-navigation/native';
 
 export type DrawerNavScreens = {
   BottomTab: BottomTabScreens;

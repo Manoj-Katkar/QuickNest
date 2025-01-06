@@ -67,22 +67,21 @@ const UserUI = ({props}: any) => {
       const IconComponent = item.icon;
 
       return (
-        <View style={styles.labelContainer}>
-          <View style={styles.subContainer1}>
-            <IconComponent width={30} height={30} />
-            <Text style={item.isDelete ? styles.deleteText : styles.labelText}>
-              {item.label}
-            </Text>
-          </View>
+        <TouchableOpacity onPress={() => reDirectScreen(item.screenName)}>
+          <View style={styles.labelContainer}>
+            <View style={styles.subContainer1}>
+              <IconComponent width={30} height={30} />
+              <Text
+                style={item.isDelete ? styles.deleteText : styles.labelText}>
+                {item.label}
+              </Text>
+            </View>
 
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => reDirectScreen(item.screenName)}>
             <View style={styles.subContainer2}>
               <DrawerNextIcon style={styles.nextIcon} width={30} height={30} />
             </View>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
       );
     },
     [navigationItems],
@@ -268,10 +267,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 50,
   },
-  btn2: {
-    // flex:1
-    width: '100%',
-  },
+
   horizontalLine: {
     width: '90%',
     height: 1,

@@ -27,6 +27,7 @@ export type RootStackParamList = {
     newNotification: {title: string; body: string; image: string};
   };
   Concern: undefined;
+  HouseHoldMember: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -106,6 +107,11 @@ const App = () => {
             options={{
               headerShown: true, // Ensures the default header is displayed
             }}
+          />
+
+          <Stack.Screen
+            name="HouseHoldMember"
+            component={screens.HouseHoldMember}
           />
         </Stack.Navigator>
       </NavigationContainer>

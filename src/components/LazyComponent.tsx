@@ -44,6 +44,9 @@ const screens = React.useMemo(
     Concern: helpers.LazyLoad(() => import('../screen/concern/concern.screen')),
     Member: helpers.LazyLoad(() => import('../screen/member/member.screen')),
     Enquiry: helpers.LazyLoad(() => import('../screen/enquiry/enquiry.screen')),
+    HouseHoldMember: helpers.LazyLoad(
+      () => import('../screen/household-member/household-member.screen'),
+    ),
   }),
   [],
 );

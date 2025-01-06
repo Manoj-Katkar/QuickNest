@@ -7,7 +7,6 @@ import {
   TextInput,
   SafeAreaView,
 } from 'react-native';
-import PreviousIcon from '../../../assets/icons/PreviousIcon';
 import CustomHeader from '../../components/header-comp';
 
 const Login = ({navigation}: any) => {
@@ -29,20 +28,27 @@ const Login = ({navigation}: any) => {
   };
 
   const handleChangeText = (text: string) => {
-    // Validate input to ensure only numeric values are entered
-    const numericRegex = /^[0-9]*$/;
-    // Limit the input to 10 digits
-    if (numericRegex.test(text) && text.length <= 10) {
+    // Regular expression to match numbers starting with 6, 7, 8, or 9 and up to 10 digits
+    const phoneRegex = /^[6-9][0-9]{0,9}$/;
+
+    if (text === '') {
+      // Handle empty input
+      setMobileNumber('');
+      setError('');
+      setBorderColor('#ccc'); // Reset border color to default
+    } else if (phoneRegex.test(text)) {
+      // Valid input
       setMobileNumber(text);
       setError('');
-      if (text.length > 0) {
-        setBorderColor('#001E61'); // Change border color to blue when typing
+      if (text.length === 10) {
+        setBorderColor('#22304b'); // Valid number with 10 digits
       } else {
-        setBorderColor('#ccc'); // Reset border color when the input is empty
+        setBorderColor('#22304b'); // Valid but incomplete number
       }
     } else {
+      // Invalid input
       setError('Invalid number');
-      setBorderColor('red'); // Highlight border in red if there's an error
+      setBorderColor('red'); // Set border color to red for errors
     }
   };
 
@@ -124,6 +130,8 @@ const styles = StyleSheet.create({
     color: '#2B2B2BBF',
     lineHeight: 20.8,
     fontFamily: 'Mulish-Regular',
+    marginTop: 10,
+    marginBottom: 10,
   },
   child2: {
     marginBottom: 25,
@@ -165,9 +173,9 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    backgroundColor: '#011e62',
+    backgroundColor: '#001E61',
     paddingVertical: 15,
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: 'center',
   },
   btnText: {
@@ -179,10 +187,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     marginTop: 10,
+    // backgroundColor: 'yellow',
   },
   box: {
-    width: 24,
-    height: 24,
+    width: 20,
+    height: 20,
     borderRadius: 4,
     borderWidth: 2,
     borderColor: '#ccc',
@@ -195,13 +204,18 @@ const styles = StyleSheet.create({
     borderColor: '#4e8cc2',
   },
   termsAndConditionText: {
-    fontSize: 16,
+    fontFamily: 'Mulish-Regular',
+    fontSize: 14,
     color: '#2B2B2B',
+    lineHeight: 17.57,
   },
   checkmark: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 'bold',
+    alignSelf: 'center',
+    // marginBottom: 2
+    paddingBottom: 2,
   },
   errorText: {marginTop: 5, color: 'red', fontSize: 14},
 });
