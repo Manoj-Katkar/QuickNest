@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import React, {useCallback} from 'react';
 import {Image} from '../constant/images';
@@ -88,57 +89,60 @@ const UserUI = ({props}: any) => {
   );
 
   return (
-    <ImageBackground
-      source={Image.backgroundDrawerImage} // Replace with your image URL or local path
-      style={styles.backgroundImage}
-      resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
-    >
-      <View style={styles.overlay}>
-        {/*  1st logo username and details*/}
-        <View style={styles.parentContainer}>
-          <View style={styles.childContainer1}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                // console.log("close the drawerr!!!!!!!!!!!!!!!!!! ");
-                // navigation.navigate('Home');
-                reDirectScreen('Home');
-              }}>
-              <CrossIcon width={35} height={35} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.childContainer2}>
-            <View style={styles.subChild1}>
-              <UserImageIcon width={90} height={90} />
-            </View>
-
-            <View style={styles.subChild2}>
-              <Text style={styles.name}>Monkey D.Luffy</Text>
-              <Text style={styles.phoneNo}>+1 234567890</Text>
-
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.text3}>Edit profile</Text>
+    <>
+      {/* <StatusBar backgroundColor="#294090" barStyle="light-content" /> */}
+      <ImageBackground
+        source={Image.backgroundDrawerImage} // Replace with your image URL or local path
+        style={styles.backgroundImage}
+        resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+      >
+        <View style={styles.overlay}>
+          {/*  1st logo username and details*/}
+          <View style={styles.parentContainer}>
+            <View style={styles.childContainer1}>
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => {
+                  // console.log("close the drawerr!!!!!!!!!!!!!!!!!! ");
+                  // navigation.navigate('Home');
+                  reDirectScreen('Home');
+                }}>
+                <CrossIcon width={35} height={35} />
               </TouchableOpacity>
             </View>
+
+            <View style={styles.childContainer2}>
+              <View style={styles.subChild1}>
+                <UserImageIcon width={90} height={90} />
+              </View>
+
+              <View style={styles.subChild2}>
+                <Text style={styles.name}>Monkey D.Luffy</Text>
+                <Text style={styles.phoneNo}>+1 234567890</Text>
+
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.text3}>Edit profile</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.horizontalLine} />
           </View>
-          <View style={styles.horizontalLine} />
+
+          {/* Now the navigation vala part  */}
+
+          {/* now here I will implement the logic using the flatList  */}
+          <FlatList
+            data={navigationItems}
+            keyExtractor={item => item.screenName}
+            renderItem={renderItem}
+          />
         </View>
 
-        {/* Now the navigation vala part  */}
-
-        {/* now here I will implement the logic using the flatList  */}
-        <FlatList
-          data={navigationItems}
-          keyExtractor={item => item.screenName}
-          renderItem={renderItem}
-        />
-      </View>
-
-      <View style={styles.version}>
-        <Text style={styles.versionText}>v 0.1</Text>
-      </View>
-    </ImageBackground>
+        <View style={styles.version}>
+          <Text style={styles.versionText}>v 0.1</Text>
+        </View>
+      </ImageBackground>
+    </>
   );
 };
 

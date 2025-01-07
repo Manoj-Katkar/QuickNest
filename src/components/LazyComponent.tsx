@@ -47,6 +47,16 @@ const screens = React.useMemo(
     HouseHoldMember: helpers.LazyLoad(
       () => import('../screen/household-member/household-member.screen'),
     ),
+    PaymentSuccessful: helpers.LazyLoad(
+      () => import('../screen/payment-successful/payment-successful.screen'),
+    ),
+    PaymentUnsuccessful: helpers.LazyLoad(
+      () =>
+        import('../screen/payment-unsuccessful/payment-unsuccessful.screen'),
+    ),
+    NoInternet: helpers.LazyLoad(
+      () => import('../screen/no-internet/no-internet.screen'),
+    ),
   }),
   [],
 );

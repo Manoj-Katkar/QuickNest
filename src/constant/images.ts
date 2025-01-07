@@ -7,7 +7,10 @@ const Image = {
     backgroundDrawerImage: require('../.././assets/images/DrawerNav_Background_Image.png'),
     tabBackGroundImage: require('../.././assets/images/Tab_Navigator_Background.png'),
     tabNavigationIcon: require('../.././assets/images/mainLogo_Tab.png'),
-    noMembersImage: require('../../././assets/images/No_Members_Image.png')
+    noMembersImage: require('../../././assets/images/No_Members_Image.png'),
+    Payment_successful: require('../.././assets/images/Payment_successful.png'),
+    Payment_unsuccessful: require('../.././assets/images/Payment_unsuccessful.png'),
+    NoInternetImage: require('../.././assets/images/No_Internet_Image.png')
 
 }
 export { Image };

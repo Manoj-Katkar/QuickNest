@@ -15,6 +15,7 @@ import {
 } from './components';
 import i18n from '../../../i18n';
 import UserContext from '../../contextApi/userContext';
+import ActivateSubscription from './components/ActivateSubscription';
 
 const Home = ({navigation}: any) => {
   // !step 3 consuming the context using the inbuilt hook useContext()
@@ -54,6 +55,7 @@ const Home = ({navigation}: any) => {
     return (
       <View>
         <Verification />
+        <ActivateSubscription />
         <Contacts />
         <Protect />
         <SafeTip />

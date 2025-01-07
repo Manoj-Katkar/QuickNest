@@ -1,4 +1,4 @@
-import React, {lazy, useEffect} from 'react';
+import React, {lazy, useEffect, useState} from 'react';
 import {DrawerNavScreens} from './src/components/drawer-nav';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -28,6 +28,9 @@ export type RootStackParamList = {
   };
   Concern: undefined;
   HouseHoldMember: undefined;
+  PaymentSuccessful: undefined;
+  PaymentUnsuccessful: undefined;
+  NoInternet: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -37,6 +40,26 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   const {requestPermission, hasPermission} = useNotificationPermission();
+  // const [routeName, setRouteName] = useState('Onboarding');
+
+  // const screensArray = ['HouseHoldMember'];
+
+  // const setTranslucent = (routeName: string) => {
+  //   if (screensArray.includes(routeName)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  // const getBackground = (routeName: string) => {
+  //   if (setTranslucent(routeName)) {
+  //     return 'transparent';
+  //   }
+  //   return Colors.white;
+  // };
+
+  //         // translucent
+  // backgroundColor={getBackground(routeName)}
 
   const fcmToken = useFCMToken(hasPermission);
 
@@ -81,7 +104,13 @@ const App = () => {
   return (
     <UserContextProvider>
       <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
-      <NavigationContainer ref={mainStackNavigationRef}>
+      <NavigationContainer
+        ref={mainStackNavigationRef}
+        // onStateChange={async state => {
+        //   const currentRoute = state?.routes[state?.index];
+        //   setRouteName(currentRoute?.name!);
+        // }}
+      >
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Onboarding" component={screens.Onboarding} />
           <Stack.Screen name="Login" component={screens.Login} />
@@ -113,6 +142,17 @@ const App = () => {
             name="HouseHoldMember"
             component={screens.HouseHoldMember}
           />
+
+          <Stack.Screen
+            name="PaymentSuccessful"
+            component={screens.PaymentSuccessful}
+          />
+
+          <Stack.Screen
+            name="PaymentUnsuccessful"
+            component={screens.PaymentUnsuccessful}
+          />
+          <Stack.Screen name="NoInternet" component={screens.NoInternet} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserContextProvider>

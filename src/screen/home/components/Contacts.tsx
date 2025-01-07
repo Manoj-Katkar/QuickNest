@@ -52,7 +52,7 @@ const Contacts = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fafafa',
-    marginTop: 25,
+    marginTop: 20,
   },
   subContainer1: {
     paddingLeft: 20,
