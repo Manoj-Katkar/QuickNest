@@ -3,13 +3,10 @@ import React, {useCallback, useState} from 'react';
 import DropDownIcon from '../../assets/icons/DropDownIcon';
 
 const CustomDropDown = (props: any) => {
-  const {concernTypeArray} = props;
+  const {concernTypeArray, textHeading, selectedValue, onValueChange} = props;
 
   // console.log('props', concernTypeArray);
-
-  const [selectedConcernType, setSelectedConcernType] = useState(
-    'Select concern type',
-  );
+  console.log('textHeading : ', textHeading);
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -19,32 +16,33 @@ const CustomDropDown = (props: any) => {
         <TouchableOpacity
           style={styles.concernItem}
           onPress={() => {
-            setSelectedConcernType(item.concernType);
-            setIsClicked(false);
+            onValueChange(item.concernType); // Pass selected value to parent
+            setIsClicked(false); // Close dropdown
           }}>
           <Text style={styles.typeText}>{item.concernType}</Text>
         </TouchableOpacity>
       );
     },
-    [selectedConcernType],
+    [onValueChange],
   );
 
   return (
     <View style={styles.child1}>
-      <Text style={styles.label1}>Type of concern</Text>
+      <Text style={styles.label1}>{textHeading}</Text>
       <TouchableOpacity
         style={[
           styles.dropDownSelector,
-          isClicked && styles.activeDropDownSelector, // ^ then I have to remove the border
+          isClicked && styles.activeDropDownSelector,
         ]}
         onPress={() => {
           setIsClicked(!isClicked);
         }}>
-        <Text style={styles.defaultText}>{selectedConcernType}</Text>
+        <Text style={styles.defaultText}>
+          {selectedValue || 'placeHolderText Empty'}
+        </Text>
         <DropDownIcon />
       </TouchableOpacity>
 
-      {/* Now taking the one View To display the dropdown to the user for the concern type display  */}
       {isClicked ? (
         <View style={styles.dropDownArea}>
           <FlatList

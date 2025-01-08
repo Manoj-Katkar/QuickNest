@@ -55,7 +55,7 @@ const Home = ({navigation}: any) => {
     return (
       <View>
         <Verification />
-        <ActivateSubscription />
+        {/* <ActivateSubscription /> */}
         <Contacts />
         <Protect />
         <SafeTip />

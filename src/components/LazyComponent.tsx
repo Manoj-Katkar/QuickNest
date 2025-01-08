@@ -57,6 +57,9 @@ const screens = React.useMemo(
     NoInternet: helpers.LazyLoad(
       () => import('../screen/no-internet/no-internet.screen'),
     ),
+    AddMember: helpers.LazyLoad(
+      () => import('../screen/add-member/add-member.screen'),
+    ),
   }),
   [],
 );

@@ -8,6 +8,11 @@ const PaymentSuccessful = ({navigation}: any) => {
   const handleUserTOHome = () => {
     navigation.navigate('Home');
   };
+
+  const navigateToAddMemberScreen = () => {
+    navigation.navigate('AddMember');
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.child1}>
@@ -23,7 +28,9 @@ const PaymentSuccessful = ({navigation}: any) => {
         </Text>
       </View>
       <View style={styles.child2}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={navigateToAddMemberScreen}>
           <Text style={styles.btnText}>Add Member</Text>
         </TouchableOpacity>
 

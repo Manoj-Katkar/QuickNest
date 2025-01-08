@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     marginBottom: 12,
+    marginLeft: 10,
   },
   headerText: {
     color: '#2B2B2B',

@@ -31,6 +31,7 @@ export type RootStackParamList = {
   PaymentSuccessful: undefined;
   PaymentUnsuccessful: undefined;
   NoInternet: undefined;
+  AddMember: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -153,6 +154,7 @@ const App = () => {
             component={screens.PaymentUnsuccessful}
           />
           <Stack.Screen name="NoInternet" component={screens.NoInternet} />
+          <Stack.Screen name="AddMember" component={screens.AddMember} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserContextProvider>

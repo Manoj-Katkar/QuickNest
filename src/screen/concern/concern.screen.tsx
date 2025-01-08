@@ -4,8 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  Pressable,
-  FlatList,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import PreviousIcon from '../../../assets/icons/PreviousIcon';
@@ -22,6 +20,9 @@ const concernTypeArray = [
 ];
 
 const Concern = ({navigation}: any) => {
+  const [selectedConcernType, setSelectedConcernType] = useState<string>(
+    'Select concern type',
+  );
   const [description, setDescription] = useState('');
   const [userImage, setUserImage] = useState<string | null>(null);
 
@@ -60,7 +61,7 @@ const Concern = ({navigation}: any) => {
         height: 400,
         cropping: true,
       });
-      console.log('Captured Image:', image);
+      // console.log('Captured Image:', image);
       setUserImage(image.path);
     } catch (error) {
       if (
@@ -72,6 +73,15 @@ const Concern = ({navigation}: any) => {
         console.error('Error capturing image:', error);
       }
     }
+  };
+
+  const handleRaiseConcern = () => {
+    const concernData = {
+      type: selectedConcernType,
+      description,
+      image: userImage,
+    };
+    console.log('Concern Data:', concernData);
   };
 
   return (
@@ -86,7 +96,12 @@ const Concern = ({navigation}: any) => {
 
       <View style={styles.subContainer1}>
         {/* here I have creaed the custom dropdown */}
-        <CustomDropDown concernTypeArray={concernTypeArray} />
+        <CustomDropDown
+          concernTypeArray={concernTypeArray}
+          textHeading="Type of concern"
+          selectedValue={selectedConcernType}
+          onValueChange={(value: string) => setSelectedConcernType(value)}
+        />
 
         <View style={styles.child2}>
           <Text style={styles.label2}>Description</Text>
@@ -125,7 +140,7 @@ const Concern = ({navigation}: any) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={handleRaiseConcern}>
           <Text style={styles.btnText}>Raise concern</Text>
         </TouchableOpacity>
       </View>
