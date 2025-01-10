@@ -120,7 +120,11 @@ const UserUI = ({props}: any) => {
                 <Text style={styles.name}>Monkey D.Luffy</Text>
                 <Text style={styles.phoneNo}>+1 234567890</Text>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    navigation.navigate('EditProfile');
+                  }}>
                   <Text style={styles.text3}>Edit profile</Text>
                 </TouchableOpacity>
               </View>

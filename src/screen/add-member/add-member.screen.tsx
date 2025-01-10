@@ -116,6 +116,12 @@ const AddMember = ({navigation}: any) => {
         mobileNumber,
         selectedRelation,
       });
+
+      //then I have to also make the all the state as the empty
+      setMemberName('');
+      setMobileNumber('');
+      setSelectedRelation('Select a relation');
+
       // navigation.navigate('Otp'); // According to the figma I have to do it
     }
   };

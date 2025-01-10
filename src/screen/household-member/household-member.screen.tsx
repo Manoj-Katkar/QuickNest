@@ -6,10 +6,15 @@ import {
   StatusBar,
   FlatList,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PreviousIcon from '../../../assets/icons/PreviousIcon';
 import PreviousIconWhite from '../../../assets/icons/PreviousIconWhite';
 import RightIcon from '../../../assets/icons/RightIcon';
+import NetInfo, {
+  addEventListener,
+  useNetInfo,
+} from '@react-native-community/netinfo';
+import {fetch} from '@react-native-community/netinfo';
 
 const dataArray = [
   {
@@ -41,9 +46,8 @@ interface RenderServiceFeatureProps {
 }
 
 const HouseHoldMember = ({navigation}: any) => {
+  const {type, isConnected} = useNetInfo();
   const [paymentStatus, setPaymentStatus] = useState(true); //by default making it as true intentionally to re-direct to the payment success screen
-
-  const [networkStatus, setNetworkStatus] = useState(true);
 
   const handlePress = () => {
     if (navigation?.goBack) {
@@ -72,16 +76,10 @@ const HouseHoldMember = ({navigation}: any) => {
   );
 
   const navigateAccordingToPaymentStatus = () => {
-    // console.log('Payment Status:', paymentStatus);
-    // console.log('Network Status:', networkStatus);
-
-    if (paymentStatus === true && networkStatus === true) {
+    if (paymentStatus === true && isConnected === true) {
       // console.log('Navigating to PaymentSuccessful');
       navigation.navigate('PaymentSuccessful');
-    } else if (networkStatus === false) {
-      // console.log('Navigating to NoInternet');
-      navigation.navigate('NoInternet');
-    } else {
+    } else if (paymentStatus === false) {
       // console.log('Navigating to PaymentUnsuccessful');
       navigation.navigate('PaymentUnsuccessful');
     }
@@ -217,8 +215,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '89%',
     backgroundColor: '#19337e',
-    paddingTop: 17,
-    paddingBottom: 17,
+    paddingTop: 15,
+    paddingBottom: 15,
     paddingHorizontal: 13,
     // borderWidth: 2,
     borderRadius: 15,

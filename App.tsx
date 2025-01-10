@@ -14,6 +14,7 @@ import {StatusBar} from 'react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {screens} from './src/components/LazyComponent';
 import UserContextProvider from './src/contextApi/userContextProvider';
+import {NetworkProvider} from './src/contextApi/NetworkContext';
 
 // Update the type definition to include both screens
 export type RootStackParamList = {
@@ -30,8 +31,8 @@ export type RootStackParamList = {
   HouseHoldMember: undefined;
   PaymentSuccessful: undefined;
   PaymentUnsuccessful: undefined;
-  NoInternet: undefined;
   AddMember: undefined;
+  EditProfile: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -103,61 +104,64 @@ const App = () => {
   }, []);
 
   return (
-    <UserContextProvider>
-      <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
-      <NavigationContainer
-        ref={mainStackNavigationRef}
-        // onStateChange={async state => {
-        //   const currentRoute = state?.routes[state?.index];
-        //   setRouteName(currentRoute?.name!);
-        // }}
-      >
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Onboarding" component={screens.Onboarding} />
-          <Stack.Screen name="Login" component={screens.Login} />
-          <Stack.Screen name="Otp" component={screens.Otp} />
-          <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
-          <Stack.Screen name="Concern" component={screens.Concern} />
-          <Stack.Screen
-            name="House_Services"
-            component={screens.HouseServices}
-          />
-          <Stack.Screen
-            name="Details"
-            component={screens.Details}
-            options={
-              {
-                // headerShown:true
+    <NetworkProvider>
+      <UserContextProvider>
+        <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
+        <NavigationContainer
+          ref={mainStackNavigationRef}
+          // onStateChange={async state => {
+          //   const currentRoute = state?.routes[state?.index];
+          //   setRouteName(currentRoute?.name!);
+          // }}
+        >
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Onboarding" component={screens.Onboarding} />
+            <Stack.Screen name="Login" component={screens.Login} />
+            <Stack.Screen name="Otp" component={screens.Otp} />
+            <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
+            <Stack.Screen name="Concern" component={screens.Concern} />
+            <Stack.Screen
+              name="House_Services"
+              component={screens.HouseServices}
+            />
+            <Stack.Screen
+              name="Details"
+              component={screens.Details}
+              options={
+                {
+                  // headerShown:true
+                }
               }
-            }
-          />
-          <Stack.Screen
-            name="Notifications"
-            component={screens.NotificationScreen}
-            options={{
-              headerShown: true, // Ensures the default header is displayed
-            }}
-          />
+            />
+            <Stack.Screen
+              name="Notifications"
+              component={screens.NotificationScreen}
+              options={{
+                headerShown: true, // Ensures the default header is displayed
+              }}
+            />
 
-          <Stack.Screen
-            name="HouseHoldMember"
-            component={screens.HouseHoldMember}
-          />
+            <Stack.Screen
+              name="HouseHoldMember"
+              component={screens.HouseHoldMember}
+            />
 
-          <Stack.Screen
-            name="PaymentSuccessful"
-            component={screens.PaymentSuccessful}
-          />
+            <Stack.Screen
+              name="PaymentSuccessful"
+              component={screens.PaymentSuccessful}
+            />
 
-          <Stack.Screen
-            name="PaymentUnsuccessful"
-            component={screens.PaymentUnsuccessful}
-          />
-          <Stack.Screen name="NoInternet" component={screens.NoInternet} />
-          <Stack.Screen name="AddMember" component={screens.AddMember} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </UserContextProvider>
+            <Stack.Screen
+              name="PaymentUnsuccessful"
+              component={screens.PaymentUnsuccessful}
+            />
+
+            <Stack.Screen name="AddMember" component={screens.AddMember} />
+            <Stack.Screen name="EditProfile" component={screens.EditProfile} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserContextProvider>
+    </NetworkProvider>
   );
 };
 export default App;

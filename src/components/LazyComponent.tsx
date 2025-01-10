@@ -54,11 +54,11 @@ const screens = React.useMemo(
       () =>
         import('../screen/payment-unsuccessful/payment-unsuccessful.screen'),
     ),
-    NoInternet: helpers.LazyLoad(
-      () => import('../screen/no-internet/no-internet.screen'),
-    ),
     AddMember: helpers.LazyLoad(
       () => import('../screen/add-member/add-member.screen'),
+    ),
+    EditProfile: helpers.LazyLoad(
+      () => import('../screen/edit-profile/edit-profile.screen'),
     ),
   }),
   [],
