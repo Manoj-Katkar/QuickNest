@@ -12,27 +12,32 @@ import CustomDropDown from '../../components/custom-dropDown';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const concernTypeArray = [
-  {id: 1, concernType: 'Panic'},
-  {id: 2, concernType: 'Safety'},
-  {id: 3, concernType: 'Technical Issue'},
-  {id: 4, concernType: 'Feedback'},
-  {id: 5, concernType: 'Other'},
+  {id: 1, Type: 'Panic'},
+  {id: 2, Type: 'Safety'},
+  {id: 3, Type: 'Technical Issue'},
+  {id: 4, Type: 'Feedback'},
+  {id: 5, Type: 'Other'},
 ];
 
 const Concern = ({navigation}: any) => {
-  const [selectedConcernType, setSelectedConcernType] = useState<string>(
-    'Select concern type',
-  );
-  const [description, setDescription] = useState('');
-  const [userImage, setUserImage] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    selectedConcernType: 'Select concern type',
+    description: '',
+    uploadedImage: '',
+  });
 
   const handlePress = () => {
     navigation.goBack();
   };
 
-  const handleChangeText = (text: string) => {
-    setDescription(text);
+  const handleDropDownChange = (value: string) => {
+    setForm(prev => ({...prev, selectedConcernType: value}));
   };
+
+  const handleChangeText = (text: string) => {
+    setForm(prev => ({...prev, description: text}));
+  };
+
   const handleBrowse = async () => {
     try {
       const image = await ImagePicker.openPicker({
@@ -41,7 +46,7 @@ const Concern = ({navigation}: any) => {
         cropping: true,
       });
       console.log('Selected Image:', image);
-      setUserImage(image.path);
+      setForm(prev => ({...prev, uploadedImage: image.path}));
     } catch (error) {
       if (
         error instanceof Error &&
@@ -61,8 +66,7 @@ const Concern = ({navigation}: any) => {
         height: 400,
         cropping: true,
       });
-      // console.log('Captured Image:', image);
-      setUserImage(image.path);
+      setForm(prev => ({...prev, uploadedImage: image.path}));
     } catch (error) {
       if (
         error instanceof Error &&
@@ -76,12 +80,12 @@ const Concern = ({navigation}: any) => {
   };
 
   const handleRaiseConcern = () => {
-    const concernData = {
-      type: selectedConcernType,
-      description,
-      image: userImage,
-    };
-    console.log('Concern Data:', concernData);
+    console.log('Form Data of Raise Concern:', form);
+    setForm({
+      selectedConcernType: 'Select concern type',
+      description: '',
+      uploadedImage: '',
+    });
   };
 
   return (
@@ -95,12 +99,12 @@ const Concern = ({navigation}: any) => {
       </View>
 
       <View style={styles.subContainer1}>
-        {/* here I have creaed the custom dropdown */}
+        {/* Custom dropdown */}
         <CustomDropDown
           concernTypeArray={concernTypeArray}
           textHeading="Type of concern"
-          selectedValue={selectedConcernType}
-          onValueChange={(value: string) => setSelectedConcernType(value)}
+          selectedValue={form.selectedConcernType}
+          onValueChange={handleDropDownChange}
         />
 
         <View style={styles.child2}>
@@ -117,7 +121,7 @@ const Concern = ({navigation}: any) => {
             ]}
             placeholder="Explain the concern in brief"
             placeholderTextColor="#2B2B2B80"
-            value={description}
+            value={form.description}
             onChangeText={handleChangeText}
             multiline
           />
@@ -133,7 +137,7 @@ const Concern = ({navigation}: any) => {
               <Text style={styles.uploadText2}>Browse in device or</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleOpenCamera}>
-              <Text style={styles.uploadText3}>open camera</Text>
+              <Text style={styles.uploadText3}>Open camera</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -147,7 +151,6 @@ const Concern = ({navigation}: any) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,

@@ -3,7 +3,13 @@ import React, {useCallback, useState} from 'react';
 import DropDownIcon from '../../assets/icons/DropDownIcon';
 
 const CustomDropDown = (props: any) => {
-  const {concernTypeArray, textHeading, selectedValue, onValueChange} = props;
+  const {
+    concernTypeArray,
+    textHeading,
+    selectedValue,
+    onValueChange,
+    parentContainerStyle,
+  } = props;
 
   // console.log('props', concernTypeArray);
   console.log('textHeading : ', textHeading);
@@ -16,10 +22,11 @@ const CustomDropDown = (props: any) => {
         <TouchableOpacity
           style={styles.concernItem}
           onPress={() => {
-            onValueChange(item.concernType); // Pass selected value to parent
+            console.log('Item selected from the custom dropdown :', item.Type);
+            onValueChange(item.Type); // Pass selected value to parent
             setIsClicked(false); // Close dropdown
           }}>
-          <Text style={styles.typeText}>{item.concernType}</Text>
+          <Text style={styles.typeText}>{item.Type}</Text>
         </TouchableOpacity>
       );
     },
@@ -27,7 +34,7 @@ const CustomDropDown = (props: any) => {
   );
 
   return (
-    <View style={styles.child1}>
+    <View style={[styles.child1, parentContainerStyle]}>
       <Text style={styles.label1}>{textHeading}</Text>
       <TouchableOpacity
         style={[
@@ -72,9 +79,10 @@ const styles = StyleSheet.create({
     top: -20,
     left: 20,
     zIndex: 2,
+    // paddingLeft: 2,
   },
   dropDownSelector: {
-    width: '98%',
+    width: '100%',
     height: 60,
     // borderRadius: 10,
     borderTopLeftRadius: 15, // top-left corner
@@ -102,13 +110,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   dropDownArea: {
-    width: '98%',
+    width: '100%',
     height: 110,
     borderWidth: 1,
     borderColor: '#c7c7c7',
     borderStyle: 'solid',
     alignSelf: 'center',
-    top: -14,
+    top: -5,
     borderTopWidth: 0,
     borderTopLeftRadius: 0, // top-left corner
     borderTopRightRadius: 0, // top-right corner

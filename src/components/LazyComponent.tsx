@@ -60,6 +60,12 @@ const screens = React.useMemo(
     EditProfile: helpers.LazyLoad(
       () => import('../screen/edit-profile/edit-profile.screen'),
     ),
+    PrivacyPolicy: helpers.LazyLoad(
+      () => import('../screen/privacy-policy/privacy-policy.screen'),
+    ),
+    TermsConditions: helpers.LazyLoad(
+      () => import('../screen/terms-conditions/terms-conditions.screen'),
+    ),
   }),
   [],
 );

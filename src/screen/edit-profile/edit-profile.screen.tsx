@@ -18,41 +18,49 @@ import CustomDropDown from '../../components/custom-dropDown';
 const genderArray = [
   {
     id: 1,
-    gender: 'Male',
+    Type: 'Male',
   },
   {
     id: 2,
-    gender: 'Female',
+    Type: 'Female',
   },
   {
     id: 3,
-    gender: 'Other',
+    Type: 'Other',
+  },
+  {
+    id: 4,
+    Type: 'Other',
+  },
+  {
+    id: 5,
+    Type: 'Other',
   },
 ];
 
 const EditProfile = ({navigation}: any) => {
-  const [selectedGender, setSelectedGender] = useState('Select a gender');
+  // State for form inputs
   const [form, setForm] = useState({
     name: '',
-    gender: '',
+    gender: 'Select a gender',
     email: '',
     mobile: '',
     zip: '',
     address: '',
+    uploadedImage: '',
   });
-  const [userImage, setUserImage] = useState<string | null>(null);
+
+  // Handle input change for text inputs
   const handleInputChange = (key: string, value: string) => {
-    setForm(prev => ({
-      ...prev,
-      [key]: value,
-    }));
+    setForm(prev => ({...prev, [key]: value}));
   };
 
-  const handleSave = () => {
-    console.log('Form Data:', form);
-    // Add your save logic here
+  // Handle dropdown value change
+  const handleDropDownChange = (value: string) => {
+    setForm(prev => ({...prev, gender: value}));
   };
 
+  // Handle image browsing and upload
   const handleBrowse = async () => {
     try {
       const image = await ImagePicker.openPicker({
@@ -60,8 +68,7 @@ const EditProfile = ({navigation}: any) => {
         height: 400,
         cropping: true,
       });
-      //   console.log('Selected Image:', image);
-      setUserImage(image.path);
+      setForm(prev => ({...prev, uploadedImage: image.path}));
     } catch (error) {
       if (
         error instanceof Error &&
@@ -74,95 +81,113 @@ const EditProfile = ({navigation}: any) => {
     }
   };
 
+  // Submit and reset form
+  const submitAllData = () => {
+    console.log('Form Data of Edit Profile Screen:', form);
+    setForm({
+      name: '',
+      gender: 'Select a gender',
+      email: '',
+      mobile: '',
+      zip: '',
+      address: '',
+      uploadedImage: '',
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
       <CustomHeader headerText="Edit Profile" navigation={navigation} />
 
-      {userImage ? (
-        <>
-          <View style={[styles.imageView]}>
-            <View style={styles.actualImageView}>
-              <FastImage
-                source={{uri: userImage}}
-                resizeMode={FastImage.resizeMode.cover} // Adjust this to match the design
-                style={[styles.uploadedImage]}
-              />
-            </View>
-
-            <TouchableOpacity onPress={handleBrowse}>
-              <UploadImageIconColor style={styles.uploadImageIcon} />
-            </TouchableOpacity>
+      {form.uploadedImage ? (
+        <View style={styles.imageView}>
+          <View style={styles.actualImageView}>
+            <FastImage
+              source={{uri: form.uploadedImage}}
+              resizeMode={FastImage.resizeMode.cover}
+              style={styles.uploadedImage}
+            />
           </View>
-        </>
+          <TouchableOpacity onPress={handleBrowse}>
+            <UploadImageIconColor style={styles.uploadImageIcon} />
+          </TouchableOpacity>
+        </View>
       ) : (
-        <>
-          <View style={styles.imageView}>
-            <View style={styles.addMemberIconView}>
-              <AddMemberImageIcon style={styles.addMemberIcon} />
-            </View>
-
-            <TouchableOpacity onPress={handleBrowse}>
-              <UploadImageIconColor style={styles.uploadImageIcon} />
-            </TouchableOpacity>
+        <View style={styles.imageView}>
+          <View style={styles.addMemberIconView}>
+            <Text style={styles.addMemberIcon}>L</Text>
           </View>
-        </>
+          <TouchableOpacity onPress={handleBrowse}>
+            <UploadImageIconColor style={styles.uploadImageIcon} />
+          </TouchableOpacity>
+        </View>
       )}
+
       <View style={styles.mainParentContainer}>
         <Text style={styles.personalText}>Personal Information</Text>
-        <CustomTextInput
-          label="Name"
-          value={form.name}
-          placeholder="Enter your name"
-          onChangeText={(text: string) => handleInputChange('name', text)}
-        />
+        <View style={styles.personalInfoParent}>
+          <CustomTextInput
+            label="Name"
+            value={form.name}
+            placeholder="Enter your name"
+            onChangeText={(text: string) => handleInputChange('name', text)}
+            textStyle={styles.textInputStyle}
+          />
 
-        <CustomTextInput
-          label="Gender"
-          value={form.gender}
-          placeholder="Select a gender"
-          onChangeText={(text: string) => handleInputChange('gender', text)}
-        />
-
-        {/* <CustomDropDown
-          concernTypeArray={genderArray}
-          textHeading="Relation"
-          selectedValue={selectedRelation}
-          onValueChange={(value: string) => setSelectedRelation(form.gender)}
-        /> */}
+          <CustomDropDown
+            concernTypeArray={genderArray}
+            textHeading="Gender"
+            selectedValue={form.gender}
+            onValueChange={handleDropDownChange}
+            parentContainerStyle={{marginTop: 0}}
+          />
+        </View>
 
         <Text style={styles.contactText}>Contact Information</Text>
-        <CustomTextInput
-          label="Email ID"
-          value={form.email}
-          placeholder="Enter your email"
-          onChangeText={(text: string) => handleInputChange('email', text)}
-        />
-        <CustomTextInput
-          label="Mobile Number"
-          value={form.mobile}
-          placeholder="Enter your mobile number"
-          onChangeText={(text: string) => handleInputChange('mobile', text)}
-        />
+        <View style={styles.contactParent}>
+          <CustomTextInput
+            label="Email ID"
+            value={form.email}
+            placeholder="Enter your email"
+            onChangeText={(text: string) => handleInputChange('email', text)}
+            textStyle={styles.textInputStyle}
+          />
+          <CustomTextInput
+            label="Mobile Number"
+            value={form.mobile}
+            placeholder="Enter your mobile number"
+            onChangeText={(text: string) => handleInputChange('mobile', text)}
+            textStyle={styles.textInputStyle}
+          />
+        </View>
 
         <Text style={styles.AddressText}>Address Information</Text>
-        <CustomTextInput
-          label="Zip Code"
-          value={form.zip}
-          placeholder="Enter your zip code"
-          onChangeText={(text: string) => handleInputChange('zip', text)}
-        />
-        <CustomTextInput
-          label="Address"
-          value={form.address}
-          placeholder="JohnSmith,1234ElmStreet,Apt.567Springfield, IL 62704USA"
-          onChangeText={(text: string) => handleInputChange('address', text)}
-          multiline={true}
-          textStyle={{height: 105}}
-        />
+        <View style={styles.addressInfoParent}>
+          <CustomTextInput
+            label="Zip Code"
+            value={form.zip}
+            placeholder="Enter your zip code"
+            onChangeText={(text: string) => handleInputChange('zip', text)}
+            textStyle={styles.textInputStyle}
+          />
+          <CustomTextInput
+            label="Address"
+            value={form.address}
+            placeholder="JohnSmith,1234ElmStreet,Apt.567Springfield,IL 62704USA"
+            onChangeText={(text: string) => handleInputChange('address', text)}
+            multiline={true}
+            textStyle={{
+              height: 86,
+              fontSize: 15,
+              paddingLeft: 15,
+              paddingTop: 20,
+            }}
+          />
+        </View>
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={submitAllData}>
           <Text style={styles.btnText}>Save</Text>
         </TouchableOpacity>
       </View>
@@ -174,7 +199,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#fafafa',
   },
   header: {
     fontSize: 20,
@@ -258,20 +283,26 @@ const styles = StyleSheet.create({
     left: 15,
   },
   addMemberIconView: {
-    width: '28%',
+    width: '25%',
     justifyContent: 'center',
     alignItems: 'center',
     // paddingHorizontal: 45,
-    paddingVertical: 30,
-    backgroundColor: '#efefef',
+    paddingVertical: 25,
+    // backgroundColor: '#efefef',
+    backgroundColor: '#E8EBFB',
     borderRadius: 50,
   },
-  addMemberIcon: {},
+  addMemberIcon: {
+    fontSize: 33,
+    fontFamily: 'Mulish-Bold',
+    color: '#2B2B2B',
+  },
   personalText: {
     color: '#000000',
     fontSize: 16,
     fontFamily: 'Mulish-Medium',
     marginBottom: 20,
+    marginTop: 20,
   },
   contactText: {
     color: '#000000',
@@ -284,6 +315,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Mulish-Medium',
     marginBottom: 20,
+  },
+  textInputStyle: {
+    height: 62,
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 20,
+  },
+  personalInfoParent: {
+    rowGap: 12,
+  },
+  addressInfoParent: {
+    rowGap: 12,
+  },
+  contactParent: {
+    rowGap: 12,
   },
 });
 

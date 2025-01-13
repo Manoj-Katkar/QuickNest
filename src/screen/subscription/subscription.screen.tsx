@@ -68,8 +68,12 @@ const Subscription = ({navigation}: any) => {
   const {type, isConnected} = useNetInfo();
   const [paymentStatus, setPaymentStatus] = useState<boolean>(true); // true as default
   const [selectedSubscriptionInfo, setSelectedSubscriptionInfo] = useState<any>(
-    {},
+    subscriptionArray[0],
   );
+
+  useEffect(() => {
+    setSelectedSubscriptionInfo(subscriptionArray[0]); //so here By default when I will re-directed from the any screen to this screen then the first subscription will be selected
+  }, []);
 
   const handlePress = () => {
     if (navigation?.goBack) {

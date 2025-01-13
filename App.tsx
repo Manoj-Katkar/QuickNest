@@ -33,6 +33,8 @@ export type RootStackParamList = {
   PaymentUnsuccessful: undefined;
   AddMember: undefined;
   EditProfile: undefined;
+  PrivacyPolicy: undefined;
+  TermsConditions: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -158,6 +160,14 @@ const App = () => {
 
             <Stack.Screen name="AddMember" component={screens.AddMember} />
             <Stack.Screen name="EditProfile" component={screens.EditProfile} />
+            <Stack.Screen
+              name="PrivacyPolicy"
+              component={screens.PrivacyPolicy}
+            />
+            <Stack.Screen
+              name="TermsConditions"
+              component={screens.TermsConditions}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </UserContextProvider>

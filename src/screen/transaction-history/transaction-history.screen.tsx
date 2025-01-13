@@ -82,7 +82,6 @@ const TransactionHistory = ({navigation}: any) => {
               <Text style={styles.datePurchaseText}>{item.dateOfPurchase}</Text>
             </View>
             <View style={styles.child2}>
-              <Text style={styles.forUnderstandingLOgic}>{item.id}</Text>
               <Text style={styles.priceText}>{item.priceGiven}</Text>
             </View>
           </View>
