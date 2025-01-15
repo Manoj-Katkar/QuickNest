@@ -10,7 +10,10 @@ const Image = {
     noMembersImage: require('../../././assets/images/No_Members_Image.png'),
     Payment_successful: require('../.././assets/images/Payment_successful.png'),
     Payment_unsuccessful: require('../.././assets/images/Payment_unsuccessful.png'),
-    NoInternetImage: require('../.././assets/images/No_Internet_Image.png')
+    NoInternetImage: require('../.././assets/images/No_Internet_Image.png'),
+    aboutUsScreenBackground: require('../.././assets/images/About-us-background.png'),
+    PanicPressImage: require('../.././assets/images/Press_Here_Image.png'),
+    PanicActiveImage: require('../.././assets/images/Panic_Active_Image.png'),
 
 }
 export { Image };

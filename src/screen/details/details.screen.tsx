@@ -14,6 +14,7 @@ import PlayIcon from '../../../assets/icons/PlayIcon';
 import ImageIcon from '../../../assets/icons/ImageIcon';
 import EyeIcon from '../../../assets/icons/EyeIcon';
 import IIcon from '../../../assets/icons/IIcon';
+import CustomHeader from '../../components/header-comp';
 
 const Details = ({navigation}: any) => {
   const handlePress = () => {
@@ -23,13 +24,7 @@ const Details = ({navigation}: any) => {
     <ScrollView style={styles.container}>
       {/* <Text style={styles.text}>Details</Text> */}
 
-      <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={handlePress}>
-          <PreviousIcon width={30} height={30} />
-        </TouchableOpacity>
-
-        <Text style={styles.headerText}>Details</Text>
-      </View>
+      <CustomHeader headerText="Details" navigation={navigation} />
 
       <View style={styles.subContainer}>
         <View style={styles.child1}>

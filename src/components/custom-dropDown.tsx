@@ -11,7 +11,7 @@ const CustomDropDown = (props: any) => {
     parentContainerStyle,
   } = props;
 
-  // console.log('props', concernTypeArray);
+  console.log('props', concernTypeArray);
   console.log('textHeading : ', textHeading);
 
   const [isClicked, setIsClicked] = useState(false);
@@ -50,16 +50,18 @@ const CustomDropDown = (props: any) => {
         <DropDownIcon />
       </TouchableOpacity>
 
-      {isClicked ? (
+      {isClicked && (
         <View style={styles.dropDownArea}>
           <FlatList
             data={concernTypeArray}
             renderItem={renderEachType}
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{paddingVertical: 10}}
+            // hitSlop={500}
+            nestedScrollEnabled={true} //if the flatlist is getting used under the scrollView then I have to use the nestedScrollEnabled
           />
         </View>
-      ) : null}
+      )}
     </View>
   );
 };
@@ -68,27 +70,31 @@ const styles = StyleSheet.create({
   child1: {
     marginTop: 20,
     marginBottom: 20,
+
+    zIndex: 0,
+    // paddingVertical: 20,
   },
   label1: {
-    fontSize: 16,
+    fontSize: 15,
     marginVertical: 8,
     color: '#333',
     backgroundColor: '#fafafa',
     fontFamily: 'Mulish-Regular',
     position: 'absolute',
     top: -20,
-    left: 20,
-    zIndex: 2,
+    left: 15,
+    zIndex: 10,
     // paddingLeft: 2,
+    paddingHorizontal: 4,
   },
   dropDownSelector: {
     width: '100%',
     height: 60,
     // borderRadius: 10,
-    borderTopLeftRadius: 15, // top-left corner
-    borderTopRightRadius: 15, // top-right corner
-    borderBottomLeftRadius: 15, // bottom-left corner
-    borderBottomRightRadius: 15, // bottom-right corner
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     borderWidth: 1,
     borderColor: '#c7c7c7',
     borderStyle: 'solid',

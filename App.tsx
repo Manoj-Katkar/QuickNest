@@ -15,6 +15,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import {screens} from './src/components/LazyComponent';
 import UserContextProvider from './src/contextApi/userContextProvider';
 import {NetworkProvider} from './src/contextApi/NetworkContext';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 // Update the type definition to include both screens
 export type RootStackParamList = {
@@ -25,7 +26,12 @@ export type RootStackParamList = {
   House_Services: undefined; // Adjust the params if `House_Services` takes any
   Details: undefined;
   Notifications: {
-    newNotification: {title: string; body: string; image: string};
+    newNotification: {
+      title: string;
+      bodyText: string;
+      image: string;
+      day: number;
+    };
   };
   Concern: undefined;
   HouseHoldMember: undefined;
@@ -35,6 +41,9 @@ export type RootStackParamList = {
   EditProfile: undefined;
   PrivacyPolicy: undefined;
   TermsConditions: undefined;
+  PanicPress: undefined;
+  PanicActive: undefined;
+  MapIntegration: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,26 +53,6 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   const {requestPermission, hasPermission} = useNotificationPermission();
-  // const [routeName, setRouteName] = useState('Onboarding');
-
-  // const screensArray = ['HouseHoldMember'];
-
-  // const setTranslucent = (routeName: string) => {
-  //   if (screensArray.includes(routeName)) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-  // const getBackground = (routeName: string) => {
-  //   if (setTranslucent(routeName)) {
-  //     return 'transparent';
-  //   }
-  //   return Colors.white;
-  // };
-
-  //         // translucent
-  // backgroundColor={getBackground(routeName)}
 
   const fcmToken = useFCMToken(hasPermission);
 
@@ -106,72 +95,87 @@ const App = () => {
   }, []);
 
   return (
-    <NetworkProvider>
-      <UserContextProvider>
-        <StatusBar backgroundColor="#fafafa" barStyle="light-content" />
-        <NavigationContainer
-          ref={mainStackNavigationRef}
-          // onStateChange={async state => {
-          //   const currentRoute = state?.routes[state?.index];
-          //   setRouteName(currentRoute?.name!);
-          // }}
-        >
-          <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Onboarding" component={screens.Onboarding} />
-            <Stack.Screen name="Login" component={screens.Login} />
-            <Stack.Screen name="Otp" component={screens.Otp} />
-            <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
-            <Stack.Screen name="Concern" component={screens.Concern} />
-            <Stack.Screen
-              name="House_Services"
-              component={screens.HouseServices}
-            />
-            <Stack.Screen
-              name="Details"
-              component={screens.Details}
-              options={
-                {
-                  // headerShown:true
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NetworkProvider>
+        <UserContextProvider>
+          <StatusBar
+            backgroundColor="transparent"
+            barStyle="light-content"
+            translucent
+          />
+          <NavigationContainer
+            ref={mainStackNavigationRef}
+            // onStateChange={async state => {
+            //   const currentRoute = state?.routes[state?.index];
+            //   setRouteName(currentRoute?.name!);
+            // }}
+          >
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+              <Stack.Screen name="Onboarding" component={screens.Onboarding} />
+              <Stack.Screen name="Login" component={screens.Login} />
+              <Stack.Screen name="Otp" component={screens.Otp} />
+              <Stack.Screen name="DrawerNav" component={screens.DrawerNav} />
+              <Stack.Screen name="Concern" component={screens.Concern} />
+              <Stack.Screen
+                name="House_Services"
+                component={screens.HouseServices}
+              />
+              <Stack.Screen
+                name="Details"
+                component={screens.Details}
+                options={
+                  {
+                    // headerShown:true
+                  }
                 }
-              }
-            />
-            <Stack.Screen
-              name="Notifications"
-              component={screens.NotificationScreen}
-              options={{
-                headerShown: true, // Ensures the default header is displayed
-              }}
-            />
+              />
+              <Stack.Screen
+                name="Notifications"
+                component={screens.NotificationScreen}
+              />
 
-            <Stack.Screen
-              name="HouseHoldMember"
-              component={screens.HouseHoldMember}
-            />
+              <Stack.Screen
+                name="HouseHoldMember"
+                component={screens.HouseHoldMember}
+              />
 
-            <Stack.Screen
-              name="PaymentSuccessful"
-              component={screens.PaymentSuccessful}
-            />
+              <Stack.Screen
+                name="PaymentSuccessful"
+                component={screens.PaymentSuccessful}
+              />
 
-            <Stack.Screen
-              name="PaymentUnsuccessful"
-              component={screens.PaymentUnsuccessful}
-            />
+              <Stack.Screen
+                name="PaymentUnsuccessful"
+                component={screens.PaymentUnsuccessful}
+              />
 
-            <Stack.Screen name="AddMember" component={screens.AddMember} />
-            <Stack.Screen name="EditProfile" component={screens.EditProfile} />
-            <Stack.Screen
-              name="PrivacyPolicy"
-              component={screens.PrivacyPolicy}
-            />
-            <Stack.Screen
-              name="TermsConditions"
-              component={screens.TermsConditions}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </UserContextProvider>
-    </NetworkProvider>
+              <Stack.Screen name="AddMember" component={screens.AddMember} />
+              <Stack.Screen
+                name="EditProfile"
+                component={screens.EditProfile}
+              />
+              <Stack.Screen
+                name="PrivacyPolicy"
+                component={screens.PrivacyPolicy}
+              />
+              <Stack.Screen
+                name="TermsConditions"
+                component={screens.TermsConditions}
+              />
+              <Stack.Screen name="PanicPress" component={screens.PanicPress} />
+              <Stack.Screen
+                name="PanicActive"
+                component={screens.PanicActive}
+              />
+              <Stack.Screen
+                name="MapIntegration"
+                component={screens.MapIntegration}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </UserContextProvider>
+      </NetworkProvider>
+    </GestureHandlerRootView>
   );
 };
 export default App;

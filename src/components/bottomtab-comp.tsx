@@ -27,6 +27,10 @@ const BottomTabComp = () => {
     setActiveIcon(iconName);
   };
 
+  const navigateToPanicBtnScreen = () => {
+    navigation.navigate('PanicPress');
+  };
+
   return (
     <ImageBackground
       source={Image.tabBackGroundImage} // Replace with your image URL or local path
@@ -115,7 +119,7 @@ const BottomTabComp = () => {
       </View>
 
       {/* This is red icon  */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={navigateToPanicBtnScreen}>
         <FastImage
           source={Image.tabNavigationIcon}
           resizeMode="contain"
@@ -126,6 +130,7 @@ const BottomTabComp = () => {
             position: 'absolute',
             left: '40.5%',
             bottom: 55,
+            // backgroundColor: 'yellow',
           }} // Adjust dimensions as needed
         />
       </TouchableOpacity>

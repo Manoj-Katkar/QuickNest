@@ -2,8 +2,20 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import VerificationIcon from '../../../../assets/icons/VerificationIcon';
 import NextIcon from '../../../../assets/icons/NextIcon';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {DrawerNavScreens} from '../../../components/drawer-nav';
+import {RootStackParamList} from '../../../../App';
+import customNavigation from '../../../hook/navigationCustomHook';
 
 const Verification = () => {
+  const {navigateTo} = customNavigation();
+
+  const navigateToVerificationScreen = () => {
+    navigateTo('DrawerNav', {
+      screen: 'Verification',
+    });
+  };
   return (
     <View style={styles.superParent}>
       <View style={styles.container}>
@@ -23,7 +35,9 @@ const Verification = () => {
         </View>
 
         <View style={styles.subContainer2}>
-          <TouchableOpacity style={styles.btn1}>
+          <TouchableOpacity
+            style={styles.btn1}
+            onPress={navigateToVerificationScreen}>
             <NextIcon width={32} height={32} style={styles.nextIcon} />
           </TouchableOpacity>
 

@@ -1,25 +1,28 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
+import {Image} from '../../constant/images';
+import CustomHeader from '../../components/header-comp';
 
-const AboutUs = () => {
+const AboutUs = ({navigation}: any) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>AboutUs Screen</Text>
-    </View>
+    <>
+      <ImageBackground
+        source={Image.aboutUsScreenBackground} // Replace with your image URL or local path
+        style={styles.backgroundImage}
+        resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+      >
+        <CustomHeader headerText="About us" navigation={navigation} />
+      </ImageBackground>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#E8F6F3',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#34495E',
+    width: '100%',
+    alignItems: 'center', // Align content horizontally
+    // paddingTop: 10,
   },
 });
 

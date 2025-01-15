@@ -1,104 +1,201 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import CustomHeader from '../../components/header-comp';
+import NotificationIcon from '../../../assets/icons/NotificationIcon';
+import {FlatList} from 'react-native-gesture-handler';
 
-interface Notification {
+type NotificationDetail = {
   title: string;
-  body: string;
-  image: string;
-}
+  bodyText: string;
+  image: JSX.Element; //beuacse here I am taking the static image right now
+  timeDuration: string;
+};
 
-const NotificationScreen = ({route}: any) => {
-  // State to hold notifications
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+type NotificationGroup = {
+  id: number;
+  day: string;
+  notifications: NotificationDetail[];
+};
 
-  // Update notifications when a new notification is passed through route params
+const notificationArray: NotificationGroup[] = [
+  {
+    id: 1,
+    day: 'Today',
+    notifications: [
+      {
+        title: 'Subscription Update',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '10 min ago',
+      },
+      {
+        title: 'Family member added',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '45 min',
+      },
+      {
+        title: 'Panic Situation Update',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '2h ago',
+      },
+      {
+        title: 'Family member added',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '2.5h ago',
+      },
+    ],
+  },
+  {
+    id: 2,
+    day: 'Yesterday',
+    notifications: [
+      {
+        title: 'Subscription Update',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '10 min ago',
+      },
+      {
+        title: 'Family member added',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '45 min',
+      },
+      {
+        title: 'Panic Situation Update',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '2h ago',
+      },
+      {
+        title: 'Family member added',
+        bodyText:
+          'Your annual subscription has been successfully \nrenewed. Thank you for staying with us!',
+        image: <NotificationIcon />,
+        timeDuration: '3h ago',
+      },
+    ],
+  },
+];
+
+const NotificationScreen = ({navigation}: any) => {
+  const [notificationsData, setNotificationsData] = useState<
+    NotificationGroup[]
+  >([]);
+
   useEffect(() => {
-    if (route.params?.newNotification) {
-      setNotifications(prev => [...prev, route.params.newNotification]);
-    }
-  }, [route.params?.newNotification]);
+    setNotificationsData(notificationArray);
+  }, []);
+
+  const renderNotification = ({item}: {item: NotificationDetail}) => (
+    <View style={styles.notificationItem}>
+      <View style={styles.imageContainer}>{item.image}</View>
+      <View style={styles.textContainer}>
+        <Text style={styles.titleText}>{item.title}</Text>
+        <Text style={styles.bodyText}>{item.bodyText}</Text>
+        <Text style={styles.timeText}>{item.timeDuration}</Text>
+      </View>
+    </View>
+  );
+
+  const renderDayGroup = ({item}: {item: NotificationGroup}) => (
+    <View style={styles.dayGroup}>
+      <Text style={styles.dayText}>{item.day}</Text>
+      <FlatList
+        data={item.notifications}
+        renderItem={renderNotification}
+        keyExtractor={(notification, index) => index.toString()}
+        nestedScrollEnabled
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      />
+    </View>
+  );
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.title}>Notifications</Text> */}
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        {notifications.length === 0 ? (
-          <Text style={styles.description}>
-            You have no new notifications at the moment. Check back later!
-          </Text>
-        ) : (
-          notifications.map((notification, index) => (
-            <View key={index} style={styles.card}>
-              {/* Display notification image if available */}
-              {notification.image && (
-                <FastImage
-                  source={{uri: notification.image}}
-                  style={styles.notificationImage}
-                />
-              )}
-              {/* Display notification title and body */}
-              <Text style={styles.cardTitle}>{notification.title}</Text>
-              <Text style={styles.cardBody}>{notification.body}</Text>
-            </View>
-          ))
-        )}
+    <ScrollView style={styles.container}>
+      <CustomHeader headerText="Notifications" navigation={navigation} />
+      <ScrollView horizontal contentContainerStyle={{width: '100%'}}>
+        <FlatList
+          data={notificationsData}
+          renderItem={renderDayGroup}
+          keyExtractor={item => item.id.toString()}
+          nestedScrollEnabled
+        />
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5', // Light background for better readability
+    backgroundColor: '#fafafa',
+    // backgroundColor: 'yellow',
   },
-  title: {
-    fontSize: 24, // Reduced font size for title
-    fontWeight: 'bold',
-    marginBottom: 15, // Reduced margin bottom
-    color: '#333',
-    textAlign: 'center', // Center-align title
+  dayGroup: {
+    marginVertical: 10,
+    paddingHorizontal: 16,
   },
-  description: {
-    fontSize: 14, // Reduced font size
-    color: '#888',
-    textAlign: 'center',
-    marginTop: 30, // Reduced top margin
+  dayText: {
+    fontSize: 12,
+    fontFamily: 'Mulish-Regular',
+    color: '#2B2B2B',
+    marginBottom: 8,
   },
-  scrollView: {
-    paddingVertical: 10,
+  notificationItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fafafa',
+    padding: 12,
+    borderRadius: 8,
+    // marginBottom: 8,
   },
-  card: {
-    backgroundColor: '#fff',
-    padding: 15, // Reduced padding
-    marginVertical: 8, // Reduced margin
-    borderRadius: 8, // Slightly smaller border radius
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 4, // Reduced shadow radius
-    elevation: 3, // Reduced elevation
+  imageContainer: {
+    marginRight: 12,
+    // backgroundColor: 'yellow',
+    padding: 10,
+    borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#e0e0e0', // Light border for separation
+    borderColor: '#2B2B2B1A',
+    // position: 'absolute',
+    position: 'relative',
+    top: -10,
   },
-  notificationImage: {
+  textContainer: {
+    flex: 1,
+  },
+  titleText: {
+    fontSize: 16,
+    fontFamily: 'Mulish-SemiBold',
+    color: '#2B2B2B',
+  },
+  bodyText: {
+    fontSize: 12,
+    fontFamily: 'Mulish-Regular',
+    color: '#2B2B2B',
+    marginVertical: 4,
+  },
+  timeText: {
+    fontSize: 10,
+    fontFamily: 'Mulish-Regular',
+    color: '#2B2B2B40',
+    alignSelf: 'flex-end',
+  },
+  separator: {
     width: '100%',
-    height: 130, // Reduced height for image
-    borderRadius: 8, // Smaller border radius
-    marginBottom: 12, // Reduced bottom margin
-  },
-  cardTitle: {
-    fontSize: 15, // Reduced font size
-    fontWeight: 'bold',
-    marginBottom: 8, // Reduced margin bottom
-    color: '#333',
-    textAlign: 'center',
-  },
-  cardBody: {
-    fontSize: 12, // Reduced font size
-    color: '#555',
-    textAlign: 'center',
+    height: 1,
+    backgroundColor: '#2B2B2B1A',
   },
 });
 

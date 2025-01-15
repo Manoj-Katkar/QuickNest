@@ -1,8 +1,17 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import HeadPhone from '../../../../assets/icons/HeadPhone';
+import customNavigation from '../../../hook/navigationCustomHook';
 
 const GetInTouch = () => {
+  const {navigateTo} = customNavigation();
+
+  const navigateToContactUsScreen = () => {
+    navigateTo('DrawerNav', {
+      screen: 'ContactUs',
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Get in touch with us</Text>
@@ -17,7 +26,9 @@ const GetInTouch = () => {
 
         <View style={styles.subContainerPart2}>
           <HeadPhone width={55} height={55} style={styles.headPhone} />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={navigateToContactUsScreen}>
             <Text style={styles.text3}>Contact us</Text>
           </TouchableOpacity>
         </View>

@@ -104,6 +104,7 @@ const EnquiresUI = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    paddingTop: 30,
   },
   mainHeaderContainer: {
     width: '90%',

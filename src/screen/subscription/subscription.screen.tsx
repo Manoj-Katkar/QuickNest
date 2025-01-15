@@ -156,7 +156,7 @@ const Subscription = ({navigation}: any) => {
 
   return (
     <>
-      <StatusBar backgroundColor="#19337e" barStyle="light-content" />
+      {/* <StatusBar backgroundColor="#19337e" barStyle="light-content" /> */}
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity onPress={handlePress}>
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     // marginTop: 25,
     marginBottom: 12,
     // padding: 20,
-    paddingTop: 25,
+    paddingTop: 55,
     paddingBottom: 110,
     paddingLeft: 10,
   },
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     position: 'absolute',
-    top: 110,
+    top: 135,
     left: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -320,6 +320,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 13,
     marginLeft: 10,
+    // backgroundColor: 'yellow',
   },
   subContainer1: {
     paddingTop: 4,

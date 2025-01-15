@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 12,
     marginLeft: 10,
+    paddingTop: 30,
   },
   headerText: {
     color: '#2B2B2B',

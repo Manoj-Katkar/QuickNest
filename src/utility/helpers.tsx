@@ -13,13 +13,14 @@ const helpers = {
       // Extract title, body, and image safely
       const {
         title = 'Default Title',
-        body = 'Default Body',
+        bodyText = 'Default Body',
         image = '',
+        day = 0,
       } = remoteMessage.data || {};
 
       if (mainStackNavigationRef.current?.isReady()) {
         mainStackNavigationRef.current?.navigate('Notifications', {
-          newNotification: {title, body, image},
+          newNotification: {title, bodyText, image, day},
         });
       }
     } catch (error) {

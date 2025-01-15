@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: 'white',
+    paddingTop: 45,
   },
   backText: {
     fontSize: 18,

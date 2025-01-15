@@ -66,6 +66,15 @@ const screens = React.useMemo(
     TermsConditions: helpers.LazyLoad(
       () => import('../screen/terms-conditions/terms-conditions.screen'),
     ),
+    PanicPress: helpers.LazyLoad(
+      () => import('../screen/panic-press/panic-press.screen'),
+    ),
+    PanicActive: helpers.LazyLoad(
+      () => import('../screen/panic-active/panic-active.screen'),
+    ),
+    MapIntegration: helpers.LazyLoad(
+      () => import('../screen/map-integration/map-integration.screen'),
+    ),
   }),
   [],
 );

@@ -4,8 +4,14 @@ import NavLines from '../../../../assets/icons/NavLines';
 import HelloIcon from '../../../../assets/icons/HelloIcon';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import customNavigation from '../../../hook/navigationCustomHook';
 
 const Header = ({nav}: any) => {
+  const {navigateTo} = customNavigation();
+
+  const navigateToNotificationScreen = () => {
+    navigateTo('Notifications');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.helloContainer}>
@@ -20,7 +26,7 @@ const Header = ({nav}: any) => {
       </View>
 
       <View style={styles.bellDrawerNav}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigateToNotificationScreen}>
           <BellIcon width={32} height={32} style={styles.bellStyle} />
         </TouchableOpacity>
         {/* Now to implement the drawer Navigation I have to create the one Component which will return the Drawer Navigation  */}
@@ -41,6 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
     backgroundColor: '#fafafa',
+    paddingTop: 30,
   },
   helloContainer: {
     flexDirection: 'row',

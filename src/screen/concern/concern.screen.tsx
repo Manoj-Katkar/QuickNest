@@ -10,6 +10,7 @@ import PreviousIcon from '../../../assets/icons/PreviousIcon';
 import UploadImageIcon from '../../../assets/icons/UploadImageIcon';
 import CustomDropDown from '../../components/custom-dropDown';
 import ImagePicker from 'react-native-image-crop-picker';
+import CustomHeader from '../../components/header-comp';
 
 const concernTypeArray = [
   {id: 1, Type: 'Panic'},
@@ -90,13 +91,7 @@ const Concern = ({navigation}: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={handlePress}>
-          <PreviousIcon width={30} height={30} />
-        </TouchableOpacity>
-
-        <Text style={styles.headerText}>Raise Concern</Text>
-      </View>
+      <CustomHeader headerText="Raise Concern" navigation={navigation} />
 
       <View style={styles.subContainer1}>
         {/* Custom dropdown */}

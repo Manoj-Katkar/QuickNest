@@ -10,8 +10,8 @@ import React from 'react';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../constant/images';
 import RightIcon from '../../../assets/icons/RightIcon';
-import PreviousIcon from '../../../assets/icons/PreviousIcon';
 import {screenWidth} from '../../responsive';
+import CustomHeader from '../../components/header-comp';
 
 const dataArray = [
   {
@@ -63,12 +63,7 @@ const HouseServices = ({navigation}: any) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={handlePress}>
-          <PreviousIcon width={30} height={30} />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>House Services</Text>
-      </View>
+      <CustomHeader headerText="House Services" navigation={navigation} />
 
       <View style={styles.mainContainer}>
         <FastImage

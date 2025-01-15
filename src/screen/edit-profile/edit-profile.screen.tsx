@@ -97,100 +97,112 @@ const EditProfile = ({navigation}: any) => {
 
   return (
     <ScrollView style={styles.container}>
-      <CustomHeader headerText="Edit Profile" navigation={navigation} />
+      <>
+        <CustomHeader headerText="Edit Profile" navigation={navigation} />
 
-      {form.uploadedImage ? (
-        <View style={styles.imageView}>
-          <View style={styles.actualImageView}>
-            <FastImage
-              source={{uri: form.uploadedImage}}
-              resizeMode={FastImage.resizeMode.cover}
-              style={styles.uploadedImage}
+        {form.uploadedImage ? (
+          <View style={styles.imageView}>
+            <View style={styles.actualImageView}>
+              <FastImage
+                source={{uri: form.uploadedImage}}
+                resizeMode={FastImage.resizeMode.cover}
+                style={styles.uploadedImage}
+              />
+            </View>
+            <TouchableOpacity onPress={handleBrowse}>
+              <UploadImageIconColor style={styles.uploadImageIcon} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.imageView}>
+            <View style={styles.addMemberIconView}>
+              <Text style={styles.addMemberIcon}>L</Text>
+            </View>
+            <TouchableOpacity onPress={handleBrowse}>
+              <UploadImageIconColor style={styles.uploadImageIcon} />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        <View style={styles.mainParentContainer}>
+          <Text style={styles.personalText}>Personal Information</Text>
+          <View style={styles.personalInfoParent}>
+            <CustomTextInput
+              label="Name"
+              value={form.name}
+              placeholder="Enter your name"
+              onChangeText={(text: string) => handleInputChange('name', text)}
+              textStyle={styles.textInputStyle}
+            />
+            {/* Jugad To handle the nested FlatList Error */}
+            <ScrollView
+              horizontal
+              contentContainerStyle={{
+                width: '100%',
+                zIndex: 0,
+                paddingTop: 10, //this resolved the my error
+              }}>
+              <CustomDropDown
+                concernTypeArray={genderArray}
+                textHeading="Gender"
+                selectedValue={form.gender}
+                onValueChange={handleDropDownChange}
+                parentContainerStyle={{marginTop: 0, width: '100%'}}
+              />
+            </ScrollView>
+          </View>
+
+          <Text style={styles.contactText}>Contact Information</Text>
+          <View style={styles.contactParent}>
+            <CustomTextInput
+              label="Email ID"
+              value={form.email}
+              placeholder="Enter your email"
+              onChangeText={(text: string) => handleInputChange('email', text)}
+              textStyle={styles.textInputStyle}
+            />
+            <CustomTextInput
+              label="Mobile Number"
+              value={form.mobile}
+              placeholder="Enter your mobile number"
+              onChangeText={(text: string) => handleInputChange('mobile', text)}
+              textStyle={styles.textInputStyle}
             />
           </View>
-          <TouchableOpacity onPress={handleBrowse}>
-            <UploadImageIconColor style={styles.uploadImageIcon} />
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <View style={styles.imageView}>
-          <View style={styles.addMemberIconView}>
-            <Text style={styles.addMemberIcon}>L</Text>
+
+          <Text style={styles.AddressText}>Address Information</Text>
+          <View style={styles.addressInfoParent}>
+            <CustomTextInput
+              label="Zip Code"
+              value={form.zip}
+              placeholder="Enter your zip code"
+              onChangeText={(text: string) => handleInputChange('zip', text)}
+              textStyle={styles.textInputStyle}
+            />
+            <CustomTextInput
+              label="Address"
+              value={form.address}
+              placeholder="JohnSmith,1234ElmStreet,Apt.567Springfield,IL 62704USA"
+              onChangeText={(text: string) =>
+                handleInputChange('address', text)
+              }
+              multiline={true}
+              textStyle={{
+                height: 86,
+                fontSize: 15,
+                paddingLeft: 15,
+                paddingTop: 20,
+              }}
+            />
           </View>
-          <TouchableOpacity onPress={handleBrowse}>
-            <UploadImageIconColor style={styles.uploadImageIcon} />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.btn} onPress={submitAllData}>
+            <Text style={styles.btnText}>Save</Text>
           </TouchableOpacity>
         </View>
-      )}
-
-      <View style={styles.mainParentContainer}>
-        <Text style={styles.personalText}>Personal Information</Text>
-        <View style={styles.personalInfoParent}>
-          <CustomTextInput
-            label="Name"
-            value={form.name}
-            placeholder="Enter your name"
-            onChangeText={(text: string) => handleInputChange('name', text)}
-            textStyle={styles.textInputStyle}
-          />
-
-          <CustomDropDown
-            concernTypeArray={genderArray}
-            textHeading="Gender"
-            selectedValue={form.gender}
-            onValueChange={handleDropDownChange}
-            parentContainerStyle={{marginTop: 0}}
-          />
-        </View>
-
-        <Text style={styles.contactText}>Contact Information</Text>
-        <View style={styles.contactParent}>
-          <CustomTextInput
-            label="Email ID"
-            value={form.email}
-            placeholder="Enter your email"
-            onChangeText={(text: string) => handleInputChange('email', text)}
-            textStyle={styles.textInputStyle}
-          />
-          <CustomTextInput
-            label="Mobile Number"
-            value={form.mobile}
-            placeholder="Enter your mobile number"
-            onChangeText={(text: string) => handleInputChange('mobile', text)}
-            textStyle={styles.textInputStyle}
-          />
-        </View>
-
-        <Text style={styles.AddressText}>Address Information</Text>
-        <View style={styles.addressInfoParent}>
-          <CustomTextInput
-            label="Zip Code"
-            value={form.zip}
-            placeholder="Enter your zip code"
-            onChangeText={(text: string) => handleInputChange('zip', text)}
-            textStyle={styles.textInputStyle}
-          />
-          <CustomTextInput
-            label="Address"
-            value={form.address}
-            placeholder="JohnSmith,1234ElmStreet,Apt.567Springfield,IL 62704USA"
-            onChangeText={(text: string) => handleInputChange('address', text)}
-            multiline={true}
-            textStyle={{
-              height: 86,
-              fontSize: 15,
-              paddingLeft: 15,
-              paddingTop: 20,
-            }}
-          />
-        </View>
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.btn} onPress={submitAllData}>
-          <Text style={styles.btnText}>Save</Text>
-        </TouchableOpacity>
-      </View>
+      </>
     </ScrollView>
   );
 };

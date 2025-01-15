@@ -40,7 +40,7 @@ const navigationItems = [
     screenName: 'TransactionHistory',
   },
   {icon: ContactIcon, label: 'Contact us', screenName: 'ContactUs'},
-  // {icon: DrawerAboutUsIcon, label: 'About us', screenName: 'AboutUs'},   //^ I have added the setting screnn instead
+  {icon: DrawerAboutUsIcon, label: 'About us', screenName: 'AboutUs'}, //^ I have added the setting screnn instead
   {icon: DrawerAboutUsIcon, label: 'Setting', screenName: 'Setting'},
   {
     icon: DeleteIcon,
@@ -90,7 +90,6 @@ const UserUI = ({props}: any) => {
 
   return (
     <>
-      {/* <StatusBar backgroundColor="#294090" barStyle="light-content" /> */}
       <ImageBackground
         source={Image.backgroundDrawerImage} // Replace with your image URL or local path
         style={styles.backgroundImage}
@@ -155,6 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center', // Align content horizontally
+    // paddingTop: 10,
   },
   overlay: {
     width: '100%',

@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
     color: '#2B2B2B',
     marginTop: 27,
     marginLeft: 20,
+    paddingTop: 30,
   },
   nextIcon: {
     marginRight: 5,

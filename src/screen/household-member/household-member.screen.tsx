@@ -87,7 +87,6 @@ const HouseHoldMember = ({navigation}: any) => {
 
   return (
     <>
-      <StatusBar backgroundColor="#19337e" barStyle="light-content" />
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity onPress={handlePress}>
@@ -150,7 +149,7 @@ const styles = StyleSheet.create({
     // marginTop: 25,
     marginBottom: 12,
     // padding: 20,
-    paddingTop: 25,
+    paddingTop: 55,
     paddingBottom: 110,
     paddingLeft: 10,
   },
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     position: 'absolute',
-    top: 110,
+    top: 135,
     left: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -226,11 +225,11 @@ const styles = StyleSheet.create({
   btnText: {
     color: 'white',
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Mulish-Bold',
   },
   btnPriceText: {
-    fontSize: 24,
+    fontSize: 18,
     fontFamily: 'Mulish-Bold',
     color: '#FFFFFF',
   },

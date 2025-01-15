@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fafafa',
+    paddingTop: 30,
   },
   slide: {
     width,
