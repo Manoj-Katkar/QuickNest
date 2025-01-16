@@ -1,26 +1,33 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
+import {Image} from '../../constant/images';
+import CustomHeader from '../../components/header-comp';
+import MapIcon from '../../../assets/icons/MapIcon';
 
-const MapIntegration = () => {
+const MapIntegration = ({navigation}: any) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Google Map Integration Screen</Text>
-    </View>
+    <>
+      <ImageBackground
+        source={Image.mapImage} // Replace with your image URL or local path
+        style={styles.backgroundImage}
+        resizeMode="stretch" // Optional: 'cover', 'contain', 'stretch', 'repeat', 'center'
+      >
+        <CustomHeader navigation={navigation} />
+        <MapIcon style={styles.mapIcon} />
+      </ImageBackground>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#E8F6F3', // Cool light greenish background
+    width: '100%',
+    alignItems: 'center', // Align content horizontally
+    // paddingTop: 10,
+    // marginTop: 30,
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#34495E', // Cool dark greyish-blue text color
-  },
+  mapIcon: {position: 'absolute', top: 495, left: 185},
 });
 
 export default MapIntegration;

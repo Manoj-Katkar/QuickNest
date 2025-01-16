@@ -1,10 +1,18 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../constant/images';
 import {screenWidth} from '../../responsive';
+import HomeLocationIcon from '../../../assets/icons/HomeLocationIcon';
+import DropDownIcon from '../../../assets/icons/DropDownIcon';
+import DropDownUpIcon from '../../../assets/icons/DropDownUpIcon';
+import CustomDefaultLocation from '../../components/custom-default-location';
 
 const PanicPress = ({navigation}: any) => {
+  const [currentHomeLocation, setCurrentHomeLocation] = useState(
+    `Sir Matt Busby Way, Old Trafford, Stretford, Manchester M16 0RA.`,
+  );
+
   const navigateToBackScreen = () => {
     navigation?.goBack();
   };
@@ -12,10 +20,11 @@ const PanicPress = ({navigation}: any) => {
   const handleToPanicActiveScreen = () => {
     navigation.navigate('PanicActive');
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.parent}>
-        <View style={styles.toTakeLocation}></View>
+        <CustomDefaultLocation currentHomeLocation={currentHomeLocation} />
         <View style={styles.emergencyTextContainer}>
           <Text style={styles.needHelpText}>Emergency? Need help?</Text>
           <Text style={styles.pressBtnText}>Press the below button</Text>
@@ -24,7 +33,7 @@ const PanicPress = ({navigation}: any) => {
           <TouchableOpacity onPress={handleToPanicActiveScreen}>
             <FastImage
               source={Image.PanicPressImage}
-              resizeMode={FastImage.resizeMode.contain} //^compulsory I have to give
+              resizeMode={FastImage.resizeMode.contain}
               style={styles.image}
             />
           </TouchableOpacity>
@@ -43,16 +52,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fafafa',
-    paddingTop: 40,
+    paddingTop: 60,
   },
   parent: {
     width: '92%',
     alignSelf: 'center',
-    // backgroundColor: 'yellow',
   },
-  toTakeLocation: {},
+
   emergencyTextContainer: {
-    marginTop: 170,
+    marginTop: 20,
   },
   needHelpText: {
     fontSize: 28,
@@ -68,8 +76,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageParent: {
-    // width: '100%',
-    // height: 500,
+    // backgroundColor: 'yellow',
+    width: '110%',
+    alignSelf: 'center',
+    marginTop: 5,
   },
   image: {
     width: screenWidth * 0.99,
@@ -89,7 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
     paddingTop: 15,
     paddingBottom: 15,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 15,
     borderColor: '#011e62',
     marginBottom: 15,

@@ -14,6 +14,9 @@ const Image = {
     aboutUsScreenBackground: require('../.././assets/images/About-us-background.png'),
     PanicPressImage: require('../.././assets/images/Press_Here_Image.png'),
     PanicActiveImage: require('../.././assets/images/Panic_Active_Image.png'),
+    mapImage: require('../.././assets/images/mapBackGroundImage.png'),
+    ReleaseToConfirmIcon: require('../.././assets/images/ReleaseToConfirm.png'),
+    SwipeToCancelIcon: require('../.././assets/images/swipeToCancel.png'),
 
 }
 export { Image };
