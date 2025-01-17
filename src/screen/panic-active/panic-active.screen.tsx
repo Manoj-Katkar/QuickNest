@@ -150,10 +150,11 @@ const PanicActive = ({navigation}: any) => {
                 width: '100%',
                 justifyContent: 'center',
                 alignItems: 'center',
+                // backgroundColor: 'aqua',
               }}>
               <FastImage
                 source={Image.SwipeToCancelIcon}
-                style={styles.swipeIcon}
+                style={styles.SwipeToCancelImageStyle}
                 resizeMode={FastImage.resizeMode.contain}
               />
             </View>
@@ -168,7 +169,7 @@ const PanicActive = ({navigation}: any) => {
                 transform: [
                   {
                     translateX: swipeX.interpolate({
-                      inputRange: [-screenWidth, 45],
+                      inputRange: [-screenWidth, 20],
                       outputRange: [-screenWidth, screenWidth], // Moves with the swipe
                       extrapolate: 'clamp',
                     }),
@@ -235,9 +236,9 @@ const styles = StyleSheet.create({
     left: 145,
   },
   swipeImageContainer: {
-    width: '87%',
-    marginTop: 20,
-    height: 80,
+    width: '95%',
+    marginTop: 50,
+    height: 70,
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
@@ -251,8 +252,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   swipeIcon: {
-    width: screenWidth * 0.99,
+    width: screenWidth * 0.82,
+    height: 68,
+    // zIndex: 1,
+  },
+  SwipeToCancelImageStyle: {
+    width: '100%',
     height: 70,
+    alignSelf: 'flex-start',
+    // backgroundColor: 'red',
+    // zIndex: 2,
   },
 });
 

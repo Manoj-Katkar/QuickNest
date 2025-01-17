@@ -44,6 +44,8 @@ export type RootStackParamList = {
   PanicPress: undefined;
   PanicActive: undefined;
   MapIntegration: undefined;
+  AccountApproval: undefined;
+  NothingHere: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -170,6 +172,14 @@ const App = () => {
               <Stack.Screen
                 name="MapIntegration"
                 component={screens.MapIntegration}
+              />
+              <Stack.Screen
+                name="AccountApproval"
+                component={screens.AccountApproval}
+              />
+              <Stack.Screen
+                name="NothingHere"
+                component={screens.NothingHere}
               />
             </Stack.Navigator>
           </NavigationContainer>

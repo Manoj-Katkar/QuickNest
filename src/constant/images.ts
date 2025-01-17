@@ -17,6 +17,8 @@ const Image = {
     mapImage: require('../.././assets/images/mapBackGroundImage.png'),
     ReleaseToConfirmIcon: require('../.././assets/images/ReleaseToConfirm.png'),
     SwipeToCancelIcon: require('../.././assets/images/swipeToCancel.png'),
+    ApprovalPendingImage: require('../.././assets/images/ApprovalPendingImage.png'),
+    NothingHereImage: require('../.././assets/images/NothingHereImage.png'),
 
 }
 export { Image };

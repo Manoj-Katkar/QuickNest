@@ -4,7 +4,7 @@ import {screenWidth} from '../../responsive';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../constant/images';
 
-const DeleteAccount = ({navigation}: any) => {
+const AccountApproval = ({navigation}: any) => {
   const navigateBackHandle = () => {
     navigation?.goBack();
   };
@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeleteAccount;
+export default AccountApproval;

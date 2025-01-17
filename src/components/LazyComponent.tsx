@@ -75,6 +75,12 @@ const screens = React.useMemo(
     MapIntegration: helpers.LazyLoad(
       () => import('../screen/map-integration/map-integration.screen'),
     ),
+    AccountApproval: helpers.LazyLoad(
+      () => import('../screen/account-approval/account-approval.screen'),
+    ),
+    NothingHere: helpers.LazyLoad(
+      () => import('../screen/nothing-here/nothing-here.screen'),
+    ),
   }),
   [],
 );

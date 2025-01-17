@@ -1,38 +1,31 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Touchable,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import CrossIconBlack from '../../../assets/icons/CrossIconBlack';
+import {screenWidth} from '../../responsive';
+import PreviousIcon from '../../../assets/icons/PreviousIcon';
 import FastImage from 'react-native-fast-image';
 import {Image} from '../../constant/images';
-import {screenWidth} from '../../responsive';
 
-const PaymentUnsuccessful = ({navigation}: any) => {
+const NothingHere = ({navigation}: any) => {
   const navigateBackHandle = () => {
     navigation?.goBack();
   };
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity style={styles.icon} onPress={navigateBackHandle}>
-        <CrossIconBlack width={30} height={30} />
+        <PreviousIcon width={30} height={30} />
       </TouchableOpacity>
 
       <View style={styles.errorContainer}>
         <View>
           <FastImage
-            source={Image.Payment_unsuccessful}
+            source={Image.NothingHereImage}
             resizeMode={FastImage.resizeMode.contain} //^compulsory I have to give
             style={styles.image}
           />
 
-          <Text style={styles.sucessText}>Payment unsuccessful</Text>
+          <Text style={styles.sucessText}>Oops! Nothing here</Text>
           <Text style={styles.sucessPara}>
-            Oops! Something went wrong with your{'\n'} payment. Please check
-            your details and try{'\n'} again.
+            There’s nothing here at the moment. Please{'\n'} check back later.{' '}
           </Text>
         </View>
       </View>
@@ -44,7 +37,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#fafafa',
-    paddingTop: 30,
   },
   text: {
     fontSize: 15,
@@ -57,21 +49,21 @@ const styles = StyleSheet.create({
   },
   image: {
     width: screenWidth * 0.99,
-    height: 230,
+    height: 310,
     alignSelf: 'center',
   },
   sucessText: {
-    color: '#FF3B3B',
+    color: '#2B2B2B',
     fontSize: 20,
     fontFamily: 'Mulish-SemiBold',
     textAlign: 'center',
-    marginTop: 15,
+    marginTop: 30,
     marginBottom: 15,
   },
   sucessPara: {
     fontSize: 16,
     fontFamily: 'Mulish-Regular',
-    color: '#2B2B2B',
+    color: '#2B2B2Bs',
     textAlign: 'center',
     lineHeight: 22,
   },
@@ -83,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentUnsuccessful;
+export default NothingHere;
